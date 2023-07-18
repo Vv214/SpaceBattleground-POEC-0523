@@ -15,8 +15,10 @@ public class Building {
     private int level;
     private int buildingSize;
 
-    public Building(int id, String name, String type, int level, int buildingSize) {
-        this.id = id;
+    public Building() {
+    };
+
+    public Building(String name, String type, int level, int buildingSize) {
         this.name = name;
         this.type = type;
         this.level = level;

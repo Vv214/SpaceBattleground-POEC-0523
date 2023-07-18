@@ -15,8 +15,10 @@ public class Player {
     private String password;
     private int level;
 
-    public Player(int id, String nickname, String email, String password, int level) {
-        this.id = id;
+    public Player() {
+    };
+
+    public Player(String nickname, String email, String password, int level) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;

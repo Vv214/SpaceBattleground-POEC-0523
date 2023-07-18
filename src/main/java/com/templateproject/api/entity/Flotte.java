@@ -20,9 +20,11 @@ public class Flotte {
     private int vitesse;
     private int carburant;
 
-    public Flotte(int id, String name, int maxNumberShip, int positionX, int positionY, int totalPower, int totalPv,
+    public Flotte() {
+    };
+
+    public Flotte(String name, int maxNumberShip, int positionX, int positionY, int totalPower, int totalPv,
             int totalCapacity, int vitesse, int carburant) {
-        this.id = id;
         this.name = name;
         this.maxNumberShip = maxNumberShip;
         this.positionX = positionX;
