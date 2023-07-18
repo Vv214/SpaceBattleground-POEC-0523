@@ -15,7 +15,7 @@ public class Player {
     private String password;
     private int level;
 
-    public Player(Id id, String nickname, String email, String password, int level) {
+    public Player(int id, String nickname, String email, String password, int level) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
@@ -35,7 +35,7 @@ public class Player {
         this.password = password;
     }
 
-    public Id getId() {
+    public int getId() {
         return id;
     }
 
