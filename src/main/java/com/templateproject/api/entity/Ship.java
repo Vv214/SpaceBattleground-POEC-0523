@@ -6,27 +6,30 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Vaisseau {
+public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String type;
-    private int PV;
+    private int pv;
     private int damage;
     private int fuel;
     private int speed;
     private int capacity;
+    private int shipSize;
 
-    public Vaisseau(int id, String name, String type, int pV, int damage, int fuel, int speed, int capacity) {
+    public Ship(int id, String name, String type, int pv, int damage,
+            int fuel, int speed, int capacity, int shipSize) {
         this.id = id;
         this.name = name;
         this.type = type;
-        PV = pV;
+        this.pv = pv;
         this.damage = damage;
         this.fuel = fuel;
         this.speed = speed;
         this.capacity = capacity;
+        this.shipSize = shipSize;
     }
 
     public int getId() {
@@ -53,12 +56,12 @@ public class Vaisseau {
         this.type = type;
     }
 
-    public int getPV() {
-        return PV;
+    public int getPv() {
+        return pv;
     }
 
-    public void setPV(int pV) {
-        PV = pV;
+    public void setPV(int pv) {
+        this.pv = pv;
     }
 
     public int getDamage() {
@@ -91,6 +94,18 @@ public class Vaisseau {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+
+    public int getShipSize() {
+        return shipSize;
+    }
+
+    public void setShipSize(int shipSize) {
+        this.shipSize = shipSize;
     }
 
 }
