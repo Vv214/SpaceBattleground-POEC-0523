@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Id id;
+    private int id;
     private String nickname;
     private String email;
     private String password;
