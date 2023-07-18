@@ -22,9 +22,11 @@ public class Planet {
     private int positionY;
     private int planetSize;
 
-    public Planet(int id, String name, int hydrogeneTotal, int ferTotal, int diamantTotal, int hydrogeneInStock,
+    public Planet() {
+    };
+
+    public Planet(String name, int hydrogeneTotal, int ferTotal, int diamantTotal, int hydrogeneInStock,
             int ferInStock, int diamantInStock, boolean isColonised, int positionX, int positionY, int planetSize) {
-        this.id = id;
         this.name = name;
         this.hydrogeneTotal = hydrogeneTotal;
         this.ferTotal = ferTotal;

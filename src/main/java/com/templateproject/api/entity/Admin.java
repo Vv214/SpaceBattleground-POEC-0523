@@ -11,8 +11,8 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    public Admin(int id) {
-        this.id = id;
+    public Admin() {
+
     }
 
     public void banPlayer(String player) {
