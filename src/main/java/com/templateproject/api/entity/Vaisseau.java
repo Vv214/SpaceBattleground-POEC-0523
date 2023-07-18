@@ -18,8 +18,10 @@ public class Vaisseau {
     private int speed;
     private int capacity;
 
-    public Vaisseau(int id, String name, String type, int pV, int damage, int fuel, int speed, int capacity) {
-        this.id = id;
+    public Vaisseau() {
+    };
+
+    public Vaisseau(String name, String type, int pV, int damage, int fuel, int speed, int capacity) {
         this.name = name;
         this.type = type;
         PV = pV;

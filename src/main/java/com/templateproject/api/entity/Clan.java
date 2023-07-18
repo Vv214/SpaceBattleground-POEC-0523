@@ -17,9 +17,11 @@ public class Clan {
     private int currentNumberPlayers;
     private String adminNickname;
 
-    public Clan(int id, String clanName, String clanTag, int clanLvl, int numberMaxPlayers,
+    public Clan() {
+    };
+
+    public Clan(String clanName, String clanTag, int clanLvl, int numberMaxPlayers,
             int currentNumberPlayers, String adminNickname) {
-        this.id = id;
         this.clanName = clanName;
         this.clanTag = clanTag;
         this.clanLvl = clanLvl;
