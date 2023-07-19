@@ -14,26 +14,24 @@ public class Flotte {
     private int maxNumberShip;
     private int positionX;
     private int positionY;
-    private int totalPower;
+    private int power;
     private int totalPv;
     private int totalCapacity;
-    private int vitesse;
-    private int carburant;
+    private int speed;
 
     public Flotte() {
     };
 
-    public Flotte(String name, int maxNumberShip, int positionX, int positionY, int totalPower, int totalPv,
-            int totalCapacity, int vitesse, int carburant) {
+    public Flotte(String name, int maxNumberShip, int positionX, int positionY, int power, int totalPv,
+            int totalCapacity, int speed) {
         this.name = name;
         this.maxNumberShip = maxNumberShip;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.totalPower = totalPower;
+        this.power = power;
         this.totalPv = totalPv;
         this.totalCapacity = totalCapacity;
-        this.vitesse = vitesse;
-        this.carburant = carburant;
+        this.speed = speed;
     }
 
     public int getId() {
@@ -76,12 +74,12 @@ public class Flotte {
         this.positionY = positionY;
     }
 
-    public int getTotalPower() {
-        return totalPower;
+    public int getpower() {
+        return power;
     }
 
-    public void setTotalPower(int totalPower) {
-        this.totalPower = totalPower;
+    public void setpower(int power) {
+        this.power = power;
     }
 
     public int getTotalPv() {
@@ -100,20 +98,12 @@ public class Flotte {
         this.totalCapacity = totalCapacity;
     }
 
-    public int getVitesse() {
-        return vitesse;
+    public int getspeed() {
+        return speed;
     }
 
-    public void setVitesse(int vitesse) {
-        this.vitesse = vitesse;
-    }
-
-    public int getCarburant() {
-        return carburant;
-    }
-
-    public void setCarburant(int carburant) {
-        this.carburant = carburant;
+    public void setspeed(int speed) {
+        this.speed = speed;
     }
 
 }

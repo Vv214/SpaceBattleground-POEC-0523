@@ -18,11 +18,13 @@ public class Ship {
     private int speed;
     private int capacity;
     private int shipSize;
+    private int quantity;
 
     public Ship() {
     };
 
-    public Ship(String name, String type, int pv, int damage, int fuel, int speed, int capacity, int shipSize) {
+    public Ship(String name, String type, int pv, int damage, int fuel, int speed, int capacity, int shipSize,
+            int quantity) {
         this.name = name;
         this.type = type;
         this.pv = pv;
@@ -31,6 +33,15 @@ public class Ship {
         this.speed = speed;
         this.capacity = capacity;
         this.shipSize = shipSize;
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getId() {
