@@ -15,19 +15,28 @@ public class Technologie {
     private int priceRessource2;
     private int priceRessource3;
     private int priceEnergy;
+    private int description; 
+    private int lvl; 
+    private float coef_modifier;
     private int timeSearch;
     private boolean isDone;
 
-    public Technologie() {
+       public Technologie() {
 
     };
 
-    public Technologie(String name, int priceRessource1, int priceRessource2, int priceRessource3,
-            int priceEnergy, int timeSearch, boolean isDone) {
+    public Technologie(String name, int priceRessource1, int priceRessource2, int priceRessource3, int priceEnergy,
+            int description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
         this.name = name;
         this.priceRessource1 = priceRessource1;
         this.priceRessource2 = priceRessource2;
         this.priceRessource3 = priceRessource3;
+        this.priceEnergy = priceEnergy;
+        this.description = description;
+        this.lvl = lvl;
+        this.coef_modifier = coef_modifier;
+        this.timeSearch = timeSearch;
+        this.isDone = isDone;
     }
 
     public String getName() {
@@ -68,6 +77,30 @@ public class Technologie {
 
     public void setPriceEnergy(int priceEnergy) {
         this.priceEnergy = priceEnergy;
+    }
+ 
+    public int getDescription() {
+        return description;
+    }
+
+    public void setDescription(int description) {
+        this.description = description;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
+    }
+
+    public float getCoef_modifier() {
+        return coef_modifier;
+    }
+
+    public void setCoef_modifier(float coef_modifier) {
+        this.coef_modifier = coef_modifier;
     }
 
     public int getTimeSearch() {
