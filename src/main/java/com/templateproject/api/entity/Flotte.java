@@ -18,12 +18,13 @@ public class Flotte {
     private int totalPv;
     private int totalCapacity;
     private int speed;
+    private int totalRange; 
 
     public Flotte() {
     };
 
     public Flotte(String name, int maxNumberShip, int positionX, int positionY, int power, int totalPv,
-            int totalCapacity, int speed) {
+            int totalCapacity, int speed, int totalRange) {
         this.name = name;
         this.maxNumberShip = maxNumberShip;
         this.positionX = positionX;
@@ -32,6 +33,7 @@ public class Flotte {
         this.totalPv = totalPv;
         this.totalCapacity = totalCapacity;
         this.speed = speed;
+        this.totalRange = totalRange;
     }
 
     public int getId() {
@@ -106,4 +108,28 @@ public class Flotte {
         this.speed = speed;
     }
 
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getTotalRange() {
+        return totalRange;
+    }
+
+    public void setTotalRange(int totalRange) {
+        this.totalRange = totalRange;
+    }
+    
 }
