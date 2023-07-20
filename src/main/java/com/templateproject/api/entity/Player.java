@@ -9,16 +9,16 @@ import jakarta.persistence.Id;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private String nickname;
     private String email;
     private String password;
-    private int level;
+    private Integer level;
 
     public Player() {
     };
 
-    public Player(String nickname, String email, String password, int level) {
+    public Player(String nickname, String email, String password, Integer level) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
@@ -55,6 +55,14 @@ public class Player {
 
     public int getLevel() {
         return level;
+    }
+
+    public int setId(Integer id2) {
+        return id = id2;
+    }
+
+    public Integer setLevel(int level2) {
+        return this.level = level2;
     }
 
 }
