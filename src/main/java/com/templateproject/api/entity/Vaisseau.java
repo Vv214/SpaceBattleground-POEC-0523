@@ -21,10 +21,10 @@ public class Vaisseau {
     public Vaisseau() {
     };
 
-    public Vaisseau(String name, String type, int pV, int damage, int fuel, int speed, int capacity) {
+    public Vaisseau(String name, String type, int PV, int damage, int fuel, int speed, int capacity) {
         this.name = name;
         this.type = type;
-        PV = pV;
+        this.PV = PV;
         this.damage = damage;
         this.fuel = fuel;
         this.speed = speed;
@@ -35,64 +35,64 @@ public class Vaisseau {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int setId(int id) {
+        return this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String setName(String name) {
+        return this.name = name;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String setType(String type) {
+        return this.type = type;
     }
 
     public int getPV() {
         return PV;
     }
 
-    public void setPV(int pV) {
-        PV = pV;
+    public int setPV(int PV) {
+        return this.PV = PV;
     }
 
     public int getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
+    public int setDamage(int damage) {
+        return this.damage = damage;
     }
 
     public int getFuel() {
         return fuel;
     }
 
-    public void setFuel(int fuel) {
-        this.fuel = fuel;
+    public int setFuel(int fuel) {
+        return this.fuel = fuel;
     }
 
     public int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public int setSpeed(int speed) {
+        return this.speed = speed;
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public int setCapacity(int capacity) {
+        return this.capacity = capacity;
     }
 
 }
