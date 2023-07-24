@@ -1,43 +1,19 @@
-package com.templateproject.api.entity;
+package com.templateproject.api.controller.payload;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Technologie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class TechnologiePayload {
+    
     private String name;
     private int priceRessource1;
     private int priceRessource2;
     private int priceRessource3;
     private int priceEnergy;
-    private string description; 
+    private int description; 
     private int lvl; 
     private float coef_modifier;
     private int timeSearch;
     private boolean isDone;
 
-       public Technologie() {
-
-    };
-
-    public Technologie(String name, int priceRessource1, int priceRessource2, int priceRessource3, int priceEnergy,
-            string description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
-        this.name = name;
-        this.priceRessource1 = priceRessource1;
-        this.priceRessource2 = priceRessource2;
-        this.priceRessource3 = priceRessource3;
-        this.priceEnergy = priceEnergy;
-        this.description = description;
-        this.lvl = lvl;
-        this.coef_modifier = coef_modifier;
-        this.timeSearch = timeSearch;
-        this.isDone = isDone;
-    }
+    public TechnologiePayload () {}
 
     public String getName() {
         return name;
@@ -78,7 +54,7 @@ public class Technologie {
     public void setPriceEnergy(int priceEnergy) {
         this.priceEnergy = priceEnergy;
     }
- 
+
     public string getDescription() {
         return description;
     }
@@ -119,6 +95,5 @@ public class Technologie {
         this.isDone = isDone;
     }
 
-   
     
 }
