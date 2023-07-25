@@ -40,11 +40,12 @@ public class BuildingService {
     return payload;
   }
 
-  public Building getBuilding(String name) {
-    return null;
-  }
+  // public Building getBuilding(String name) {
+  // Building building = new Building(name, );
+  // return building;
+  // }
 
-  public BuildingPayload updateBuilding(String name, BuildingPayload building) throws Exception {
+  public void updateBuilding(String name, BuildingPayload building) throws Exception {
     var buildingToUpdate = buildingRepository.findByName(name);
 
     if (buildingToUpdate == null) {
@@ -84,7 +85,21 @@ public class BuildingService {
       buildingToUpdate.setTimeBuilding(building.getTimeBuilding());
     }
     buildingRepository.save(buildingToUpdate);
-    return buildingToUpdate;
+    /*
+     * var buildingUpdated = buildingRepository.save(buildingToUpdate);
+     * return new BuildingPayload(
+     * buildingUpdated.getName(),
+     * buildingUpdated.getType(),
+     * buildingUpdated.getLevel(),
+     * buildingUpdated.getBuildingSize(),
+     * buildingUpdated.getDescription(),
+     * buildingUpdated.getCoeff_prod(),
+     * buildingUpdated.getPriceRessource1(),
+     * buildingUpdated.getPriceRessource2(),
+     * buildingUpdated.getPriceRessource3(),
+     * buildingUpdated.getPriceEnergy(),
+     * buildingUpdated.getTimeBuilding());
+     */
   }
 
   public void add(String name, String type, int level, int buildingSize, String description,

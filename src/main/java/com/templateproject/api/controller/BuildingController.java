@@ -28,19 +28,26 @@ public class BuildingController {
         this.buildingService = buildingService;
     }
 
-    @GetMapping("{building}")
-    public Building getBuilding(@PathVariable("building") String name) {
-        return this.buildingService.getBuilding(name);
+    public BuildingController() {
+
     }
 
-    @PutMapping("{building}")
-    public Building updateBuilding(@PathVariable("building") String name,
-            @RequestBody Building building) {
-        var buildingToUpdate = new BuildingPayload();
-        // todo change fonction declaration
-        buildingToUpdate = buildingService.updateBuilding(name, building);
-        return buildingToUpdate;
-    }
+    // @GetMapping("{building}")
+    // public Building getBuilding(@PathVariable("building") String name) {
+    // return this.buildingService.getBuilding(name);
+    // }
+
+    /*
+     * @PutMapping("{building}")
+     * public BuildingPayload updateBuilding(@PathVariable("building") String name,
+     * 
+     * @RequestBody Building building) {
+     * var buildingToUpdate = new BuildingPayload();
+     * // todo change fonction declaration // change Object
+     * buildingToUpdate = buildingService.updateBuilding(name, building);
+     * return buildingToUpdate;
+     * }
+     */
 
     @PostMapping("/building")
     public ResponseEntity<Payload> createBuilding(@RequestBody BuildingPayload building) {
@@ -72,7 +79,7 @@ public class BuildingController {
         }
     }
 
-    @GetMapping("/buildings/{name}")
+    @PutMapping("/buildings/{name}")
     public ResponseEntity<Payload> updateBuilding(@PathVariable String name, @RequestBody BuildingPayload building) {
         var payload = new Payload();
         try {

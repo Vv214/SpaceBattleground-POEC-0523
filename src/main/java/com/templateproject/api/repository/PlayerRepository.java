@@ -9,4 +9,6 @@ import com.templateproject.api.entity.Player;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
+    public Player findByNickname(String nickname);
+
 }
