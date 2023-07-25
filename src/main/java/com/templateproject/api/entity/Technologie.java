@@ -15,7 +15,7 @@ public class Technologie {
     private int priceRessource2;
     private int priceRessource3;
     private int priceEnergy;
-    private string description; 
+    private String description; 
     private int lvl; 
     private float coef_modifier;
     private int timeSearch;
@@ -26,7 +26,7 @@ public class Technologie {
     };
 
     public Technologie(String name, int priceRessource1, int priceRessource2, int priceRessource3, int priceEnergy,
-            string description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
+            String description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
         this.name = name;
         this.priceRessource1 = priceRessource1;
         this.priceRessource2 = priceRessource2;
@@ -79,11 +79,11 @@ public class Technologie {
         this.priceEnergy = priceEnergy;
     }
  
-    public string getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

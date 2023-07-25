@@ -26,7 +26,7 @@ public class TechnologieService {
             int priceRessource2,
             int priceRessource3,
             int priceEnergy,
-            string description, //modif le typ var de description
+            String description, //modif le typ var de description
             int lvl, 
             float coef_modifier,
             int timeSearch,
@@ -50,22 +50,31 @@ public class TechnologieService {
     }
 
     public List<HashMap<String, String>> getAll(){
-        var payload = new ArrayList<HashMap<String, String>();
+        var techPayload = new ArrayList<HashMap<String, String>>();
 
         List<Technologie> technologieList = technologieRepository.findAll();
         for (var technologie: technologieList){
-            var newTechnologie = new HashMap<String, String>();
-            newTechnologie.put("name",technologie.getName());
-            newTechnologie.put("priceRessource1n",technologie.getPriceRessource1());
-            newTechnologie.put("priceRessource2",technologie.getPriceRessource2());
-            newTechnologie.put("priceRessource3",technologie.getPriceRessource3());
-            newTechnologie.put("priceEnergy",technologie.getPriceEnergy());
-            newTechnologie.put("description",technologie.getDescription());
-            newTechnologie.put("lvl",technologie.getLvl());
-            newTechnologie.put("coef_modifier",technologie.getCoef_modifier());
-            newTechnologie.put("timeSearch",technologie.getTimeSearch());
-            newTechnologie.put("isDone",technologie.isDone());
-            payload.add(newTechnologie);
+
+            var newStringTechnologie = new HashMap<String, String>();
+            
+            newStringTechnologie.put("name",technologie.getName());
+            newStringTechnologie.put("description",technologie.getDescription());
+
+            var newIntTechnologie = new HashMap<String, Integer>();
+            
+            newIntTechnologie.put("priceRessource1n",technologie.getPriceRessource1());
+            newIntTechnologie.put("priceRessource2",technologie.getPriceRessource2());
+            newIntTechnologie.put("priceRessource3",technologie.getPriceRessource3());
+            newIntTechnologie.put("priceEnergy",technologie.getPriceEnergy());
+            newIntTechnologie.put("lvl",technologie.getLvl());
+            newIntTechnologie.put("timeSearch",technologie.getTimeSearch());
+
+
+            newIntTechnologie.put("coef_modifier",technologie.getCoef_modifier());
+            
+            newIntTechnologie.put("isDone",technologie.isDone());
+
+            techPayload.add(newTechnologie);
         } 
     }
 

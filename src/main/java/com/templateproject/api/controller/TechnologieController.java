@@ -30,7 +30,7 @@ public class TechnologieController {
                  technologie.getPriceRessource2(),
                  technologie.getPriceRessource3(),
                  technologie.getPriceEnergy(),
-                 technologie.getDescription(), // error type
+                 technologie.getDescription(), 
                  technologie.getLvl(),
                  technologie.getCoef_modifier(),
                  technologie.getTimeSearch(),
@@ -80,7 +80,7 @@ public class TechnologieController {
 
     @PutMapping("/technologie/{name}")
     public ResponseEntity<Payload> updateTechnologie (@PathVariable String name, @RequestBody Technologie technologie){
-        var payload = new Payload();
+        var payload = new TechnologiePayload();
         try {
             technologieService.update(
                     name,
@@ -95,11 +95,11 @@ public class TechnologieController {
                     technologie.getTimeSearch(),
                     technologie.isDone()
             );
-            payload.setMessgae("Technologie Update");
+            payload.setMessage("Technologie Update");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         }   
         catch (Exception e) { //TODO NOT FOUND
-                payload.setMessgae(e.getMessage());
+                payload.setMessage(e.getMessage());
                 payload.setData(null);
                 return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
                 }

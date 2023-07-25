@@ -2,18 +2,28 @@ package com.templateproject.api.controller.payload;
 
 public class TechnologiePayload {
     
+    private String message; 
+
     private String name;
     private int priceRessource1;
     private int priceRessource2;
     private int priceRessource3;
     private int priceEnergy;
-    private int description; 
+    private String description; 
     private int lvl; 
     private float coef_modifier;
     private int timeSearch;
     private boolean isDone;
 
     public TechnologiePayload () {}
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public String getName() {
         return name;
@@ -55,11 +65,11 @@ public class TechnologiePayload {
         this.priceEnergy = priceEnergy;
     }
 
-    public string getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
