@@ -1,5 +1,8 @@
 package com.templateproject.api.controller;
 
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.templateproject.api.controller.payload.UserLogin;
 import com.templateproject.api.controller.payload.UserRegister;
 import com.templateproject.api.service.AuthService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 public class AuthController {
@@ -17,17 +22,24 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody UserRegister user) {
+    public ResponseEntity<String> register(@RequestBody UserRegister user) {
         boolean isRegistered = authService.register(
                 user.getNickname(),
                 user.getPassword(),
                 user.getConfirmPassword());
-        return isRegistered ? user.getNickname() + " is registred !" : "Register failed";
+        if (isRegistered)
+            return new ResponseEntity<>(user.getNickname() + " is registered !", HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Register failed", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserLogin user) {
-        var isLogin = authService.findByNickname(user.getNickname(), user.getPassword());
-        return isLogin ? user.getNickname() + " is connected" : user.getNickname() + " Login failed";
+    public ResponseEntity<String> login(HttpServletRequest request, @RequestBody UserLogin user) {
+        String playerName = authService.findByNickname(user.getNickname(), user.getPassword());
+        if (playerName != null) {
+            request.getSession().setAttribute("playerName", playerName);
+            return new ResponseEntity<>(user.getNickname() + " is connected", HttpStatus.OK);
+        } else
+            return new ResponseEntity<>("Auth failed", HttpStatus.BAD_REQUEST);
     }
 }
