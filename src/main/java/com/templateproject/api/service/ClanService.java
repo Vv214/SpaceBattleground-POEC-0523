@@ -12,4 +12,21 @@ public class ClanService {
     this.clanRepository = clanRepository;
   }
 
+  public void add(String clanName, String clanTag, int clanLvl) {
+  }
+
+public Object getAll() {
+    return null;
+}
+
+public void update(String name, String clanName, String clanTag, int clanLvl) {
+}
+
+public Object getByName(String name) {
+    return null;
+}
+
+public void delete(String name) {
+}
+
 }
