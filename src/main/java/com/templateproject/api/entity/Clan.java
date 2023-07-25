@@ -9,19 +9,19 @@ import jakarta.persistence.Id;
 public class Clan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private String clanName;
     private String clanTag;
-    private int clanLvl;
-    private int numberMaxPlayers;
-    private int currentNumberPlayers;
+    private Integer clanLvl;
+    private Integer numberMaxPlayers;
+    private Integer currentNumberPlayers;
     private String adminNickname;
 
     public Clan() {
     };
 
-    public Clan(String clanName, String clanTag, int clanLvl, int numberMaxPlayers,
-            int currentNumberPlayers, String adminNickname) {
+    public Clan(String clanName, String clanTag, Integer clanLvl, Integer numberMaxPlayers,
+            Integer currentNumberPlayers, String adminNickname) {
         this.clanName = clanName;
         this.clanTag = clanTag;
         this.clanLvl = clanLvl;
@@ -30,23 +30,55 @@ public class Clan {
         this.adminNickname = adminNickname;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getClanName() {
         return clanName;
+    }
+
+    public void setClanName(String clanName) {
+        this.clanName = clanName;
+    }
+
+    public void setClanTag(String clanTag) {
+        this.clanTag = clanTag;
+    }
+
+    public void setClanLvl(Integer clanLvl) {
+        this.clanLvl = clanLvl;
+    }
+
+    public void setNumberMaxPlayers(Integer numberMaxPlayers) {
+        this.numberMaxPlayers = numberMaxPlayers;
+    }
+
+    public void setCurrentNumberPlayers(Integer currentNumberPlayers) {
+        this.currentNumberPlayers = currentNumberPlayers;
+    }
+
+    public void setAdminNickname(String adminNickname) {
+        this.adminNickname = adminNickname;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getClanTag() {
         return clanTag;
     }
 
-    public int getClanLvl() {
+    public Integer getClanLvl() {
         return clanLvl;
     }
 
-    public int getNumberMaxPlayers() {
+    public Integer getNumberMaxPlayers() {
         return numberMaxPlayers;
     }
 
-    public int getCurrentNumberPlayers() {
+    public Integer getCurrentNumberPlayers() {
         return currentNumberPlayers;
     }
 
