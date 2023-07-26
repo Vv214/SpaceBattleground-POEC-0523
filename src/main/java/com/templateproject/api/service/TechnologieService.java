@@ -50,8 +50,8 @@ public class TechnologieService {
         technologieRepository.save(technologie);        
     }
 
-    public ResponseEntity<String> deleteTechnologieById(Integer id){
-        technologieRepository.deleteById(id);
+    public ResponseEntity<String> deleteTechnologieByName(String name){
+        technologieRepository.deleteByName(name);
         return new ResponseEntity<String>("Player successfully deleted!", HttpStatus.OK);
     }
 
@@ -65,7 +65,7 @@ public class TechnologieService {
             newTechnologie.setName(technologie.getName());
             newTechnologie.setIronPrice(technologie.getIronPrice());
             newTechnologie.setDiamondPrice(technologie.getDiamondPrice());
-            newTechnologie.setHydrogenPrice(technologie.getydrogenPrice());
+            newTechnologie.setHydrogenPrice(technologie.getHydrogenPrice());
             newTechnologie.setPriceEnergy(technologie.getPriceEnergy());
             newTechnologie.setDescription(technologie.getDescription());
             newTechnologie.setLvl(technologie.getLvl());
@@ -78,10 +78,10 @@ public class TechnologieService {
         return techPayload; 
     }
 
-    // public ResponseEntity<TechnologiePayload> getThisTechnologie(String name){
-    //     technologieRepository.deleteByName(name);
-    //     return new ResponseEntity<String>("Player successfully deleted!", HttpStatus.OK); 
-    // }
+     public ResponseEntity<TechnologiePayload> getThisTechnologie(String name){
+         technologieRepository.findByName(name);
+         return new ResponseEntity<TechnologiePayload>("Technologie find ", HttpStatus.OK); 
+     }
 
     public void updateTechnologie(String name, TechnologiePayload technologie) throws Exception{
         var technologieToUpdate = technologieRepository.findByName(name);

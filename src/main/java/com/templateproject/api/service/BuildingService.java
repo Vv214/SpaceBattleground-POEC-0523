@@ -103,12 +103,12 @@ public class BuildingService {
   }
 
   public void add(String name, String type, int level, int buildingSize, String description,
-      int coeff_prod, int priceRessource1, int priceRessource2, int priceRessource3,
+      int coeff_prod, int ironPrice, int diamondPrice, int hydrogenPrice,
       int priceEnergy, int timeBuilding) {
     // Todo check params
     var building = new Building(name, type, level, buildingSize,
-        description, coeff_prod, priceRessource1, priceRessource2,
-        priceRessource3, priceEnergy, timeBuilding);
+        description, coeff_prod, ironPrice, diamondPrice,
+        hydrogenPrice, priceEnergy, timeBuilding);
     buildingRepository.save(building);
   }
 

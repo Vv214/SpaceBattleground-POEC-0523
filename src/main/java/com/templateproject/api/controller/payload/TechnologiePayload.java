@@ -33,13 +33,13 @@ public class TechnologiePayload {
         this.name = name;
     }
 
-    public int getironPrice() {
+    public int getIronPrice() {
         return ironPrice;
-   
+    }
 
     public void setIronPrice(int ironPrice) {
         this.ironPrice = ironPrice;
-    
+    }
 
     public int getDiamondPrice() {
         return diamondPrice;
