@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +10,9 @@ import jakarta.persistence.Id;
 public class Technologie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id; 
+
+    @Column(unique = true, nullable = false)
     private String name;
     private int priceRessource1;
     private int priceRessource2;
@@ -21,12 +24,10 @@ public class Technologie {
     private int timeSearch;
     private boolean isDone;
 
-       public Technologie() {
-
-    };
+    public Technologie() {};
 
     public Technologie(String name, int priceRessource1, int priceRessource2, int priceRessource3, int priceEnergy,
-            String description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
+                        String description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
         this.name = name;
         this.priceRessource1 = priceRessource1;
         this.priceRessource2 = priceRessource2;
@@ -118,7 +119,5 @@ public class Technologie {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
-
-   
-    
+ 
 }
