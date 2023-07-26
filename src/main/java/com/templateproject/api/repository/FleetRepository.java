@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.templateproject.api.entity.Fleet;
 
 @Repository
-public interface FlotteRepository extends JpaRepository<Fleet, Integer> {
+public interface FleetRepository extends JpaRepository<Fleet, Integer> {
 
 }
