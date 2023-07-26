@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Repository;
 
-import com.templateproject.api.entity.Flotte;
+import com.templateproject.api.entity.Fleet;
 
 @Repository
-public interface FlotteRepository extends JpaRepository<Flotte, Integer> {
+public interface FlotteRepository extends JpaRepository<Fleet, Integer> {
 
 }

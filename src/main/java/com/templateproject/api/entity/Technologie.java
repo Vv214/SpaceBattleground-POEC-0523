@@ -14,9 +14,9 @@ public class Technologie {
 
     @Column(unique = true, nullable = false)
     private String name;
-    private int priceRessource1;
-    private int priceRessource2;
-    private int priceRessource3;
+    private int ironPrice;
+    private int diamondPrice;
+    private int hydrogenPrice;
     private int priceEnergy;
     private String description; 
     private int lvl; 
@@ -26,12 +26,12 @@ public class Technologie {
 
     public Technologie() {};
 
-    public Technologie(String name, int priceRessource1, int priceRessource2, int priceRessource3, int priceEnergy,
+    public Technologie(String name, int ironPrice, int diamondPrice, int hydrogenPrice, int priceEnergy,
                         String description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
         this.name = name;
-        this.priceRessource1 = priceRessource1;
-        this.priceRessource2 = priceRessource2;
-        this.priceRessource3 = priceRessource3;
+        this.ironPrice = ironPrice;
+        this.diamondPrice = diamondPrice;
+        this.hydrogenPrice = hydrogenPrice;
         this.priceEnergy = priceEnergy;
         this.description = description;
         this.lvl = lvl;
@@ -48,28 +48,28 @@ public class Technologie {
         this.name = name;
     }
 
-    public int getPriceRessource1() {
-        return priceRessource1;
+    public int getIronPrice() {
+        return ironPrice;
     }
 
-    public void setPriceRessource1(int priceRessource1) {
-        this.priceRessource1 = priceRessource1;
+    public void setIronPrice(int ironPrice) {
+        this.ironPrice = ironPrice;
     }
 
-    public int getPriceRessource2() {
-        return priceRessource2;
+    public int getDiamondPrice() {
+        return diamondPrice;
     }
 
-    public void setPriceRessource2(int priceRessource2) {
-        this.priceRessource2 = priceRessource2;
+    public void setDiamondPrice(int diamondPrice) {
+        this.diamondPrice = diamondPrice;
     }
 
-    public int getPriceRessource3() {
-        return priceRessource3;
+    public int getHydrogenPrice() {
+        return hydrogenPrice;
     }
 
-    public void setPriceRessource3(int priceRessource3) {
-        this.priceRessource3 = priceRessource3;
+    public void setHydrogenPrice(int hydrogenPrice) {
+        this.hydrogenPrice = hydrogenPrice;
     }
 
     public int getPriceEnergy() {

@@ -5,9 +5,9 @@ public class TechnologiePayload {
     private String message; 
 
     private String name;
-    private int priceRessource1;
-    private int priceRessource2;
-    private int priceRessource3;
+    private int ironPrice;
+    private int diamondPrice;
+    private int hydrogenPrice;
     private int priceEnergy;
     private String description; 
     private int lvl; 
@@ -33,28 +33,28 @@ public class TechnologiePayload {
         this.name = name;
     }
 
-    public int getPriceRessource1() {
-        return priceRessource1;
+    public int getironPrice() {
+        return ironPrice;
+   
+
+    public void setIronPrice(int ironPrice) {
+        this.ironPrice = ironPrice;
+    
+
+    public int getDiamondPrice() {
+        return diamondPrice;
     }
 
-    public void setPriceRessource1(int priceRessource1) {
-        this.priceRessource1 = priceRessource1;
+    public void setDiamondPrice(int diamondPrice) {
+        this.diamondPrice = diamondPrice;
     }
 
-    public int getPriceRessource2() {
-        return priceRessource2;
+    public int getHydrogenPrice() {
+        return hydrogenPrice;
     }
 
-    public void setPriceRessource2(int priceRessource2) {
-        this.priceRessource2 = priceRessource2;
-    }
-
-    public int getPriceRessource3() {
-        return priceRessource3;
-    }
-
-    public void setPriceRessource3(int priceRessource3) {
-        this.priceRessource3 = priceRessource3;
+    public void setHydrogenPrice(int hydrogenPrice) {
+        this.hydrogenPrice = hydrogenPrice;
     }
 
     public int getPriceEnergy() {

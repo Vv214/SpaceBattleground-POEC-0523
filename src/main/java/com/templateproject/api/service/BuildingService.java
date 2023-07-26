@@ -30,9 +30,9 @@ public class BuildingService {
       newBuilding.setBuildingSize(building.getBuildingSize());
       newBuilding.setDescription(building.getDescription());
       newBuilding.setCoeff_prod(building.getCoeff_prod());
-      newBuilding.setPriceRessource1(building.getPriceRessource1());
-      newBuilding.setPriceRessource2(building.getPriceRessource2());
-      newBuilding.setPriceRessource3(building.getPriceRessource3());
+      newBuilding.setIronPrice(building.getIronPrice());
+      newBuilding.setDiamondPrice(building.getDiamondPrice());
+      newBuilding.setHydrogenPrice(building.getHydrogenPrice());
       newBuilding.setPriceEnergy(building.getPriceEnergy());
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       payload.add(newBuilding);
@@ -69,14 +69,14 @@ public class BuildingService {
     if (building.getCoeff_prod() != 0) {
       buildingToUpdate.setCoeff_prod(building.getCoeff_prod());
     }
-    if (building.getPriceRessource1() != 0) {
-      buildingToUpdate.setPriceRessource1(building.getPriceRessource1());
+    if (building.getIronPrice() != 0) {
+      buildingToUpdate.setIronPrice(building.getIronPrice());
     }
-    if (building.getPriceRessource2() != 0) {
-      buildingToUpdate.setPriceRessource2(building.getPriceRessource2());
+    if (building.getDiamondPrice() != 0) {
+      buildingToUpdate.setDiamondPrice(building.getDiamondPrice());
     }
-    if (building.getPriceRessource3() != 0) {
-      buildingToUpdate.setPriceRessource3(building.getPriceRessource3());
+    if (building.getHydrogenPrice() != 0) {
+      buildingToUpdate.setHydrogenPrice(building.getHydrogenPrice());
     }
     if (building.getPriceEnergy() != 0) {
       buildingToUpdate.setPriceEnergy(building.getPriceEnergy());
@@ -94,9 +94,9 @@ public class BuildingService {
      * buildingUpdated.getBuildingSize(),
      * buildingUpdated.getDescription(),
      * buildingUpdated.getCoeff_prod(),
-     * buildingUpdated.getPriceRessource1(),
-     * buildingUpdated.getPriceRessource2(),
-     * buildingUpdated.getPriceRessource3(),
+     * buildingUpdated.getironPrice(),
+     * buildingUpdated.getDiamondPrice(),
+     * buildingUpdated.getHydrogenPrice(),
      * buildingUpdated.getPriceEnergy(),
      * buildingUpdated.getTimeBuilding());
      */

@@ -8,9 +8,9 @@ public class BuildingPayload {
     private int buildingSize;
     private String description;
     private int coeff_prod;
-    private int priceRessource1;
-    private int priceRessource2;
-    private int priceRessource3;
+    private int ironPrice;
+    private int diamondPrice;
+    private int hydrogenPrice;
     private int priceEnergy;
     private int timeBuilding;
 
@@ -19,16 +19,16 @@ public class BuildingPayload {
     }
 
     public BuildingPayload(String name, String type, int level, int buildingSize, String description, int coeff_prod,
-            int priceRessource1, int priceRessource2, int priceRessource3, int priceEnergy, int timeBuilding) {
+            int ironPrice, int diamondPrice, int hydrogenPrice, int priceEnergy, int timeBuilding) {
         this.name = name;
         this.type = type;
         this.level = level;
         this.buildingSize = buildingSize;
         this.description = description;
         this.coeff_prod = coeff_prod;
-        this.priceRessource1 = priceRessource1;
-        this.priceRessource2 = priceRessource2;
-        this.priceRessource3 = priceRessource3;
+        this.ironPrice = ironPrice;
+        this.diamondPrice = diamondPrice;
+        this.hydrogenPrice = hydrogenPrice;
         this.priceEnergy = priceEnergy;
         this.timeBuilding = timeBuilding;
     }
@@ -81,28 +81,28 @@ public class BuildingPayload {
         this.coeff_prod = coeff_prod;
     }
 
-    public int getPriceRessource1() {
-        return priceRessource1;
+    public int getIronPrice() {
+        return ironPrice;
     }
 
-    public void setPriceRessource1(int priceRessource1) {
-        this.priceRessource1 = priceRessource1;
+    public void setIronPrice(int ironPrice) {
+        this.ironPrice = ironPrice;
     }
 
-    public int getPriceRessource2() {
-        return priceRessource2;
+    public int getDiamondPrice() {
+        return diamondPrice;
     }
 
-    public void setPriceRessource2(int priceRessource2) {
-        this.priceRessource2 = priceRessource2;
+    public void setDiamondPrice(int diamondPrice) {
+        this.diamondPrice = diamondPrice;
     }
 
-    public int getPriceRessource3() {
-        return priceRessource3;
+    public int getHydrogenPrice() {
+        return hydrogenPrice;
     }
 
-    public void setPriceRessource3(int priceRessource3) {
-        this.priceRessource3 = priceRessource3;
+    public void setHydrogenPrice(int hydrogenPrice) {
+        this.hydrogenPrice = hydrogenPrice;
     }
 
     public int getPriceEnergy() {

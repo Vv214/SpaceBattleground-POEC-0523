@@ -26,9 +26,9 @@ public class TechnologieController {
         try {
             technologieService.add(
                  technologie.getName(),
-                 technologie.getPriceRessource1(),
-                 technologie.getPriceRessource2(),
-                 technologie.getPriceRessource3(),
+                 technologie.getIronPrice(),
+                 technologie.getDiamondPrice(),
+                 technologie.getHydrogenPrice(),
                  technologie.getPriceEnergy(),
                  technologie.getDescription(), 
                  technologie.getLvl(),
@@ -85,9 +85,9 @@ public class TechnologieController {
             technologieService.update(
                     name,
                     technologie.getName(),
-                    technologie.getPriceRessource1(),
-                    technologie.getPriceRessource2(),
-                    technologie.getPriceRessource3(),
+                    technologie.getIronPrice(),
+                    technologie.getDiamondPrice(),
+                    technologie.getHydrogenPrice(),
                     technologie.getPriceEnergy(),
                     technologie.getDescription(),
                     technologie.getLvl(),
@@ -111,7 +111,7 @@ public class TechnologieController {
         var payload = new Payload();
         try{
             technologieService.delete(name);
-            payload.setMessgae("'" + login + "' deleted");
+            payload.setMessgae("'" + name + "' deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e){ //TODO 4.x.x
             payload.setMessgae(e.getMessage());

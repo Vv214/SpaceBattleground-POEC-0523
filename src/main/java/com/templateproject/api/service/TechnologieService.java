@@ -4,13 +4,11 @@ import com.templateproject.api.controller.payload.TechnologiePayload;
 import com.templateproject.api.entity.Technologie;
 import com.templateproject.api.repository.TechnologieRepository;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -25,11 +23,11 @@ public class TechnologieService {
 
     public void add(
             String name,
-            int priceRessource1n,
-            int priceRessource2,
-            int priceRessource3,
+            int ironPrice,
+            int DiamondPrice,
+            int HydrogenPrice,
             int priceEnergy,
-            String description, //modif le typ var de description
+            String description,
             int lvl, 
             float coef_modifier,
             int timeSearch,
@@ -39,9 +37,9 @@ public class TechnologieService {
         
         var technologie = new Technologie(
             name,
-            priceRessource1n,
-            priceRessource2,
-            priceRessource3,
+            ironPrice,
+            DiamondPrice,
+            HydrogenPrice,
             priceEnergy,
             description,
             lvl,
@@ -65,9 +63,9 @@ public class TechnologieService {
             var newTechnologie = new TechnologiePayload();
             
             newTechnologie.setName(technologie.getName());
-            newTechnologie.setPriceRessource1(technologie.getPriceRessource1());
-            newTechnologie.setPriceRessource2(technologie.getPriceRessource2());
-            newTechnologie.setPriceRessource3(technologie.getPriceRessource3());
+            newTechnologie.setIronPrice(technologie.getIronPrice());
+            newTechnologie.setDiamondPrice(technologie.getDiamondPrice());
+            newTechnologie.setHydrogenPrice(technologie.getydrogenPrice());
             newTechnologie.setPriceEnergy(technologie.getPriceEnergy());
             newTechnologie.setDescription(technologie.getDescription());
             newTechnologie.setLvl(technologie.getLvl());
@@ -96,14 +94,14 @@ public class TechnologieService {
             technologieToUpdate.setName(technologie.getName());
         }
 
-        if (technologie.getPriceRessource1() != 0 ){
-            technologieToUpdate.setPriceRessource1(technologie.getPriceRessource1());
+        if (technologie.getIronPrice() != 0 ){
+            technologieToUpdate.setIronPrice(technologie.getIronPrice());
         }
-        if (technologie.getPriceRessource2() != 0 ){
-            technologieToUpdate.setPriceRessource2(technologie.getPriceRessource1());
+        if (technologie.getDiamondPrice() != 0 ){
+            technologieToUpdate.setDiamondPrice(technologie.getDiamondPrice());
         }
-        if (technologie.getPriceRessource3() != 0 ){
-            technologieToUpdate.setPriceRessource3(technologie.getPriceRessource1());
+        if (technologie.getHydrogenPrice() != 0 ){
+            technologieToUpdate.setHydrogenPrice(technologie.getHydrogenPrice());
         }
         if (technologie.getPriceEnergy() != 0 ){
             technologieToUpdate.setPriceEnergy(technologie.getPriceEnergy());
