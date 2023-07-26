@@ -64,9 +64,6 @@ public class Ship {
 
     public void setId(int id) {
         this.id = id;
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -75,17 +72,11 @@ public class Ship {
 
     public void setName(String name) {
         this.name = name;
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getType() {
         return type;
     }
-
-    public void setType(String type) {
-        this.type = type;
 
     public void setType(String type) {
         this.type = type;
@@ -137,9 +128,6 @@ public class Ship {
 
     public void setDamage(int damage) {
         this.damage = damage;
-
-    public void setDamage(int damage) {
-        this.damage = damage;
     }
 
     public int getFuel() {
@@ -148,17 +136,11 @@ public class Ship {
 
     public void setFuel(int fuel) {
         this.fuel = fuel;
-
-    public void setFuel(int fuel) {
-        this.fuel = fuel;
     }
 
     public int getSpeed() {
         return speed;
     }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -175,9 +157,6 @@ public class Ship {
     public int getCapacity() {
         return capacity;
     }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
