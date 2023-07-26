@@ -38,6 +38,7 @@ public class ShipService {
 
   public Ship updateShip(Ship Ship) {
     Ship currentShip = ShipRepository.findById(Ship.getId()).get();
+
     currentShip.setName(Ship.getName());
     currentShip.setType(Ship.getType());
     currentShip.setIronPrice(Ship.getIronPrice());
@@ -49,7 +50,9 @@ public class ShipService {
     currentShip.setFuel(Ship.getFuel());
     currentShip.setSpeed(Ship.getSpeed());
     currentShip.setCapacity(Ship.getCapacity());
+
     Ship updateShip = ShipRepository.save(currentShip);
+    
     return updateShip;
   }
 
