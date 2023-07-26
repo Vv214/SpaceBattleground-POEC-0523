@@ -28,7 +28,8 @@ public class AuthController {
         boolean isRegistered = authService.register(
                 user.getNickname(),
                 user.getPassword(),
-                user.getConfirmPassword());
+                user.getConfirmPassword(),
+                user.getEmail());
         if (isRegistered)
             return new ResponseEntity<>(user.getNickname() + " is registered !", HttpStatus.OK);
         else
