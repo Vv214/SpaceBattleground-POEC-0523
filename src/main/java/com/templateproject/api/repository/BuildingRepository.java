@@ -8,4 +8,8 @@ import com.templateproject.api.entity.Building;
 @Repository
 public interface BuildingRepository extends JpaRepository<Building, Integer> {
 
+    public Building findByName(String name);
+
+    public Building deleteByName(String name);
+
 }
