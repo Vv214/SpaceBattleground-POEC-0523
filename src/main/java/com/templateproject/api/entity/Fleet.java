@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +11,7 @@ public class Fleet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(unique = true)
     private String name;
     private int maxNumberShip;
     private int positionX;

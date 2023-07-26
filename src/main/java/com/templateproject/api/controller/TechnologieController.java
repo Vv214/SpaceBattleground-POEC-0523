@@ -21,8 +21,8 @@ public class TechnologieController {
     }
     
     @PostMapping("/technologie")
-    public ResponseEntity<Payload> addTechnologie(@RequestBody Technologie technologie){
-        var payload = new Payload();
+    public ResponseEntity<TechnologiePayload> addTechnologie(@RequestBody Technologie technologie){
+        var payload = new TechnologiePayload();
         try {
             technologieService.add(
                  technologie.getName(),
@@ -36,10 +36,13 @@ public class TechnologieController {
                  technologie.getTimeSearch(),
                  technologie.isDone()
             );
+            payload.setMessage(technologie.getName() + "created");
+            return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
-                    payload.setMessgae(e.getMessage());
-                    return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+                payload.setMessage(e.getMessage());
+                return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+       
     
     }
 
@@ -47,12 +50,12 @@ public class TechnologieController {
     public ResponseEntity<Payload> getAllTechnoligie(){
         var payload = new Payload();
         try {
-            payload.setData(technologieService.getAll());
-            payload.setMessgae("Get all Technologies");
+            payload.setData(technologieService.getTechnologies());
+            payload.setMessage("Get all Technologies");
             return new ResponseEntity<>(payload, HttpStatus.OK);}
             
         catch (Exception e) {
-                payload.setMessgae(e.getMessage());
+                payload.setMessage(e.getMessage());
                 payload.setData(null);
                 return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -64,13 +67,13 @@ public class TechnologieController {
     public ResponseEntity<Payload> getTechnoligieByName(@PathVariable String name){
         var payload = new Payload();
         try {
-            var technologie = technologieService.getTechnoligieByName();
-            payload.setMessgae("Get Technologie by Name '"+ name +"'");
+            var technologie = technologieService.getTechnologies();
+            payload.setMessage("Get Technologie by Name '"+ name +"'");
             payload.setData(technologie);
             return new ResponseEntity<>(payload, HttpStatus.OK);}
             
         catch (Exception e) {
-                payload.setMessgae(e.getMessage());
+                payload.setMessage(e.getMessage());
                 payload.setData(null);
                 return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -111,10 +114,10 @@ public class TechnologieController {
         var payload = new Payload();
         try{
             technologieService.delete(name);
-            payload.setMessgae("'" + name + "' deleted");
+            payload.setMessae("'" + name + "' deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e){ //TODO 4.x.x
-            payload.setMessgae(e.getMessage());
+            payload.setMessae(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
