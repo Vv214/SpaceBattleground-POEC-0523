@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.templateproject.api.entity.Vaisseau;
-import com.templateproject.api.service.VaisseauService;
+import com.templateproject.api.entity.Ship;
+import com.templateproject.api.service.ShipService;
 
 @RestController
 @RequestMapping(path = "/ships")
-public class VaisseauController {
+public class ShipController {
 
-  private final VaisseauService vaisseauService;
+  private final ShipService ShipService;
 
-  public VaisseauController(VaisseauService vaisseauService) {
-    this.vaisseauService = vaisseauService;
+  public ShipController(ShipService ShipService) {
+    this.ShipService = ShipService;
   }
 
   @GetMapping
-  public List<Vaisseau> getAllSip() {
-    return vaisseauService.getAllShips();
+  public List<Ship> getAllSip() {
+    return ShipService.getAllShips();
   }
 
   @GetMapping("{id}")
-  public Vaisseau getShip(@PathVariable("id") Integer id) {
-    return vaisseauService.getShip(id);
+  public Ship getShip(@PathVariable("id") Integer id) {
+    return ShipService.getShip(id);
   }
 
   @PostMapping
-  public Vaisseau addNewShip(@RequestBody Vaisseau vaisseau) {
-    return vaisseauService.createShip(vaisseau);
+  public Ship addNewShip(@RequestBody Ship Ship) {
+    return ShipService.createShip(Ship);
   }
 
   @DeleteMapping("{id}")
   public ResponseEntity<String> deleteShip(@PathVariable("id") Integer id) {
-    return this.vaisseauService.deleteShipById(id);
+    return this.ShipService.deleteShipById(id);
   }
 
   @PutMapping("{id}")
-  public Vaisseau updateShip(@PathVariable("id") Integer id, @RequestBody Vaisseau vaisseau) {
-    vaisseau.setId(id);
-    return vaisseauService.updateShip(vaisseau);
+  public Ship updateShip(@PathVariable("id") Integer id, @RequestBody Ship Ship) {
+    Ship.setId(id);
+    return ShipService.updateShip(Ship);
   }
 }

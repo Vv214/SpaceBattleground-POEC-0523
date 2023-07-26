@@ -12,9 +12,9 @@ public class Ship {
     private int id;
     private String name;
     private String type;
-    private int priceRessource1;
-    private int priceRessource2;
-    private int priceRessource3;
+    private int ironPrice;
+    private int diamondPrice;
+    private int hydrogenPrice;
     private int priceEnergy;
     private int pv;
     private int damage;
@@ -28,23 +28,23 @@ public class Ship {
     public Ship() {
     };
 
-    public Ship(String name, String type, int priceRessource1, 
-    int priceRessource2, int priceRessource3, 
-    int priceEnergy ,int pv, int damage, 
-    int fuel, int speed, int range, 
-    int capacity, int shipSize,int quantity) {
-        
+    public Ship(String name, String type, int ironPrice,
+            int diamondPrice, int hydrogenPrice,
+            int priceEnergy, int pv, int damage,
+            int fuel, int speed, int range,
+            int capacity, int shipSize, int quantity) {
+
         this.name = name;
         this.type = type;
-        this.priceRessource1 = priceRessource1;
-        this.priceRessource2 = priceRessource2;
-        this.priceRessource3 = priceRessource3;
+        this.ironPrice = ironPrice;
+        this.diamondPrice = diamondPrice;
+        this.hydrogenPrice = hydrogenPrice;
         this.priceEnergy = priceEnergy;
         this.pv = pv;
         this.damage = damage;
         this.fuel = fuel;
         this.speed = speed;
-        this.range = range; 
+        this.range = range;
         this.capacity = capacity;
         this.shipSize = shipSize;
         this.quantity = quantity;
@@ -64,11 +64,17 @@ public class Ship {
 
     public void setId(int id) {
         this.id = id;
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
 
     public void setName(String name) {
         this.name = name;
@@ -80,30 +86,33 @@ public class Ship {
 
     public void setType(String type) {
         this.type = type;
+
+    public void setType(String type) {
+        this.type = type;
     }
 
-        public int getPriceRessource1() {
-        return priceRessource1;
+    public int getIronPrice() {
+        return ironPrice;
     }
 
-    public void setPriceRessource1(int priceRessource1) {
-        this.priceRessource1 = priceRessource1;
+    public void setIronPrice(int ironPrice) {
+        this.ironPrice = ironPrice;
     }
 
-    public int getPriceRessource2() {
-        return priceRessource2;
+    public int getDiamondPrice() {
+        return diamondPrice;
     }
 
-    public void setPriceRessource2(int priceRessource2) {
-        this.priceRessource2 = priceRessource2;
+    public void setDiamondPrice(int diamondPrice) {
+        this.diamondPrice = diamondPrice;
     }
 
-    public int getPriceRessource3() {
-        return priceRessource3;
+    public int getHydrogenPrice() {
+        return hydrogenPrice;
     }
 
-    public void setPriceRessource3(int priceRessource3) {
-        this.priceRessource3 = priceRessource3;
+    public void setHydrogenPrice(int hydrogenPrice) {
+        this.hydrogenPrice = hydrogenPrice;
     }
 
     public int getPriceEnergy() {
@@ -128,6 +137,9 @@ public class Ship {
 
     public void setDamage(int damage) {
         this.damage = damage;
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public int getFuel() {
@@ -136,11 +148,17 @@ public class Ship {
 
     public void setFuel(int fuel) {
         this.fuel = fuel;
+
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
     }
 
     public int getSpeed() {
         return speed;
     }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -157,6 +175,9 @@ public class Ship {
     public int getCapacity() {
         return capacity;
     }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;

@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +11,9 @@ public class Clan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(unique = true)
     private String clanName;
+    @Column(unique = true)
     private String clanTag;
     private Integer clanLvl;
     private Integer numberMaxPlayers;
