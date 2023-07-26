@@ -30,7 +30,10 @@ public class AuthService {
         Player player = playerRepository.findByNickname(nickname);
         if (player != null) {
             BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), player.getPassword());
-            return player.getNickname();
+            if (result.verified) {
+                return player.getNickname();
+            }
+            return null;
         }
         return null;
     }
