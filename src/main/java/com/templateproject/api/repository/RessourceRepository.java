@@ -7,6 +7,5 @@ import com.templateproject.api.entity.Ressource;
 
 @Repository
 public interface RessourceRepository extends JpaRepository<Ressource, Integer> {
-public interface RessourceRepository extends JpaRepository<Ressource, Integer> {
 
 }
