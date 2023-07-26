@@ -26,12 +26,15 @@ public class AuthService {
         return false;
     }
 
-    public boolean findByNickname(String nickname, String password) {
+    public String findByNickname(String nickname, String password) {
         Player player = playerRepository.findByNickname(nickname);
         if (player != null) {
             BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), player.getPassword());
-            return result.verified;
+            if (result.verified) {
+                return player.getNickname();
+            }
+            return null;
         }
-        return false;
+        return null;
     }
 }
