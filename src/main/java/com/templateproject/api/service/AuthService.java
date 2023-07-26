@@ -16,10 +16,10 @@ public class AuthService {
         this.playerRepository = playerRepository;
     }
 
-    public boolean register(String nickname, String password, String confirmPassword) {
+    public boolean register(String nickname, String password, String confirmPassword, String email) {
         if (password.equals(confirmPassword)) {
             String passwordHashed = BCrypt.withDefaults().hashToString(BCrypt.MIN_COST, password.toCharArray());
-            Player player = new Player(nickname, passwordHashed);
+            Player player = new Player(nickname, passwordHashed, email);
             playerRepository.save(player);
             return true;
         }

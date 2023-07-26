@@ -28,12 +28,12 @@ public class Ship {
     public Ship() {
     };
 
-    public Ship(String name, String type, int ironPrice, 
-    int diamondPrice, int hydrogenPrice, 
-    int priceEnergy ,int pv, int damage, 
-    int fuel, int speed, int range, 
-    int capacity, int shipSize,int quantity) {
-        
+    public Ship(String name, String type, int ironPrice,
+            int diamondPrice, int hydrogenPrice,
+            int priceEnergy, int pv, int damage,
+            int fuel, int speed, int range,
+            int capacity, int shipSize, int quantity) {
+
         this.name = name;
         this.type = type;
         this.ironPrice = ironPrice;
@@ -44,7 +44,7 @@ public class Ship {
         this.damage = damage;
         this.fuel = fuel;
         this.speed = speed;
-        this.range = range; 
+        this.range = range;
         this.capacity = capacity;
         this.shipSize = shipSize;
         this.quantity = quantity;
@@ -64,6 +64,9 @@ public class Ship {
 
     public void setId(int id) {
         this.id = id;
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -72,11 +75,17 @@ public class Ship {
 
     public void setName(String name) {
         this.name = name;
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
         return type;
     }
+
+    public void setType(String type) {
+        this.type = type;
 
     public void setType(String type) {
         this.type = type;
@@ -92,11 +101,11 @@ public class Ship {
 
     public int getDiamondPrice() {
         return diamondPrice;
- }
-    
+    }
+
     public void setDiamondPrice(int diamondPrice) {
         this.diamondPrice = diamondPrice;
-  }
+    }
 
     public int getHydrogenPrice() {
         return hydrogenPrice;
@@ -128,6 +137,9 @@ public class Ship {
 
     public void setDamage(int damage) {
         this.damage = damage;
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public int getFuel() {
@@ -136,11 +148,17 @@ public class Ship {
 
     public void setFuel(int fuel) {
         this.fuel = fuel;
+
+    public void setFuel(int fuel) {
+        this.fuel = fuel;
     }
 
     public int getSpeed() {
         return speed;
     }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -157,6 +175,9 @@ public class Ship {
     public int getCapacity() {
         return capacity;
     }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
