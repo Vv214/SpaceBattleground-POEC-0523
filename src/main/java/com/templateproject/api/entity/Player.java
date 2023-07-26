@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,16 +10,25 @@ import jakarta.persistence.Id;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
+    @Column(nullable = false)
     private String nickname;
+    @Column(nullable = true)
     private String email;
+    @Column(nullable = false)
     private String password;
-    private int level;
+    @Column(nullable = true)
+    private Integer level;
 
     public Player() {
     };
 
-    public Player(String nickname, String email, String password, int level) {
+    public Player(String nickname, String passwordHashed) {
+        this.nickname = nickname;
+        this.password = passwordHashed;
+    }
+
+    public Player(String nickname, String email, String password, Integer level) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
@@ -55,6 +65,14 @@ public class Player {
 
     public int getLevel() {
         return level;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
 }
