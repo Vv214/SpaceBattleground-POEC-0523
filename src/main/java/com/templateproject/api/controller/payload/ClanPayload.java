@@ -1,12 +1,12 @@
 package com.templateproject.api.controller.payload;
 
-public class Clan {
+public class ClanPayload {
 
     private String clanName;
     private String clanTag;
     private int clanLvl;
 
-    public Clan() {}
+    public ClanPayload() {}
 
     public String getName() {
         return clanName;
