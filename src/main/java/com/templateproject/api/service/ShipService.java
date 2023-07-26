@@ -42,7 +42,7 @@ public class ShipService {
     currentShip.setName(Ship.getName());
     currentShip.setType(Ship.getType());
     currentShip.setIronPrice(Ship.getIronPrice());
-    currentShip.setDiamondPrice(Ship.getDiamondPrice()); 
+    currentShip.setDiamondPrice(Ship.getDiamondPrice());
     currentShip.setHydrogenPrice(Ship.getHydrogenPrice());
     currentShip.setPriceEnergy(Ship.getPriceEnergy());
     currentShip.setDamage(Ship.getDamage());
@@ -52,7 +52,6 @@ public class ShipService {
     currentShip.setCapacity(Ship.getCapacity());
 
     Ship updateShip = ShipRepository.save(currentShip);
-    
     return updateShip;
   }
 

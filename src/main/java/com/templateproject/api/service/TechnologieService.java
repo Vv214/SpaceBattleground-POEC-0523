@@ -16,7 +16,6 @@ public class TechnologieService {
 
     private final TechnologieRepository technologieRepository;
 
-    
     public TechnologieService(TechnologieRepository technologieRepository) {
         this.technologieRepository = technologieRepository;
     }
@@ -28,40 +27,39 @@ public class TechnologieService {
             int HydrogenPrice,
             int priceEnergy,
             String description,
-            int lvl, 
+            int lvl,
             float coef_modifier,
             int timeSearch,
-            boolean isDone
-    ){
-        //TODO CHECK PARAM
-        
+            boolean isDone) {
+        // TODO CHECK PARAM
+
         var technologie = new Technologie(
-            name,
-            ironPrice,
-            DiamondPrice,
-            HydrogenPrice,
-            priceEnergy,
-            description,
-            lvl,
-            coef_modifier,
-            timeSearch,
-            isDone);
-        
-        technologieRepository.save(technologie);        
+                name,
+                ironPrice,
+                DiamondPrice,
+                HydrogenPrice,
+                priceEnergy,
+                description,
+                lvl,
+                coef_modifier,
+                timeSearch,
+                isDone);
+
+        technologieRepository.save(technologie);
     }
 
-    public ResponseEntity<String> deleteTechnologieByName(String name){
+    public ResponseEntity<String> delete(String name) {
         technologieRepository.deleteByName(name);
         return new ResponseEntity<String>("Player successfully deleted!", HttpStatus.OK);
     }
 
-    public List<TechnologiePayload> getTechnologies(){
+    public List<TechnologiePayload> getTechnologies() {
         var techPayload = new ArrayList<TechnologiePayload>();
         List<Technologie> technologieList = technologieRepository.findAll();
-        for (var technologie: technologieList){
+        for (var technologie : technologieList) {
 
             var newTechnologie = new TechnologiePayload();
-            
+
             newTechnologie.setName(technologie.getName());
             newTechnologie.setIronPrice(technologie.getIronPrice());
             newTechnologie.setDiamondPrice(technologie.getDiamondPrice());
@@ -75,18 +73,23 @@ public class TechnologieService {
 
             techPayload.add(newTechnologie);
         }
-        return techPayload; 
+        return techPayload;
     }
 
-     public ResponseEntity<TechnologiePayload> getThisTechnologie(String name){
-         technologieRepository.findByName(name);
-         return new ResponseEntity<TechnologiePayload>("Technologie find ", HttpStatus.OK); 
-     }
+    // public ResponseEntity<TechnologiePayload> getThisTechnologie(String name){
+    public boolean getThisTechnologie(String name) {
+        if (technologieRepository.findByName(name) != null)
+            return true;
+        else
+            return false;
+        // return new ResponseEntity<TechnologiePayload>("Technologie find ",
+        // HttpStatus.OK);
+    }
 
-    public void updateTechnologie(String name, TechnologiePayload technologie) throws Exception{
+    public void updateTechnologie(String name, TechnologiePayload technologie) throws Exception {
         var technologieToUpdate = technologieRepository.findByName(name);
 
-        if (technologieToUpdate == null){
+        if (technologieToUpdate == null) {
             throw new Exception(name + "does not exist.");
         }
 
@@ -94,41 +97,39 @@ public class TechnologieService {
             technologieToUpdate.setName(technologie.getName());
         }
 
-        if (technologie.getIronPrice() != 0 ){
+        if (technologie.getIronPrice() != 0) {
             technologieToUpdate.setIronPrice(technologie.getIronPrice());
         }
-        if (technologie.getDiamondPrice() != 0 ){
+        if (technologie.getDiamondPrice() != 0) {
             technologieToUpdate.setDiamondPrice(technologie.getDiamondPrice());
         }
-        if (technologie.getHydrogenPrice() != 0 ){
+        if (technologie.getHydrogenPrice() != 0) {
             technologieToUpdate.setHydrogenPrice(technologie.getHydrogenPrice());
         }
-        if (technologie.getPriceEnergy() != 0 ){
+        if (technologie.getPriceEnergy() != 0) {
             technologieToUpdate.setPriceEnergy(technologie.getPriceEnergy());
         }
 
-        if (technologie.getDescription() != null ){
+        if (technologie.getDescription() != null) {
             technologieToUpdate.setDescription(technologie.getDescription());
         }
 
-        if (technologie.getLvl() != 0 ){
+        if (technologie.getLvl() != 0) {
             technologieToUpdate.setLvl(technologie.getLvl());
         }
-        
-        if (technologie.getCoef_modifier() != 0 ){
+
+        if (technologie.getCoef_modifier() != 0) {
             technologieToUpdate.setCoef_modifier(technologie.getCoef_modifier());
         }
 
-        if (technologie.getTimeSearch() != 0 ){
+        if (technologie.getTimeSearch() != 0) {
             technologieToUpdate.setTimeSearch(technologie.getTimeSearch());
         }
-        
+
         technologieToUpdate.setDone(technologie.isDone());
-        
+
         technologieRepository.save(technologieToUpdate);
 
     }
-
-
 
 }
