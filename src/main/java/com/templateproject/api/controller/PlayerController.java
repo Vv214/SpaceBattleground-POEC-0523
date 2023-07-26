@@ -19,35 +19,35 @@ import com.templateproject.api.service.PlayerService;
 @RequestMapping(path = "/players")
 public class PlayerController {
 
-    private PlayerService playerService;
+  private PlayerService playerService;
 
-    public PlayerController(PlayerService playerService) {
-        this.playerService = playerService;
-    }
+  public PlayerController(PlayerService playerService) {
+    this.playerService = playerService;
+  }
 
-    @GetMapping
-    public List<Player> getPlayers() {
-        return this.playerService.getAllPlayers();
-    }
+  @GetMapping
+  public List<Player> getPlayers() {
+    return this.playerService.getAllPlayers();
+  }
 
-    @GetMapping("{id}")
-    public Player getPlayer(@PathVariable("id") Integer id) {
-        return this.playerService.getPlayer(id);
-    }
+  @GetMapping("{id}")
+  public Player getPlayer(@PathVariable("id") Integer id) {
+    return this.playerService.getPlayer(id);
+  }
 
-    @PutMapping("{id}")
-    public Player updatePlayer(@PathVariable("id") Integer id, @RequestBody Player player) {
-        player.setId(id);
-        return playerService.updateUser(player);
-    }
+  @PutMapping("{id}")
+  public Player updatePlayer(@PathVariable("id") Integer id, @RequestBody Player player) {
+    player.setId(id);
+    return playerService.updateUser(player);
+  }
 
-    @PostMapping
-    public Player addNewPlayer(@RequestBody Player player) {
-        return this.playerService.addNewPlayer(player);
-    }
+  @PostMapping
+  public Player addNewPlayer(@RequestBody Player player) {
+    return this.playerService.addNewPlayer(player);
+  }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deletePlayer(@PathVariable("id") Integer id) {
-        return this.playerService.deletePlayerById(id);
-    }
+  @DeleteMapping("{id}")
+  public ResponseEntity<String> deletePlayer(@PathVariable("id") Integer id) {
+    return this.playerService.deletePlayerById(id);
+  }
 }

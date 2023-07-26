@@ -12,12 +12,14 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(nullable = false)
+    private Integer id;
     private String nickname;
     @Column(nullable = true)
     private String email;
     @Column(nullable = false)
     private String password;
     @Column(nullable = true)
+    private Integer level;
     private Integer level;
 
     public Player() {
@@ -27,6 +29,7 @@ public class Player {
         this.nickname = nickname;
         this.password = passwordHashed;
     }
+
 
     public Player(String nickname, String email, String password, Integer level) {
         this.nickname = nickname;
