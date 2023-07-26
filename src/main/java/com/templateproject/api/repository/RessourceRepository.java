@@ -3,9 +3,9 @@ package com.templateproject.api.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.templateproject.api.entity.Ressource;
+import jakarta.annotation.Resource;
 
 @Repository
-public interface RessourceRepository extends JpaRepository<Ressource, Integer> {
+public interface RessourceRepository extends JpaRepository<Resource, Integer> {
 
 }
