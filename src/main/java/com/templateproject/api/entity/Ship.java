@@ -12,10 +12,15 @@ public class Ship {
     private int id;
     private String name;
     private String type;
+    private int ironPrice;
+    private int diamondPrice;
+    private int hydrogenPrice;
+    private int priceEnergy;
     private int pv;
     private int damage;
     private int fuel;
     private int speed;
+    private int range;
     private int capacity;
     private int shipSize;
     private int quantity;
@@ -23,14 +28,23 @@ public class Ship {
     public Ship() {
     };
 
-    public Ship(String name, String type, int pv, int damage, int fuel, int speed, int capacity, int shipSize,
-            int quantity) {
+    public Ship(String name, String type, int ironPrice,
+            int diamondPrice, int hydrogenPrice,
+            int priceEnergy, int pv, int damage,
+            int fuel, int speed, int range,
+            int capacity, int shipSize, int quantity) {
+
         this.name = name;
         this.type = type;
+        this.ironPrice = ironPrice;
+        this.diamondPrice = diamondPrice;
+        this.hydrogenPrice = hydrogenPrice;
+        this.priceEnergy = priceEnergy;
         this.pv = pv;
         this.damage = damage;
         this.fuel = fuel;
         this.speed = speed;
+        this.range = range;
         this.capacity = capacity;
         this.shipSize = shipSize;
         this.quantity = quantity;
@@ -68,12 +82,44 @@ public class Ship {
         this.type = type;
     }
 
+    public int getIronPrice() {
+        return ironPrice;
+    }
+
+    public void setIronPrice(int ironPrice) {
+        this.ironPrice = ironPrice;
+    }
+
+    public int getDiamondPrice() {
+        return diamondPrice;
+    }
+
+    public void setDiamondPrice(int diamondPrice) {
+        this.diamondPrice = diamondPrice;
+    }
+
+    public int getHydrogenPrice() {
+        return hydrogenPrice;
+    }
+
+    public void setHydrogenPrice(int hydrogenPrice) {
+        this.hydrogenPrice = hydrogenPrice;
+    }
+
+    public int getPriceEnergy() {
+        return priceEnergy;
+    }
+
+    public void setPriceEnergy(int priceEnergy) {
+        this.priceEnergy = priceEnergy;
+    }
+
     public int getPv() {
         return pv;
     }
 
-    public void setPV(int pV) {
-        this.pv = pV;
+    public void setPV(int pv) {
+        this.pv = pv;
     }
 
     public int getDamage() {
@@ -98,6 +144,14 @@ public class Ship {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
     }
 
     public int getCapacity() {
