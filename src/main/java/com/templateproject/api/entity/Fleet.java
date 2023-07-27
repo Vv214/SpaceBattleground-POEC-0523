@@ -1,39 +1,41 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Flotte {
+public class Fleet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(unique = true)
     private String name;
     private int maxNumberShip;
     private int positionX;
     private int positionY;
-    private int totalPower;
+    private int power;
     private int totalPv;
     private int totalCapacity;
-    private int vitesse;
-    private int carburant;
+    private int speed;
+    private int totalRange; 
 
-    public Flotte() {
+    public Fleet() {
     };
 
-    public Flotte(String name, int maxNumberShip, int positionX, int positionY, int totalPower, int totalPv,
-            int totalCapacity, int vitesse, int carburant) {
+    public Fleet(String name, int maxNumberShip, int positionX, int positionY, int power, int totalPv,
+            int totalCapacity, int speed, int totalRange) {
         this.name = name;
         this.maxNumberShip = maxNumberShip;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.totalPower = totalPower;
+        this.power = power;
         this.totalPv = totalPv;
         this.totalCapacity = totalCapacity;
-        this.vitesse = vitesse;
-        this.carburant = carburant;
+        this.speed = speed;
+        this.totalRange = totalRange;
     }
 
     public int getId() {
@@ -76,12 +78,12 @@ public class Flotte {
         this.positionY = positionY;
     }
 
-    public int getTotalPower() {
-        return totalPower;
+    public int getpower() {
+        return power;
     }
 
-    public void setTotalPower(int totalPower) {
-        this.totalPower = totalPower;
+    public void setpower(int power) {
+        this.power = power;
     }
 
     public int getTotalPv() {
@@ -100,20 +102,36 @@ public class Flotte {
         this.totalCapacity = totalCapacity;
     }
 
-    public int getVitesse() {
-        return vitesse;
+    public int getspeed() {
+        return speed;
     }
 
-    public void setVitesse(int vitesse) {
-        this.vitesse = vitesse;
+    public void setspeed(int speed) {
+        this.speed = speed;
     }
 
-    public int getCarburant() {
-        return carburant;
+    public int getPower() {
+        return power;
     }
 
-    public void setCarburant(int carburant) {
-        this.carburant = carburant;
+    public void setPower(int power) {
+        this.power = power;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getTotalRange() {
+        return totalRange;
+    }
+
+    public void setTotalRange(int totalRange) {
+        this.totalRange = totalRange;
+    }
+    
 }

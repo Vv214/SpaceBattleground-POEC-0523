@@ -1,17 +1,7 @@
-package com.templateproject.api.entity;
+package com.templateproject.api.controller.payload;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+public class BuildingPayload {
 
-@Entity
-public class Building {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(unique = true, nullable = false)
     private String name;
     private String type;
     private int level;
@@ -24,13 +14,12 @@ public class Building {
     private int priceEnergy;
     private int timeBuilding;
 
-    public Building() {
-    };
+    public BuildingPayload() {
 
-    public Building(String name, String type, int level, int buildingSize, String description, int coeff_prod,
-            int ironPrice, int diamondPrice, int hydrogenPrice
-    ,
-            int priceEnergy, int timeBuilding) {
+    }
+
+    public BuildingPayload(String name, String type, int level, int buildingSize, String description, int coeff_prod,
+            int ironPrice, int diamondPrice, int hydrogenPrice, int priceEnergy, int timeBuilding) {
         this.name = name;
         this.type = type;
         this.level = level;
@@ -39,23 +28,9 @@ public class Building {
         this.coeff_prod = coeff_prod;
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
-        this.hydrogenPrice
- = hydrogenPrice
-;
+        this.hydrogenPrice = hydrogenPrice;
         this.priceEnergy = priceEnergy;
         this.timeBuilding = timeBuilding;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getName() {
@@ -90,16 +65,20 @@ public class Building {
         this.buildingSize = buildingSize;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getCoeff_prod() {
         return coeff_prod;
     }
 
     public void setCoeff_prod(int coeff_prod) {
         this.coeff_prod = coeff_prod;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public int getIronPrice() {
@@ -119,14 +98,11 @@ public class Building {
     }
 
     public int getHydrogenPrice() {
-        return hydrogenPrice
-;
+        return hydrogenPrice;
     }
 
     public void setHydrogenPrice(int hydrogenPrice) {
-        this.hydrogenPrice
- = hydrogenPrice
-;
+        this.hydrogenPrice = hydrogenPrice;
     }
 
     public int getPriceEnergy() {

@@ -1,18 +1,9 @@
-package com.templateproject.api.entity;
+package com.templateproject.api.controller.payload;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+public class TechnologiePayload {
+    
+    private String message; 
 
-@Entity
-public class Technologie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id; 
-
-    @Column(unique = true, nullable = false)
     private String name;
     private int ironPrice;
     private int diamondPrice;
@@ -24,20 +15,14 @@ public class Technologie {
     private int timeSearch;
     private boolean isDone;
 
-    public Technologie() {};
+    public TechnologiePayload () {}
 
-    public Technologie(String name, int ironPrice, int diamondPrice, int hydrogenPrice, int priceEnergy,
-                        String description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
-        this.name = name;
-        this.ironPrice = ironPrice;
-        this.diamondPrice = diamondPrice;
-        this.hydrogenPrice = hydrogenPrice;
-        this.priceEnergy = priceEnergy;
-        this.description = description;
-        this.lvl = lvl;
-        this.coef_modifier = coef_modifier;
-        this.timeSearch = timeSearch;
-        this.isDone = isDone;
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getName() {
@@ -79,7 +64,7 @@ public class Technologie {
     public void setPriceEnergy(int priceEnergy) {
         this.priceEnergy = priceEnergy;
     }
- 
+
     public String getDescription() {
         return description;
     }
@@ -119,5 +104,6 @@ public class Technologie {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
- 
+
+    
 }
