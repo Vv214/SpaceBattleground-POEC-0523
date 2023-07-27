@@ -54,8 +54,8 @@ public class BuildingController {
         var payload = new Payload();
         try {
             buildingService.add(building.getName(), building.getType(), building.getLevel(), building.getBuildingSize(),
-                    building.getDescription(), building.getCoeff_prod(), building.getPriceRessource1(),
-                    building.getPriceRessource2(), building.getPriceRessource3(), building.getPriceEnergy(),
+                    building.getDescription(), building.getCoeff_prod(), building.getIronPrice(),
+                    building.getDiamondPrice(), building.getHydrogenPrice(), building.getPriceEnergy(),
                     building.getTimeBuilding());
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);

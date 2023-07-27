@@ -23,6 +23,14 @@ public class Ressource {
         this.maxStock = maxStock;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,5 +54,24 @@ public class Ressource {
     public void setMaxStock(int maxStock) {
         this.maxStock = maxStock;
     }
+
+    // public String getRessourceName() {
+    //     return null;
+    // }
+
+    // public void setRessourceName(String ressourceName) {
+    // }
+
+    // public Object getRessourceQuantity() {
+    //     return null;
+    // }
+
+    // public void setRessourceQuantity(Object ressourceQuantity) {
+    // }
+
+    // public Object getNumberMaxPlayers() {
+    //     return null;
+    // }
+
 
 }

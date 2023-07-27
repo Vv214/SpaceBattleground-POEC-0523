@@ -21,11 +21,14 @@ public class Player {
     private Integer level;
 
     public Player() {
+        this.level = 1;
     };
 
-    public Player(String nickname, String passwordHashed) {
+    public Player(String nickname, String passwordHashed, String email) {
         this.nickname = nickname;
         this.password = passwordHashed;
+        this.email = email;
+        this.level = 1;
     }
 
     public Player(String nickname, String email, String password, Integer level) {

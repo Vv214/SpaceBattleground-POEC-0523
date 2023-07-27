@@ -46,5 +46,4 @@ public class PlayerService {
     Player updatePlayer = playerRepository.save(currentPlayer);
     return updatePlayer;
   }
-
 }
