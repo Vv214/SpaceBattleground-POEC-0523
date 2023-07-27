@@ -2,6 +2,9 @@
 
 CREATE DATABASE IF NOT EXISTS `space`;
 
+GRANT ALL PRIVILEGES ON space.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+
 Use `space`;
 
 SELECT * FROM player;
