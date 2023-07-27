@@ -10,4 +10,5 @@ public interface RessourceRepository extends JpaRepository<Ressource, Integer> {
 
     Ressource findByName(String name);
 
+
 }
