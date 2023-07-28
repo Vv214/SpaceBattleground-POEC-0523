@@ -1,8 +1,8 @@
 package com.templateproject.api.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+// import java.util.HashMap;
+// import java.util.List;
+// import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.controller.payload.Payload;
-import com.templateproject.api.entity.Building;
+// import com.templateproject.api.entity.Building;
 import com.templateproject.api.service.BuildingService;
 
 @RestController
@@ -53,9 +53,17 @@ public class BuildingController {
     public ResponseEntity<Payload> createBuilding(@RequestBody BuildingPayload building) {
         var payload = new Payload();
         try {
-            buildingService.add(building.getName(), building.getType(), building.getLevel(), building.getBuildingSize(),
-                    building.getDescription(), building.getCoeff_prod(), building.getIronPrice(),
-                    building.getDiamondPrice(), building.getHydrogenPrice(), building.getPriceEnergy(),
+            buildingService.add(
+                    building.getName(), 
+                    building.getType(), 
+                    building.getLevel(), 
+                    building.getBuildingSize(),
+                    building.getDescription(), 
+                    building.getCoeff_prod(), 
+                    building.getIronPrice(),
+                    building.getDiamondPrice(), 
+                    building.getHydrogenPrice(), 
+                    building.getPriceEnergy(),
                     building.getTimeBuilding());
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);

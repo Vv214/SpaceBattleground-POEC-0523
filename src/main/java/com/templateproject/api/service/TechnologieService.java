@@ -76,15 +76,15 @@ public class TechnologieService {
         return techPayload;
     }
 
-    // public ResponseEntity<TechnologiePayload> getThisTechnologie(String name){
-    public boolean getThisTechnologie(String name) {
-        if (technologieRepository.findByName(name) != null)
-            return true;
-        else
-            return false;
-        // return new ResponseEntity<TechnologiePayload>("Technologie find ",
-        // HttpStatus.OK);
-    }
+    // // public ResponseEntity<TechnologiePayload> getThisTechnologie(String name){
+    // public boolean getThisTechnologie(String name) {
+    //     if (technologieRepository.findByName(name) != null)
+    //         return true;
+    //     else
+    //         return false;
+    //     // return new ResponseEntity<TechnologiePayload>("Technologie find ",
+    //     // HttpStatus.OK);
+   // }
 
     public void updateTechnologie(String name, TechnologiePayload technologie) throws Exception {
         var technologieToUpdate = technologieRepository.findByName(name);

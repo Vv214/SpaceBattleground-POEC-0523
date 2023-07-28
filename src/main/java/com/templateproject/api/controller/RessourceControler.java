@@ -56,7 +56,7 @@ public class RessourceControler {
     public ResponseEntity<Payload> getRessourceByTag(@PathVariable("name") String name) {
         var payload = new Payload();
         try {
-            var ressource = ressourceService.getByName(name);
+            // var ressource = ressourceService.getByName(name);
             payload.setMessage("Get ressource by name '" + name +"'");
             payload.setData(ressourceService.getByName(name));
             return new ResponseEntity<>(payload, HttpStatus.OK);
