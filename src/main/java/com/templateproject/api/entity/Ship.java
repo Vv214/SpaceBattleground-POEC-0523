@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +11,8 @@ public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(unique = true)
     private String name;
     private String type;
     private int ironPrice;
@@ -20,7 +23,6 @@ public class Ship {
     private int damage;
     private int fuel;
     private int speed;
-    private int range;
     private int capacity;
     private int shipSize;
     private int quantity;
@@ -44,7 +46,6 @@ public class Ship {
         this.damage = damage;
         this.fuel = fuel;
         this.speed = speed;
-        this.range = range;
         this.capacity = capacity;
         this.shipSize = shipSize;
         this.quantity = quantity;
@@ -146,18 +147,9 @@ public class Ship {
         this.speed = speed;
     }
 
-    public int getRange() {
-        return range;
-    }
-
-    public void setRange(int range) {
-        this.range = range;
-    }
-
     public int getCapacity() {
         return capacity;
     }
-
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
@@ -169,4 +161,6 @@ public class Ship {
     public void setShipSize(int shipSize) {
         this.shipSize = shipSize;
     }
+
+   
 }
