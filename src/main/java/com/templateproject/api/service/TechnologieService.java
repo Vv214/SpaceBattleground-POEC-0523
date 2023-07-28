@@ -4,11 +4,14 @@ import com.templateproject.api.controller.payload.TechnologiePayload;
 import com.templateproject.api.entity.Technologie;
 import com.templateproject.api.repository.TechnologieRepository;
 
+import jakarta.persistence.Column;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,28 +24,30 @@ public class TechnologieService {
     }
 
     public void add(
-            String name,
-            int ironPrice,
-            int DiamondPrice,
-            int HydrogenPrice,
-            int priceEnergy,
-            String description,
-            int lvl,
-            float coef_modifier,
-            int timeSearch,
-            boolean isDone) {
-        // TODO CHECK PARAM
+            
+        String name,
+        String description, 
+        int ironPrice,
+        int diamondPrice,
+        int hydrogenPrice,
+        int energyPrice,
+        int lvl, 
+        float coef_modifier,
+        Date timeSearch,
+        Date timeToStart,
+        boolean isDone){
 
         var technologie = new Technologie(
                 name,
+                description, 
                 ironPrice,
-                DiamondPrice,
-                HydrogenPrice,
-                priceEnergy,
-                description,
-                lvl,
+                diamondPrice,
+                hydrogenPrice,
+                energyPrice,
+                lvl, 
                 coef_modifier,
                 timeSearch,
+                timeToStart,
                 isDone);
 
         technologieRepository.save(technologie);
@@ -61,14 +66,20 @@ public class TechnologieService {
             var newTechnologie = new TechnologiePayload();
 
             newTechnologie.setName(technologie.getName());
+            newTechnologie.setDescription(technologie.getDescription());
+
             newTechnologie.setIronPrice(technologie.getIronPrice());
             newTechnologie.setDiamondPrice(technologie.getDiamondPrice());
             newTechnologie.setHydrogenPrice(technologie.getHydrogenPrice());
-            newTechnologie.setPriceEnergy(technologie.getPriceEnergy());
-            newTechnologie.setDescription(technologie.getDescription());
-            newTechnologie.setLvl(technologie.getLvl());
-            newTechnologie.setTimeSearch(technologie.getTimeSearch());
+            newTechnologie.setEnergyPrice(technologie.getEnergyPrice());
+            
+            
+            newTechnologie.setLevel(technologie.getLevel());
             newTechnologie.setCoef_modifier(technologie.getCoef_modifier());
+            
+            newTechnologie.setTimeSearch(technologie.getTimeSearch());
+            newTechnologie.setTimeToStart(technologie.getTimeToStart());
+
             newTechnologie.setDone(technologie.isDone());
 
             techPayload.add(newTechnologie);
@@ -96,6 +107,9 @@ public class TechnologieService {
         if (technologie.getName() != null) {
             technologieToUpdate.setName(technologie.getName());
         }
+        if (technologie.getDescription() != null) {
+            technologieToUpdate.setDescription(technologie.getDescription());
+        }
 
         if (technologie.getIronPrice() != 0) {
             technologieToUpdate.setIronPrice(technologie.getIronPrice());
@@ -106,24 +120,24 @@ public class TechnologieService {
         if (technologie.getHydrogenPrice() != 0) {
             technologieToUpdate.setHydrogenPrice(technologie.getHydrogenPrice());
         }
-        if (technologie.getPriceEnergy() != 0) {
-            technologieToUpdate.setPriceEnergy(technologie.getPriceEnergy());
+        if (technologie.getEnergyPrice() != 0) {
+            technologieToUpdate.setEnergyPrice(technologie.getEnergyPrice());
         }
 
-        if (technologie.getDescription() != null) {
-            technologieToUpdate.setDescription(technologie.getDescription());
-        }
 
-        if (technologie.getLvl() != 0) {
-            technologieToUpdate.setLvl(technologie.getLvl());
+        if (technologie.getLevel() != 0) {
+            technologieToUpdate.setLevel(technologie.getLevel());
         }
-
         if (technologie.getCoef_modifier() != 0) {
             technologieToUpdate.setCoef_modifier(technologie.getCoef_modifier());
         }
 
+
         if (technologie.getTimeSearch() != 0) {
             technologieToUpdate.setTimeSearch(technologie.getTimeSearch());
+        }
+        if (technologie.getTimeToStar() != 0) {
+            technologieToUpdate.setTimeToStart(technologie.getTimeToStart());
         }
 
         technologieToUpdate.setDone(technologie.isDone());

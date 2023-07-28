@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Ship {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(unique = true)
@@ -18,7 +18,7 @@ public class Ship {
     private int ironPrice;
     private int diamondPrice;
     private int hydrogenPrice;
-    private int priceEnergy;
+    private int energyPrice;
     private int pv;
     private int damage;
     private int fuel;
@@ -32,7 +32,7 @@ public class Ship {
 
     public Ship(String name, String type, int ironPrice,
             int diamondPrice, int hydrogenPrice,
-            int priceEnergy, int pv, int damage,
+            int energyPrice, int pv, int damage,
             int fuel, int speed, int range,
             int capacity, int shipSize, int quantity) {
 
@@ -41,7 +41,7 @@ public class Ship {
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
-        this.priceEnergy = priceEnergy;
+        this.energyPrice = energyPrice;
         this.pv = pv;
         this.damage = damage;
         this.fuel = fuel;
@@ -107,12 +107,12 @@ public class Ship {
         this.hydrogenPrice = hydrogenPrice;
     }
 
-    public int getPriceEnergy() {
-        return priceEnergy;
+    public int getEnergyPrice() {
+        return energyPrice;
     }
 
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
+    public void setenergyPrice(int energyPrice) {
+        this.energyPrice = energyPrice;
     }
 
     public int getPv() {

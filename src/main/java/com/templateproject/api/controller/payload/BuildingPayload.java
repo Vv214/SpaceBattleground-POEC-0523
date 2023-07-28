@@ -1,36 +1,48 @@
 package com.templateproject.api.controller.payload;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
 public class BuildingPayload {
 
     private String name;
     private String type;
     private int level;
-    private int buildingSize;
+    
     private String description;
     private int coeff_prod;
+
     private int ironPrice;
     private int diamondPrice;
     private int hydrogenPrice;
-    private int priceEnergy;
-    private int timeBuilding;
+    private int energyPrice;
+        
+    private Date timeBuilding;
+    private Date timeToStart;
 
     public BuildingPayload() {
 
     }
-
-    public BuildingPayload(String name, String type, int level, int buildingSize, String description, int coeff_prod,
-            int ironPrice, int diamondPrice, int hydrogenPrice, int priceEnergy, int timeBuilding) {
+    
+    public BuildingPayload(String name, String type, int level, String description, int coeff_prod, int ironPrice,
+            int diamondPrice, int hydrogenPrice, int energyPrice, Date timeBuilding, Date timeToStart) {
         this.name = name;
         this.type = type;
         this.level = level;
-        this.buildingSize = buildingSize;
+        
         this.description = description;
         this.coeff_prod = coeff_prod;
+        
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
-        this.priceEnergy = priceEnergy;
+        this.energyPrice = energyPrice;
+        
         this.timeBuilding = timeBuilding;
+        this.timeToStart = timeToStart;
     }
 
     public String getName() {
@@ -55,14 +67,6 @@ public class BuildingPayload {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public int getBuildingSize() {
-        return buildingSize;
-    }
-
-    public void setBuildingSize(int buildingSize) {
-        this.buildingSize = buildingSize;
     }
 
     public String getDescription() {
@@ -105,20 +109,30 @@ public class BuildingPayload {
         this.hydrogenPrice = hydrogenPrice;
     }
 
-    public int getPriceEnergy() {
-        return priceEnergy;
+    public int getEnergyPrice() {
+        return energyPrice;
     }
 
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
+    public void setEnergyPrice(int energyPrice) {
+        this.energyPrice = energyPrice;
     }
 
-    public int getTimeBuilding() {
+    public Date getTimeBuilding() {
         return timeBuilding;
     }
 
-    public void setTimeBuilding(int timeBuilding) {
+    public void setTimeBuilding(Date timeBuilding) {
         this.timeBuilding = timeBuilding;
     }
+
+    public Date getTimeToStart() {
+        return timeToStart;
+    }
+
+    public void setTimeToStart(Date timeToStart) {
+        this.timeToStart = timeToStart;
+    }
+
+   
 
 }

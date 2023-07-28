@@ -1,148 +1,126 @@
 package com.templateproject.api.entity;
 
+import java.util.Date;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Building {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
+    @Column(length = 50)
     private String type;
     private int level;
-    private int buildingSize;
+    
     private String description;
     private int coeff_prod;
+
     private int ironPrice;
     private int diamondPrice;
     private int hydrogenPrice;
-    private int priceEnergy;
-    private int timeBuilding;
-
-    public Building() {
-    };
-
-    public Building(String name, String type, int level, int buildingSize, String description, int coeff_prod,
-            int ironPrice, int diamondPrice, int hydrogenPrice
-    ,
-            int priceEnergy, int timeBuilding) {
+    private int energyPrice;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeBuilding;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeToStart;
+ 
+    public Building(String name, String type, int level, String description, int coeff_prod, int ironPrice,
+            int diamondPrice, int hydrogenPrice, int energyPrice, Date timeBuilding, Date timeToStart) {
         this.name = name;
         this.type = type;
         this.level = level;
-        this.buildingSize = buildingSize;
         this.description = description;
         this.coeff_prod = coeff_prod;
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
-        this.hydrogenPrice
- = hydrogenPrice
-;
-        this.priceEnergy = priceEnergy;
+        this.hydrogenPrice = hydrogenPrice;
+        this.energyPrice = energyPrice;
         this.timeBuilding = timeBuilding;
+        this.timeToStart = timeToStart;
     }
 
-    public int getId() {
-        return id;
+    public Building() {
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
-
     public int getLevel() {
         return level;
     }
-
     public void setLevel(int level) {
         this.level = level;
     }
-
-    public int getBuildingSize() {
-        return buildingSize;
-    }
-
-    public void setBuildingSize(int buildingSize) {
-        this.buildingSize = buildingSize;
-    }
-
-    public int getCoeff_prod() {
-        return coeff_prod;
-    }
-
-    public void setCoeff_prod(int coeff_prod) {
-        this.coeff_prod = coeff_prod;
-    }
-
     public String getDescription() {
         return description;
     }
-
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public int getCoeff_prod() {
+        return coeff_prod;
+    }
+    public void setCoeff_prod(int coeff_prod) {
+        this.coeff_prod = coeff_prod;
+    }
     public int getIronPrice() {
         return ironPrice;
     }
-
     public void setIronPrice(int ironPrice) {
         this.ironPrice = ironPrice;
     }
-
     public int getDiamondPrice() {
         return diamondPrice;
     }
-
     public void setDiamondPrice(int diamondPrice) {
         this.diamondPrice = diamondPrice;
     }
-
     public int getHydrogenPrice() {
-        return hydrogenPrice
-;
+        return hydrogenPrice;
     }
-
     public void setHydrogenPrice(int hydrogenPrice) {
-        this.hydrogenPrice
- = hydrogenPrice
-;
+        this.hydrogenPrice = hydrogenPrice;
     }
-
-    public int getPriceEnergy() {
-        return priceEnergy;
+    public int getEnergyPrice() {
+        return energyPrice;
     }
-
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
+    public void setEnergyPrice(int energyPrice) {
+        this.energyPrice = energyPrice;
     }
-
-    public int getTimeBuilding() {
+    public Date getTimeBuilding() {
         return timeBuilding;
     }
-
-    public void setTimeBuilding(int timeBuilding) {
+    public void setTimeBuilding(Date timeBuilding) {
         this.timeBuilding = timeBuilding;
     }
+    public Date getTimeToStart() {
+        return timeToStart;
+    }
+    public void setTimeToStart(Date timeToStart) {
+        this.timeToStart = timeToStart;
+    }
+
+    
 
 }

@@ -8,7 +8,7 @@ public class TechnologiePayload {
     private int ironPrice;
     private int diamondPrice;
     private int hydrogenPrice;
-    private int priceEnergy;
+    private int energyPrice;
     private String description; 
     private int lvl; 
     private float coef_modifier;
@@ -57,12 +57,12 @@ public class TechnologiePayload {
         this.hydrogenPrice = hydrogenPrice;
     }
 
-    public int getPriceEnergy() {
-        return priceEnergy;
+    public int getEnergyPrice() {
+        return energyPrice;
     }
 
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
+    public void setenergyPrice(int energyPrice) {
+        this.energyPrice = energyPrice;
     }
 
     public String getDescription() {
