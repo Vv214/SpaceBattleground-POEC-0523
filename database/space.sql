@@ -14,3 +14,7 @@ FLUSH PRIVILEGES;
 Use `space`;
 
 SELECT * FROM player;
+
+show TABLES;
+
+-- drop DATABASE `space`;

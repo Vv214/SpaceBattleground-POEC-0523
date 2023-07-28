@@ -1,5 +1,10 @@
 package com.templateproject.api.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.templateproject.api.entity.Player;
@@ -10,20 +15,65 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 @Service
 public class AuthService {
 
+    private List<Token> tokens;
+
     private final PlayerRepository playerRepository;
 
     public AuthService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
+        tokens = new ArrayList<>();
     }
 
-    public boolean register(String nickname, String password, String confirmPassword, String email) {
-        if (password.equals(confirmPassword)) {
+    public void register(String nickname, String password, String confirmPassword, String email) throws Exception {
+        if (password.equals(confirmPassword) && !email.isEmpty() && !nickname.isEmpty()) {
             String passwordHashed = BCrypt.withDefaults().hashToString(BCrypt.MIN_COST, password.toCharArray());
             Player player = new Player(nickname, passwordHashed, email);
             playerRepository.save(player);
-            return true;
+        } else {
+            throw new Exception("Invalid params");
+            // checks error message
         }
-        return false;
+    }
+
+    public String login(String nickname, String password) {
+        Player dbPlayer = playerRepository.findByNickname(nickname);
+        var result = BCrypt.verifyer().verify(password.toCharArray(), dbPlayer.getPassword());
+        if (result.verified) {
+            var token = GenerateToken.newUserToken(dbPlayer.getId());
+            tokens.add(new Token(dbPlayer.getId(), token));
+            return token;
+        }
+        return null;
+    }
+
+    private Integer findUserIdByToken(String token) {
+        for (Token item : tokens) {
+            if (item.getToken().equals(token)) {
+                return item.getplayerID();
+            }
+        }
+        return null;
+    }
+
+    public Map<String, String> playerInfo(String token) throws Exception {
+        var userID = findUserIdByToken(token);
+        if (userID == null) {
+            throw new Exception("Invalid TOKEN");
+        }
+        var player = playerRepository.findById(userID).get();
+        var playerInfo = new HashMap<String, String>();
+        playerInfo.put("login", player.getNickname());
+        playerInfo.put("email", player.getEmail());
+        return playerInfo;
+    }
+
+    public void logout(String token) {
+        for (Token item : tokens) {
+            if (item.getToken().equals(token)) {
+                tokens.remove(item);
+                return;
+            }
+        }
     }
 
     public String findByNickname(String nickname, String password) {
