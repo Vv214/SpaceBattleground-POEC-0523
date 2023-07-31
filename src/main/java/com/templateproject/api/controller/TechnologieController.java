@@ -17,7 +17,7 @@ public class TechnologieController {
     public TechnologieController(TechnologieService technologieService) {
         this.technologieService = technologieService;
     }
-
+    // CREATE 
     @PostMapping("/technologie")
     public ResponseEntity<TechnologiePayload> addTechnologie(@RequestBody Technologie technologie) {
         var payload = new TechnologiePayload();
@@ -46,8 +46,8 @@ public class TechnologieController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/technologie")
+    // RESEARCH ALL
+    @GetMapping("/technologies")
     public ResponseEntity<Payload> getAllTechnoligie() {
         var payload = new Payload();
         try {
@@ -63,12 +63,12 @@ public class TechnologieController {
         }
 
     }
-
+    // RESEARCH ONE
     @GetMapping("/technologie/{name}")
     public ResponseEntity<Payload> getTechnoligieByName(@PathVariable String name) {
         var payload = new Payload();
         try {
-            var technologie = technologieService.getTechnologies();
+            var technologie = technologieService.getTechnologie(name); // ERROR Method incomplet
             payload.setMessage("Get Technologie by Name '" + name + "'");
             payload.setData(technologie);
             return new ResponseEntity<>(payload, HttpStatus.OK);
@@ -78,7 +78,7 @@ public class TechnologieController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    //UPDATE ONE
     @PutMapping("/technologie/{name}")
     public void updateTechnologie(@PathVariable String name, @RequestBody Technologie technologie) {
         var payload = new TechnologiePayload();
@@ -103,17 +103,17 @@ public class TechnologieController {
         }
 
     }
-
+    //DELETE ONE
     @DeleteMapping("/technologie/{name}")
     public ResponseEntity<Payload> deleteTechnologie(@PathVariable String name) {
         // TODO set message ?
         var payload = new Payload();
         try {
             technologieService.delete(name);
-            // payload.setMessae("deleted");
+            // payload.setMessage("deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) { // TODO 4.x.x
-            // payload.setMessae(e.getMessage());
+            // payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
