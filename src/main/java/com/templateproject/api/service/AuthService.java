@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Service;
 
 import com.templateproject.api.entity.Player;
@@ -30,7 +31,7 @@ public class AuthService {
             Player player = new Player(nickname, passwordHashed, email);
             playerRepository.save(player);
         } else {
-            throw new Exception("Invalid params");
+            throw new Exception("Invalid params ");
             // checks error message
         }
     }
@@ -46,7 +47,7 @@ public class AuthService {
         return null;
     }
 
-    private Integer findUserIdByToken(String token) {
+    public Integer findUserIdByToken(String token) {
         for (Token item : tokens) {
             if (item.getToken().equals(token)) {
                 return item.getplayerID();
@@ -55,12 +56,8 @@ public class AuthService {
         return null;
     }
 
-    public Map<String, String> playerInfo(String token) throws Exception {
-        var userID = findUserIdByToken(token);
-        if (userID == null) {
-            throw new Exception("Invalid TOKEN");
-        }
-        var player = playerRepository.findById(userID).get();
+    public Map<String, String> playerInfo(Integer userID) throws Exception {
+        Player player = playerRepository.findById(userID).get();
         var playerInfo = new HashMap<String, String>();
         playerInfo.put("login", player.getNickname());
         playerInfo.put("email", player.getEmail());

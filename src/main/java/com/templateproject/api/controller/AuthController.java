@@ -73,11 +73,11 @@ public class AuthController {
     }
 
     @GetMapping("/info")
-    public ResponseEntity<Payload> info(@RequestHeader HttpHeaders headers) {
+    public ResponseEntity<Payload> info(HttpServletRequest request) {
         var payload = new Payload();
-        var token = headers.get("x-token").get(0);
+        var playerID = (Integer) request.getAttribute("playerID");
         try {
-            var playerInfo = authService.playerInfo(token);
+            var playerInfo = authService.playerInfo(playerID);
             payload.setMessage("Player informations");
             payload.setData(playerInfo);
             return new ResponseEntity<>(payload, HttpStatus.OK);
