@@ -9,8 +9,8 @@ import jakarta.persistence.Id;
 @Entity
 public class Technologie {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id; 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id; 
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -40,7 +40,15 @@ public class Technologie {
         this.isDone = isDone;
     }
 
-    public String getName() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+        public String getName() {
         return name;
     }
 
