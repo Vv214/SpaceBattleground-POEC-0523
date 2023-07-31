@@ -15,16 +15,19 @@ public class Clan {
     private String clanName;
     @Column(unique = true)
     private String clanTag;
+
     private Integer clanLvl;
     private Integer numberMaxPlayers;
     private Integer currentNumberPlayers;
+    
+    @Column( unique = true, nullable = false, length = 50)
     private String adminNickname;
 
     public Clan() {
     };
 
     public Clan(String clanName, String clanTag, Integer clanLvl, Integer numberMaxPlayers,
-            Integer currentNumberPlayers, String adminNickname) {
+    Integer currentNumberPlayers, String adminNickname) {
         this.clanName = clanName;
         this.clanTag = clanTag;
         this.clanLvl = clanLvl;

@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,17 +10,19 @@ import jakarta.persistence.Id;
 public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
+    
+    @Column( unique = true, nullable = false, length = 50)
     private String name;
     private boolean isColonised;
-    private int positionX;
-    private int positionY;
-    private int planetSize;
+    private Integer positionX;
+    private Integer positionY;
+    private Integer planetSize;
 
     public Planet() {
     };
 
-    public Planet(String name, boolean isColonised, int positionX, int positionY, int planetSize) {
+    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize) {
         this.name = name;
         this.isColonised = isColonised;
         this.positionX = positionX;
@@ -27,11 +30,11 @@ public class Planet {
         this.planetSize = planetSize;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,27 +54,27 @@ public class Planet {
         this.isColonised = isColonised;
     }
 
-    public int getPositionX() {
+    public Integer getPositionX() {
         return positionX;
     }
 
-    public void setPositionX(int positionX) {
+    public void setPositionX(Integer positionX) {
         this.positionX = positionX;
     }
 
-    public int getPositionY() {
+    public Integer getPositionY() {
         return positionY;
     }
 
-    public void setPositionY(int positionY) {
+    public void setPositionY(Integer positionY) {
         this.positionY = positionY;
     }
 
-    public int getPlanetSize() {
+    public Integer getPlanetSize() {
         return planetSize;
     }
 
-    public void setPlanetSize(int planetSize) {
+    public void setPlanetSize(Integer planetSize) {
         this.planetSize = planetSize;
     }
 

@@ -11,7 +11,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
+    @Column( unique = true, nullable = false, length = 50)
     private String nickname;
     @Column(nullable = true)
     private String email;

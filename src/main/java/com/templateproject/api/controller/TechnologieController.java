@@ -24,16 +24,22 @@ public class TechnologieController {
         try {
             technologieService.add(
                     technologie.getName(),
+                    technologie.getDescription(),
+                    
                     technologie.getIronPrice(),
                     technologie.getDiamondPrice(),
                     technologie.getHydrogenPrice(),
                     technologie.getEnergyPrice(),
-                    technologie.getDescription(),
-                    technologie.getLvl(),
+                    
+                    technologie.getLevel(),
                     technologie.getCoef_modifier(),
+                    
                     technologie.getTimeSearch(),
+                    technologie.getTimeToStart(),
+
                     technologie.isDone());
-            payload.setMessage(technologie.getName() + "created");
+            
+                    payload.setMessage(technologie.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());

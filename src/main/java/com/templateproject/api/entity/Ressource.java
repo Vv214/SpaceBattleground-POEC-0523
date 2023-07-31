@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +11,9 @@ public class Ressource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column( unique = true, nullable = false, length = 50)
     private String name;
+
     private int quantity;
     private int maxStock;
 
@@ -55,23 +58,6 @@ public class Ressource {
         this.maxStock = maxStock;
     }
 
-    // public String getRessourceName() {
-    //     return null;
-    // }
-
-    // public void setRessourceName(String ressourceName) {
-    // }
-
-    // public Object getRessourceQuantity() {
-    //     return null;
-    // }
-
-    // public void setRessourceQuantity(Object ressourceQuantity) {
-    // }
-
-    // public Object getNumberMaxPlayers() {
-    //     return null;
-    // }
 
 
 }

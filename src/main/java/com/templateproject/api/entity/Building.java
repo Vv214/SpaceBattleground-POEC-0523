@@ -15,28 +15,29 @@ import jakarta.persistence.TemporalType;
 public class Building {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(unique = true, nullable = false, length = 50)
     private String name;
     @Column(length = 50)
     private String type;
-    private int level;
+    
+    private Integer level;
     
     private String description;
-    private int coeff_prod;
+    private Integer coeff_prod;
 
-    private int ironPrice;
-    private int diamondPrice;
-    private int hydrogenPrice;
-    private int energyPrice;
+    private Integer ironPrice;
+    private Integer diamondPrice;
+    private Integer hydrogenPrice;
+    private Integer energyPrice;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeBuilding;
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
  
-    public Building(String name, String type, int level, String description, int coeff_prod, int ironPrice,
-            int diamondPrice, int hydrogenPrice, int energyPrice, Date timeBuilding, Date timeToStart) {
+    public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
+            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
         this.name = name;
         this.type = type;
         this.level = level;
@@ -66,10 +67,10 @@ public class Building {
     public void setType(String type) {
         this.type = type;
     }
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
     public String getDescription() {
@@ -78,34 +79,34 @@ public class Building {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getCoeff_prod() {
+    public Integer getCoeff_prod() {
         return coeff_prod;
     }
-    public void setCoeff_prod(int coeff_prod) {
+    public void setCoeff_prod(Integer coeff_prod) {
         this.coeff_prod = coeff_prod;
     }
-    public int getIronPrice() {
+    public Integer getIronPrice() {
         return ironPrice;
     }
-    public void setIronPrice(int ironPrice) {
+    public void setIronPrice(Integer ironPrice) {
         this.ironPrice = ironPrice;
     }
-    public int getDiamondPrice() {
+    public Integer getDiamondPrice() {
         return diamondPrice;
     }
-    public void setDiamondPrice(int diamondPrice) {
+    public void setDiamondPrice(Integer diamondPrice) {
         this.diamondPrice = diamondPrice;
     }
-    public int getHydrogenPrice() {
+    public Integer getHydrogenPrice() {
         return hydrogenPrice;
     }
-    public void setHydrogenPrice(int hydrogenPrice) {
+    public void setHydrogenPrice(Integer hydrogenPrice) {
         this.hydrogenPrice = hydrogenPrice;
     }
-    public int getEnergyPrice() {
+    public Integer getEnergyPrice() {
         return energyPrice;
     }
-    public void setEnergyPrice(int energyPrice) {
+    public void setEnergyPrice(Integer energyPrice) {
         this.energyPrice = energyPrice;
     }
     public Date getTimeBuilding() {

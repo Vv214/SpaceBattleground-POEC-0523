@@ -29,7 +29,7 @@ public class BuildingService {
       newBuilding.setIronPrice(building.getIronPrice());
       newBuilding.setDiamondPrice(building.getDiamondPrice());
       newBuilding.setHydrogenPrice(building.getHydrogenPrice());
-      newBuilding.setenergyPrice(building.getEnergyPrice());
+      newBuilding.setEnergyPrice(building.getEnergyPrice());
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       newBuilding.setTimeToStart(building.getTimeToStart());
       payload.add(newBuilding);
@@ -76,10 +76,10 @@ public class BuildingService {
     if (building.getEnergyPrice() != 0) {
       buildingToUpdate.setEnergyPrice(building.getEnergyPrice());
     }
-    if (building.getTimeBuilding() != 0) {
+    if (building.getTimeBuilding() != null) {
       buildingToUpdate.setTimeBuilding(building.getTimeBuilding());
     }
-    if (building.getTimeBuilding() != 0) {
+    if (building.getTimeBuilding() != null) {
       buildingToUpdate.setTimeToStart(building.getTimeToStart());
     }
     buildingRepository.save(buildingToUpdate);
@@ -102,13 +102,13 @@ public class BuildingService {
 
   public void add(String name, 
                   String type, 
-                  int level, 
+                  Integer level, 
                   String description,
-                  int coeff_prod, 
-                  int ironPrice, 
-                  int diamondPrice, 
-                  int hydrogenPrice,
-                  int energyPrice, 
+                  Integer coeff_prod, 
+                  Integer ironPrice, 
+                  Integer diamondPrice, 
+                  Integer hydrogenPrice,
+                  Integer energyPrice, 
                   Date timeBuilding, 
                   Date timeToStart) {
     // Todo check params
@@ -119,4 +119,5 @@ public class BuildingService {
     buildingRepository.save(building);
   
 
+}
 }

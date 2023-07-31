@@ -4,8 +4,6 @@ import com.templateproject.api.controller.payload.TechnologiePayload;
 import com.templateproject.api.entity.Technologie;
 import com.templateproject.api.repository.TechnologieRepository;
 
-import jakarta.persistence.Column;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,11 +25,11 @@ public class TechnologieService {
             
         String name,
         String description, 
-        int ironPrice,
-        int diamondPrice,
-        int hydrogenPrice,
-        int energyPrice,
-        int lvl, 
+        Integer ironPrice,
+        Integer diamondPrice,
+        Integer hydrogenPrice,
+        Integer energyPrice,
+        Integer level, 
         float coef_modifier,
         Date timeSearch,
         Date timeToStart,
@@ -44,7 +42,7 @@ public class TechnologieService {
                 diamondPrice,
                 hydrogenPrice,
                 energyPrice,
-                lvl, 
+                level, 
                 coef_modifier,
                 timeSearch,
                 timeToStart,
@@ -124,7 +122,6 @@ public class TechnologieService {
             technologieToUpdate.setEnergyPrice(technologie.getEnergyPrice());
         }
 
-
         if (technologie.getLevel() != 0) {
             technologieToUpdate.setLevel(technologie.getLevel());
         }
@@ -132,11 +129,10 @@ public class TechnologieService {
             technologieToUpdate.setCoef_modifier(technologie.getCoef_modifier());
         }
 
-
-        if (technologie.getTimeSearch() != 0) {
+        if (technologie.getTimeSearch() == null) {
             technologieToUpdate.setTimeSearch(technologie.getTimeSearch());
         }
-        if (technologie.getTimeToStar() != 0) {
+        if (technologie.getTimeToStart() == null) {
             technologieToUpdate.setTimeToStart(technologie.getTimeToStart());
         }
 

@@ -7,35 +7,39 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Technologie {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; 
+    private Integer id; 
 
-    @Column(unique = true, nullable = false)
+    @Column( unique = true, nullable = false, length = 50)
     private String name;
     private String description; 
    
-    private int ironPrice;
-    private int diamondPrice;
-    private int hydrogenPrice;
-    private int energyPrice;
+    private Integer ironPrice;
+    private Integer diamondPrice;
+    private Integer hydrogenPrice;
+    private Integer energyPrice;
     
-    private int level; 
+    private Integer level; 
     private float coef_modifier;
     
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timeSearch;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
     private boolean isDone;
 
     public Technologie() {}
 
-    public Technologie(String name, String description, int ironPrice, int diamondPrice, int hydrogenPrice,
-            int energyPrice, int level, float coef_modifier, Date timeSearch, Date timeToStart, boolean isDone) {
+    public Technologie(String name, String description, Integer ironPrice, Integer diamondPrice, Integer hydrogenPrice,
+            Integer energyPrice, Integer level, float coef_modifier, Date timeSearch, Date timeToStart, boolean isDone) {
         this.name = name;
         this.description = description;
 
@@ -69,43 +73,43 @@ public class Technologie {
         this.description = description;
     }
 
-    public int getIronPrice() {
+    public Integer getIronPrice() {
         return ironPrice;
     }
 
-    public void setIronPrice(int ironPrice) {
+    public void setIronPrice(Integer ironPrice) {
         this.ironPrice = ironPrice;
     }
 
-    public int getDiamondPrice() {
+    public Integer getDiamondPrice() {
         return diamondPrice;
     }
 
-    public void setDiamondPrice(int diamondPrice) {
+    public void setDiamondPrice(Integer diamondPrice) {
         this.diamondPrice = diamondPrice;
     }
 
-    public int getHydrogenPrice() {
+    public Integer getHydrogenPrice() {
         return hydrogenPrice;
     }
 
-    public void setHydrogenPrice(int hydrogenPrice) {
+    public void setHydrogenPrice(Integer hydrogenPrice) {
         this.hydrogenPrice = hydrogenPrice;
     }
 
-    public int getEnergyPrice() {
+    public Integer getEnergyPrice() {
         return energyPrice;
     }
 
-    public void setEnergyPrice(int energyPrice) {
+    public void setEnergyPrice(Integer energyPrice) {
         this.energyPrice = energyPrice;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 

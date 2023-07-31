@@ -10,20 +10,25 @@ import jakarta.persistence.Id;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(unique = true, nullable = false, length = 50)
     private String name;
 
     private boolean createPlayer; 
     private boolean removPlayer;
+
     private boolean createPlanet;
     private boolean removePlanet; 
+
     private boolean giveRessources; 
     private boolean removeRessources;
+
     private boolean createBuilding; 
     private boolean removeBuilding; 
+
     private boolean giveClan; 
     private boolean removeClan;
+    
     private boolean addToClan;
     private boolean deleteToClan;
     
