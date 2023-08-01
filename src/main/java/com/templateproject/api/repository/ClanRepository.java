@@ -7,8 +7,8 @@ import com.templateproject.api.entity.Clan;
 public interface ClanRepository extends JpaRepository<Clan, Integer> {
 
     Clan findByClanName(String name);
-    
-    void deleteClanByClanName(String name);
+    Clan deleteClanByClanName(String name);
+    Clan findByLevel(Integer level);
 
 
 }

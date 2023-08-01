@@ -19,15 +19,21 @@ public class FleetService {
   public FleetService(FleetRepository FleetRepository) {
     this.FleetRepository = FleetRepository;
   }
-
-  public List<Fleet> getFleet() {
-      return FleetRepository.findAll();
-  }
   
+  //CREATE  
   public Fleet createFleet(Fleet Fleet) {
       return FleetRepository.save(Fleet);
   }
-  
+
+  //RESEARCH ALL
+  public List<Fleet> getFleet() {
+      return FleetRepository.findAll();
+    }
+  //RESEARCH ONE
+  public Optional<Fleet> getFleet(int id) {
+      return FleetRepository.findById(id);
+  }
+  //UPDATE ONE
   public Fleet updateFleet(Fleet Fleet) {
     Fleet currentFleet = FleetRepository.findById(Fleet.getId()).get();
     
@@ -45,10 +51,7 @@ public class FleetService {
         return updateFleet;
   }
   
-  public Optional<Fleet> getFleet(int id) {
-      return FleetRepository.findById(id);
-  }
-  
+  //DELETE ONE 
   public ResponseEntity<String> deleteFleetById(Integer id) {
       FleetRepository.deleteById(id);
       return new ResponseEntity<>("Fleet successfully deleted!", HttpStatus.OK);

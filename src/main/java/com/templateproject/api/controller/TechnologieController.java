@@ -39,7 +39,7 @@ public class TechnologieController {
 
                     technologie.isDone());
             
-                    payload.setMessage(technologie.getName() + "created");
+            payload.setMessage(technologie.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
@@ -68,7 +68,7 @@ public class TechnologieController {
     public ResponseEntity<Payload> getTechnoligieByName(@PathVariable String name) {
         var payload = new Payload();
         try {
-            var technologie = technologieService.getTechnologie(name); // ERROR Method incomplet
+            var technologie = technologieService.getTechnologie(name); 
             payload.setMessage("Get Technologie by Name '" + name + "'");
             payload.setData(technologie);
             return new ResponseEntity<>(payload, HttpStatus.OK);
@@ -80,26 +80,28 @@ public class TechnologieController {
     }
     //UPDATE ONE
     @PutMapping("/technologie/{name}")
-    public void updateTechnologie(@PathVariable String name, @RequestBody Technologie technologie) {
+    public ResponseEntity<TechnologiePayload> updateTechnologie(@PathVariable String name, @RequestBody Technologie technologie) {
         var payload = new TechnologiePayload();
         try {
+            
+            payload.setName(technologie.getName()); 
+            payload.setIronPrice(technologie.getIronPrice());
+            payload.setDiamondPrice(technologie.getDiamondPrice());
+            payload.setHydrogenPrice(technologie.getHydrogenPrice());
+            payload.setEnergyPrice(technologie.getEnergyPrice());
+            payload.setDescription(technologie.getDescription());
+            payload.setLevel(technologie.getLevel());
+            payload.setCoef_modifier(technologie.getCoef_modifier());
+            payload.setTimeSearch(technologie.getTimeSearch()); 
+            payload.setTimeToStart(technologie.getTimeToStart());
+            payload.setDone(technologie.isDone()); 
+
             technologieService.updateTechnologie(name, payload);
-            // technologie.getName(),
-            // technologie.getIronPrice(),
-            // technologie.getDiamondPrice(),
-            // technologie.getHydrogenPrice(),
-            // technologie.getEnergyPrice(),
-            // technologie.getDescription(),
-            // technologie.getLvl(),
-            // technologie.getCoef_modifier(),
-            // technologie.getTimeSearch(),
-            // technologie.isDone());
-            // payload.setMessage("Technologie Update");
-            // return new ResponseEntity<>(payload, HttpStatus.OK);
+             payload.setMessage("Technologie Update");
+             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) { // TODO NOT FOUND && verify all the method
             payload.setMessage(e.getMessage());
-            // payload.setData(null);
-            // return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

@@ -1,8 +1,6 @@
 package com.templateproject.api.controller;
 
-import java.util.List;
 
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,7 +33,7 @@ public class PlanetController {
     var payload = new PlanetPayload();
     try {
 
-      PlanetService.addNewPlanet(
+      planetService.addNewPlanet(
         planet.getName(),
         planet.isColonised(), 
         planet.getPlanetSize(),
@@ -47,8 +45,8 @@ public class PlanetController {
       return new ResponseEntity<>(payload,HttpStatus.CREATED);
     
     } catch (Exception e) {
-        payload.setMessage(e.getMessage())
-        return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR)
+        payload.setMessage(e.getMessage());
+        return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
       }
       
     }
@@ -76,7 +74,7 @@ public class PlanetController {
     
     var payload = new Payload();
     try {
-      var planet = planetService.getPlanet(name); // ERROR Method incomplet
+      var planet = planetService.getPlanet(name); 
 
       payload.setMessage("Get Planet by Name'"+ name +"'");
       payload.setData(planet);
@@ -93,14 +91,16 @@ public class PlanetController {
 // UPDATE ONE
   @PutMapping("/planet/{name}")
   public ResponseEntity<PlanetPayload> updatePlanet(@PathVariable String name, @RequestBody Planet planet) {
-    var payload = new Payload();
+    var payload = new PlanetPayload();
     try {
-      planetService.updatePlanet(name, 
-        planet.getName(), 
-        planet.isColonised(), 
-        planet.getPositionX(), 
-        planet.getPositionY(), 
-        planet.getPlanetSize());
+
+        payload.setName(planet.getName()); 
+        payload.setColonised(planet.isColonised()); 
+        payload.setPositionX(planet.getPositionX()); 
+        payload.setPositionY(planet.getPositionY()); 
+        payload.setPlanetSize(planet.getPlanetSize());
+      
+      planetService.updatePlanet(name, payload);  
       payload.setMessage("Planet UpDate");
       return new ResponseEntity<>(payload,HttpStatus.OK);
     } catch (Exception e) {
@@ -108,12 +108,11 @@ public class PlanetController {
         return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    return planetService.updatePlanet(planet);
   }
 
 //DELETE ONE
-  @DeleteMapping("{id}")
-  public ResponseEntity<String> deletePlanet(@PathVariable("id") Integer id) {
-    return this.planetService.deletePlanetById(id);
+  @DeleteMapping("/planet/{name}")
+  public ResponseEntity<String> deletePlanet(@PathVariable String name) {
+    return this.planetService.delete(name);
   }
 }

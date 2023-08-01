@@ -23,7 +23,7 @@ public class RessourceControler {
    RessourceControler(RessourceService ressourceService) {
         this.ressourceService = ressourceService;
     }
-
+//CREATE
     @PostMapping("/ressource")
     public ResponseEntity<Payload> addRessource(@RequestBody Ressource ressource) {
         var payload = new Payload();
@@ -37,7 +37,7 @@ public class RessourceControler {
                 return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//RESEARCH ALL
     @GetMapping("/ressource")
     public ResponseEntity<Payload> getAllRessource() {
         var payload = new Payload();
@@ -51,7 +51,7 @@ public class RessourceControler {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//RESEARCH ONE
     @GetMapping("/ressource/{name}")
     public ResponseEntity<Payload> getRessourceByTag(@PathVariable("name") String name) {
         var payload = new Payload();
@@ -66,7 +66,7 @@ public class RessourceControler {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//UPDATE ONE
     @PutMapping("/ressource/{name}")
     public ResponseEntity<Payload> updateRessource(@PathVariable("name") String name, @RequestBody Ressource ressource) {
         var payload = new Payload();
@@ -80,7 +80,7 @@ public class RessourceControler {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//DELETE ONE
     @DeleteMapping("/ressource/{name}")
     public ResponseEntity<Payload> deleteRessource(@PathVariable("name") String name) {
         var payload = new Payload();

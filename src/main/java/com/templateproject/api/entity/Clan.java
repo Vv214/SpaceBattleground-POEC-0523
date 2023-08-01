@@ -16,7 +16,7 @@ public class Clan {
     @Column(unique = true)
     private String clanTag;
 
-    private Integer clanLvl;
+    private Integer level;
     private Integer numberMaxPlayers;
     private Integer currentNumberPlayers;
     
@@ -26,11 +26,11 @@ public class Clan {
     public Clan() {
     };
 
-    public Clan(String clanName, String clanTag, Integer clanLvl, Integer numberMaxPlayers,
+    public Clan(String clanName, String clanTag, Integer level, Integer numberMaxPlayers,
     Integer currentNumberPlayers, String adminNickname) {
         this.clanName = clanName;
         this.clanTag = clanTag;
-        this.clanLvl = clanLvl;
+        this.level = level;
         this.numberMaxPlayers = numberMaxPlayers;
         this.currentNumberPlayers = currentNumberPlayers;
         this.adminNickname = adminNickname;
@@ -52,8 +52,8 @@ public class Clan {
         this.clanTag = clanTag;
     }
 
-    public void setClanLvl(Integer clanLvl) {
-        this.clanLvl = clanLvl;
+    public void setlevel(Integer level) {
+        this.level = level;
     }
 
     public void setNumberMaxPlayers(Integer numberMaxPlayers) {
@@ -76,8 +76,8 @@ public class Clan {
         return clanTag;
     }
 
-    public Integer getClanLvl() {
-        return clanLvl;
+    public Integer getlevel() {
+        return level;
     }
 
     public Integer getNumberMaxPlayers() {
