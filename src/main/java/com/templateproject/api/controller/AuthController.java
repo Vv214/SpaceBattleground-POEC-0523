@@ -55,7 +55,7 @@ public class AuthController {
 
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public ResponseEntity<Payload> logout(@RequestHeader HttpHeaders headers) {
         var payload = new Payload();
         var token = headers.get("x-token").get(0);
