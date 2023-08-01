@@ -30,10 +30,10 @@ public class AuthFilter implements Filter {
 
         var path = request.getServletPath();
         if (!path.equals("/register") && !path.equals("/login")) {
-            // var token = request.getHeader("x-token");
-            // System.out.println(token + " token back");
 
-            response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+            response.setHeader("Access-Control-Allow-Origin", "*");
+            // response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+
             response.setHeader("Access-Control-Allow-Credentials", "true");
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
             response.setHeader("Access-Control-Allow-Headers",
