@@ -32,7 +32,6 @@ public class AuthFilter implements Filter {
         if (!path.equals("/register") && !path.equals("/login")) {
 
             response.setHeader("Access-Control-Allow-Origin", "*");
-            // response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
 
             response.setHeader("Access-Control-Allow-Credentials", "true");
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");

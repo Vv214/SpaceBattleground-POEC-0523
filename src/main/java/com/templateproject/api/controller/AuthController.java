@@ -40,6 +40,10 @@ public class AuthController {
                     user.getConfirmPassword(),
                     user.getEmail());
             payload.setMessage("Player '" + user.getNickname() + "' registered");
+            String token = authService.login(user.getNickname(), user.getPassword());
+            var data = new HashMap<String, String>();
+            data.put("token", token);
+            payload.setData(data);
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
             payload.setMessage(e.getMessage() + " déja présent en BDD, merci de choisir un autre nickname.");
