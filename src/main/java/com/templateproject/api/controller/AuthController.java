@@ -21,7 +21,7 @@ import com.templateproject.api.service.AuthService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class AuthController {
     private final AuthService authService;
@@ -49,6 +49,15 @@ public class AuthController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Payload> logout(@RequestHeader HttpHeaders headers) {
+        var payload = new Payload();
+        var token = headers.get("x-token").get(0);
+        authService.logout(token);
+        payload.setMessage("User logout");
+        return new ResponseEntity<>(payload, HttpStatus.OK);
     }
 
     @PostMapping("/login")
@@ -87,12 +96,4 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/logout")
-    public ResponseEntity<Payload> logout(@RequestHeader HttpHeaders headers) {
-        var payload = new Payload();
-        var token = headers.get("x-token").get(0);
-        authService.logout(token);
-        payload.setMessage("User logout");
-        return new ResponseEntity<>(payload, HttpStatus.OK);
-    }
 }

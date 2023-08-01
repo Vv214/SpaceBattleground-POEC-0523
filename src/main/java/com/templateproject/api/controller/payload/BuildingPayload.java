@@ -1,36 +1,45 @@
 package com.templateproject.api.controller.payload;
 
+import java.util.Date;
+
 public class BuildingPayload {
 
     private String name;
     private String type;
-    private int level;
-    private int buildingSize;
+    private Integer level;
+
     private String description;
-    private int coeff_prod;
-    private int priceRessource1;
-    private int priceRessource2;
-    private int priceRessource3;
-    private int priceEnergy;
-    private int timeBuilding;
+    private Integer coeff_prod;
+
+    private Integer ironPrice;
+    private Integer diamondPrice;
+    private Integer hydrogenPrice;
+    private Integer energyPrice;
+
+    private Date timeBuilding;
+    private Date timeToStart;
 
     public BuildingPayload() {
 
     }
 
-    public BuildingPayload(String name, String type, int level, int buildingSize, String description, int coeff_prod,
-            int priceRessource1, int priceRessource2, int priceRessource3, int priceEnergy, int timeBuilding) {
+    public BuildingPayload(String name, String type, Integer level, String description, Integer coeff_prod,
+            Integer ironPrice,
+            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
         this.name = name;
         this.type = type;
         this.level = level;
-        this.buildingSize = buildingSize;
+
         this.description = description;
         this.coeff_prod = coeff_prod;
-        this.priceRessource1 = priceRessource1;
-        this.priceRessource2 = priceRessource2;
-        this.priceRessource3 = priceRessource3;
-        this.priceEnergy = priceEnergy;
+
+        this.ironPrice = ironPrice;
+        this.diamondPrice = diamondPrice;
+        this.hydrogenPrice = hydrogenPrice;
+        this.energyPrice = energyPrice;
+
         this.timeBuilding = timeBuilding;
+        this.timeToStart = timeToStart;
     }
 
     public String getName() {
@@ -49,20 +58,12 @@ public class BuildingPayload {
         this.type = type;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
-    }
-
-    public int getBuildingSize() {
-        return buildingSize;
-    }
-
-    public void setBuildingSize(int buildingSize) {
-        this.buildingSize = buildingSize;
     }
 
     public String getDescription() {
@@ -73,52 +74,60 @@ public class BuildingPayload {
         this.description = description;
     }
 
-    public int getCoeff_prod() {
+    public Integer getCoeff_prod() {
         return coeff_prod;
     }
 
-    public void setCoeff_prod(int coeff_prod) {
+    public void setCoeff_prod(Integer coeff_prod) {
         this.coeff_prod = coeff_prod;
     }
 
-    public int getPriceRessource1() {
-        return priceRessource1;
+    public Integer getIronPrice() {
+        return ironPrice;
     }
 
-    public void setPriceRessource1(int priceRessource1) {
-        this.priceRessource1 = priceRessource1;
+    public void setIronPrice(Integer ironPrice) {
+        this.ironPrice = ironPrice;
     }
 
-    public int getPriceRessource2() {
-        return priceRessource2;
+    public Integer getDiamondPrice() {
+        return diamondPrice;
     }
 
-    public void setPriceRessource2(int priceRessource2) {
-        this.priceRessource2 = priceRessource2;
+    public void setDiamondPrice(Integer diamondPrice) {
+        this.diamondPrice = diamondPrice;
     }
 
-    public int getPriceRessource3() {
-        return priceRessource3;
+    public Integer getHydrogenPrice() {
+        return hydrogenPrice;
     }
 
-    public void setPriceRessource3(int priceRessource3) {
-        this.priceRessource3 = priceRessource3;
+    public void setHydrogenPrice(Integer hydrogenPrice) {
+        this.hydrogenPrice = hydrogenPrice;
     }
 
-    public int getPriceEnergy() {
-        return priceEnergy;
+    public Integer getEnergyPrice() {
+        return energyPrice;
     }
 
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
+    public void setEnergyPrice(Integer energyPrice) {
+        this.energyPrice = energyPrice;
     }
 
-    public int getTimeBuilding() {
+    public Date getTimeBuilding() {
         return timeBuilding;
     }
 
-    public void setTimeBuilding(int timeBuilding) {
+    public void setTimeBuilding(Date timeBuilding) {
         this.timeBuilding = timeBuilding;
+    }
+
+    public Date getTimeToStart() {
+        return timeToStart;
+    }
+
+    public void setTimeToStart(Date timeToStart) {
+        this.timeToStart = timeToStart;
     }
 
 }

@@ -25,18 +25,30 @@ public class AuthFilter implements Filter {
         var request = (HttpServletRequest) servletRequest;
         var response = (HttpServletResponse) servletResponse;
 
+        var token = request.getHeader("x-token");
+        System.out.println(token + " token back");
+
         var path = request.getServletPath();
         if (!path.equals("/register") && !path.equals("/login")) {
-            var token = request.getHeader("x-token");
+            // var token = request.getHeader("x-token");
+            // System.out.println(token + " token back");
+
+            response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS");
+            response.setHeader("Access-Control-Allow-Headers",
+                    "Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+
             Integer playerID = authService.findUserIdByToken(token);
             if (playerID == null) {
                 response.setHeader("Content-type", "application/json");
-                response.setStatus(401);
+                response.setStatus(402);
                 response.getWriter().println("{" +
                         "\"message\" : \"Invalid Token\"" +
                         "}");
                 return;
             }
+
             request.setAttribute("playerID", playerID);
         }
         chain.doFilter(request, response);

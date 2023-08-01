@@ -59,7 +59,7 @@ public class AuthService {
     public Map<String, String> playerInfo(Integer userID) throws Exception {
         Player player = playerRepository.findById(userID).get();
         var playerInfo = new HashMap<String, String>();
-        playerInfo.put("login", player.getNickname());
+        playerInfo.put("nickname", player.getNickname());
         playerInfo.put("email", player.getEmail());
         return playerInfo;
     }
