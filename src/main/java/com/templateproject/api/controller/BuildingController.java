@@ -47,6 +47,7 @@ public class BuildingController {
     public ResponseEntity<Payload> createBuilding(@RequestBody BuildingPayload building) {
         var payload = new Payload();
         try {
+
             buildingService.add(
                     building.getName(),
                     building.getType(),
@@ -62,6 +63,7 @@ public class BuildingController {
 
                     building.getTimeBuilding(),
                     building.getTimeToStart());
+
 
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);

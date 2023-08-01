@@ -9,6 +9,7 @@ public class BuildingPayload {
     private Integer level;
 
     private String description;
+
     private Integer coeff_prod;
 
     private Integer ironPrice;
@@ -19,13 +20,16 @@ public class BuildingPayload {
     private Date timeBuilding;
     private Date timeToStart;
 
+
     public BuildingPayload() {
 
     }
 
+
     public BuildingPayload(String name, String type, Integer level, String description, Integer coeff_prod,
             Integer ironPrice,
             Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
+
         this.name = name;
         this.type = type;
         this.level = level;
@@ -33,10 +37,12 @@ public class BuildingPayload {
         this.description = description;
         this.coeff_prod = coeff_prod;
 
+
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
         this.energyPrice = energyPrice;
+
 
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
@@ -82,6 +88,7 @@ public class BuildingPayload {
         this.coeff_prod = coeff_prod;
     }
 
+
     public Integer getIronPrice() {
         return ironPrice;
     }
@@ -103,6 +110,7 @@ public class BuildingPayload {
     }
 
     public void setHydrogenPrice(Integer hydrogenPrice) {
+
         this.hydrogenPrice = hydrogenPrice;
     }
 

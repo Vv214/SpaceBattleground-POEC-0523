@@ -23,7 +23,9 @@ public class Building {
     private Integer level;
 
     private String description;
+
     private Integer coeff_prod;
+
 
     private Integer ironPrice;
     private Integer diamondPrice;
@@ -35,8 +37,10 @@ public class Building {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
+
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
             Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
+
         this.name = name;
         this.type = type;
         this.level = level;
@@ -44,8 +48,10 @@ public class Building {
         this.coeff_prod = coeff_prod;
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
+
         this.hydrogenPrice = hydrogenPrice;
         this.energyPrice = energyPrice;
+
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
     }
@@ -93,6 +99,7 @@ public class Building {
         this.coeff_prod = coeff_prod;
     }
 
+
     public Integer getIronPrice() {
         return ironPrice;
     }
@@ -115,6 +122,7 @@ public class Building {
 
     public void setHydrogenPrice(Integer hydrogenPrice) {
         this.hydrogenPrice = hydrogenPrice;
+
     }
 
     public Integer getEnergyPrice() {

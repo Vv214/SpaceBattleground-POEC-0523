@@ -29,7 +29,9 @@ public class BuildingService {
       newBuilding.setIronPrice(building.getIronPrice());
       newBuilding.setDiamondPrice(building.getDiamondPrice());
       newBuilding.setHydrogenPrice(building.getHydrogenPrice());
+
       newBuilding.setEnergyPrice(building.getEnergyPrice());
+
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       newBuilding.setTimeToStart(building.getTimeToStart());
       payload.add(newBuilding);
@@ -95,7 +97,9 @@ public class BuildingService {
      * buildingUpdated.getironPrice(),
      * buildingUpdated.getDiamondPrice(),
      * buildingUpdated.getHydrogenPrice(),
+
      * buildingUpdated.getEnergyPrice(),
+
      * buildingUpdated.getTimeBuilding());
      */
   }
@@ -115,6 +119,7 @@ public class BuildingService {
     var building = new Building(name, type, level, description, coeff_prod,
         ironPrice, diamondPrice, hydrogenPrice, energyPrice,
         timeBuilding, timeToStart);
+
 
     buildingRepository.save(building);
 
