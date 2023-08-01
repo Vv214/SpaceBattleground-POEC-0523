@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.entity.Building;
 import com.templateproject.api.repository.BuildingRepository;
@@ -70,17 +74,17 @@ public class BuildingService {
     var building = new HashMap<String, Object>();
 
     var buildingEntity = buildingRepository.findByName(name);
-      building.put("Name: ", buildingEntity.());
-      building.put("type: ", buildingEntity.());
-      building.put("Level: ", buildingEntity.());
-      building.put("Description: ", buildingEntity.());
-      building.put("Production Coefficient: ", buildingEntity.());
-      building.put("Iron Price: ", buildingEntity.());
-      building.put("Diamond Price: ", buildingEntity.());
-      building.put("Hydrogen Price: ", buildingEntity.());
-      building.put("Energy Price: ", buildingEntity.());
-      building.put("Time to Build: ", buildingEntity.());
-      building.put("Date to Start: ", buildingEntity.());
+      building.put("Name: ", buildingEntity.getName());
+      building.put("type: ", buildingEntity.getType());
+      building.put("Level: ", buildingEntity.getLevel());
+      building.put("Description: ", buildingEntity.getDescription());
+      building.put("Production Coefficient: ", buildingEntity.getCoeff_prod());
+      building.put("Iron Price: ", buildingEntity.getIronPrice());
+      building.put("Diamond Price: ", buildingEntity.getDiamondPrice());
+      building.put("Hydrogen Price: ", buildingEntity.getHydrogenPrice());
+      building.put("Energy Price: ", buildingEntity.getEnergyPrice());
+      building.put("Time to Build: ", buildingEntity.getTimeBuilding());
+      building.put("Date to Start: ", buildingEntity.getTimeToStart());
 
   return building;
   }
@@ -131,7 +135,8 @@ public class BuildingService {
   }
 
   //DELETE ONE 
-  public void deleteBuilding(String name){
-    
+  public ResponseEntity<String> deleteBuilding(String name){
+    buildingRepository.deleteByName(name);
+    return new ResponseEntity<String>("Player successfully deleted!", HttpStatus.OK);
   }
 }

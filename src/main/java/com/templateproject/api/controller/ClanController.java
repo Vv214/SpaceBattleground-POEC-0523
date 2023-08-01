@@ -18,11 +18,11 @@ import com.templateproject.api.controller.payload.Payload;
 @RestController
 //@RequestMapping("/clans")
 
-public class ClanControler {
+public class ClanController {
 
    private final ClanService clanService;
 
-   ClanControler(ClanService clanService) {
+   ClanController(ClanService clanService) {
         this.clanService = clanService;
     }
 //CREATE
