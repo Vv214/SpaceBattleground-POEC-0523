@@ -27,7 +27,6 @@ public class Ship {
     public Ship() {
     };
 
-
     public Ship(String name, String type, int priceRessource1,
             int priceRessource2, int priceRessource3,
             int priceEnergy, int pv, int damage,
@@ -80,12 +79,6 @@ public class Ship {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-
-    public int getPriceRessource1() {
-        return priceRessource1;
-
     }
 
     public void setIronPrice(int ironPrice) {
@@ -162,5 +155,9 @@ public class Ship {
 
     public void setShipSize(int shipSize) {
         this.shipSize = shipSize;
+    }
+
+    public int getIronPrice() {
+        return ironPrice;
     }
 }
