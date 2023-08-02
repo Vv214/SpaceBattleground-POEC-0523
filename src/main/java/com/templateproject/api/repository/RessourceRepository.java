@@ -7,8 +7,7 @@ import com.templateproject.api.entity.Ressource;
 
 @Repository
 public interface RessourceRepository extends JpaRepository<Ressource, Integer> {
-
-    public Ressource findByName(String name);
+    Ressource findByName(String name);
 
     public Ressource deleteByName(String name);
 

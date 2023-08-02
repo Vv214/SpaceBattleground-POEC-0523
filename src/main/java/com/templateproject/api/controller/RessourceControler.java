@@ -86,7 +86,6 @@ public class RessourceControler {
         }
     }
 
-    // DELETE ONE
     @DeleteMapping("/ressource/{name}")
     public ResponseEntity<Payload> deleteRessource(@PathVariable("name") String name) {
         var payload = new Payload();

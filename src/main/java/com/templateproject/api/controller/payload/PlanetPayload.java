@@ -1,33 +1,33 @@
-package com.templateproject.api.entity;
+package com.templateproject.api.controller.payload;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Planet {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class PlanetPayload {
     
-    @Column( unique = true, nullable = false, length = 50)
+    private String message;
+
     private String name;
-    private boolean isColonised;
-    private Integer positionX;
-    private Integer positionY;
-    private Integer planetSize;
+    private  boolean isColonised;
+    private  Integer positionX;
+    private  Integer positionY;
+    private  Integer planetSize;
 
-    public Planet() {
-    };
+    public PlanetPayload(){}
 
-    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize) {
+    public PlanetPayload(String message, String name, boolean isColonised, Integer positionX, Integer positionY,
+            Integer planetSize) {
+        this.message = message;
         this.name = name;
         this.isColonised = isColonised;
         this.positionX = positionX;
         this.positionY = positionY;
         this.planetSize = planetSize;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getName() {
@@ -70,6 +70,7 @@ public class Planet {
         this.planetSize = planetSize;
     }
 
-   
+    
+    
 
 }
