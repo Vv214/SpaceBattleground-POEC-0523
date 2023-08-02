@@ -1,6 +1,5 @@
 package com.templateproject.api.controller;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,10 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.controller.payload.Payload;
-import com.templateproject.api.entity.Building;
 import com.templateproject.api.service.BuildingService;
-
-
 
 @RestController
 public class BuildingController {
@@ -31,40 +27,24 @@ public class BuildingController {
 
     }
 
-     //CREATE
+    // CREATE
     @PostMapping("/building")
     public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building) {
         var payload = new BuildingPayload();
         try {
-            buildingService.add(
-                    building.getName(), 
-                    building.getType(), 
-                    building.getLevel(), 
-                    
-                    building.getDescription(), 
-                    building.getCoeff_prod(), 
-
-                    building.getIronPrice(),
-                    building.getDiamondPrice(), 
-                    building.getHydrogenPrice(), 
-                    building.getEnergyPrice(),
-
-                    building.getTimeBuilding(),
-                    building.getTimeToStart()
-                    );
-
+            buildingService.add(building.getName(), building.getType(), building.getLevel(), building.getBuildingSize(),
+                    building.getDescription(), building.getCoeff_prod(), building.getIronPrice(),
+                    building.getDiamondPrice(), building.getHydrogenPrice(), building.getPriceEnergy(),
+                    building.getTimeBuilding());
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
-        
         } catch (Exception e) {
-            
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
-        
         }
     }
 
-//RESEARCH ALL
+    // RESEARCH ALL
     @GetMapping("/buildings")
     public ResponseEntity<Payload> getBuildingsList() {
         var payload = new Payload();
@@ -79,19 +59,19 @@ public class BuildingController {
         }
     }
 
-//RESEARCH ONE
+    // RESEARCH ONE
 
     @GetMapping("/building/{name}")
-    public ResponseEntity <Payload> getBuilding(@PathVariable String name) {
+    public ResponseEntity<Payload> getBuilding(@PathVariable String name) {
         var payload = new Payload();
-        
+
         try {
-            
+
             var building = buildingService.getBuilding(name);
-            payload.setMessage("Get Building " + name+ "'");
+            payload.setMessage("Get Building " + name + "'");
             payload.setData(building);
             return new ResponseEntity<>(payload, HttpStatus.OK);
-            
+
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
             payload.setData(null);
@@ -100,20 +80,20 @@ public class BuildingController {
         }
     }
 
- //UPDATE ONE
+    // UPDATE ONE
     @PutMapping("/buildings/{name}")
     public ResponseEntity<BuildingPayload> updateBuilding(@PathVariable String name, @RequestBody Building building) {
         var payload = new BuildingPayload();
         try {
             payload.setName(building.getName());
             payload.setType(building.getType());
-            payload.setLevel(building.getLevel());    
+            payload.setLevel(building.getLevel());
             payload.setDescription(building.getDescription());
             payload.setCoeff_prod(building.getCoeff_prod());
             payload.setIronPrice(building.getIronPrice());
             payload.setDiamondPrice(building.getDiamondPrice());
             payload.setHydrogenPrice(building.getHydrogenPrice());
-            payload.setEnergyPrice(building.getEnergyPrice());    
+            payload.setEnergyPrice(building.getEnergyPrice());
             payload.setTimeBuilding(building.getTimeBuilding());
             payload.setTimeToStart(building.getTimeToStart());
 
@@ -128,12 +108,13 @@ public class BuildingController {
             // TODO: handle exception
         }
     }
-//DELETE ONE 
+
+    // DELETE ONE
     @DeleteMapping("/building/{name}")
-    public ResponseEntity<Payload> deleteBuilding(@PathVariable String name){
-        //TODO set Confirm Message
-        var payload = new Payload(); 
-    try {
+    public ResponseEntity<Payload> deleteBuilding(@PathVariable String name) {
+        // TODO set Confirm Message
+        var payload = new Payload();
+        try {
             buildingService.deleteBuilding(name);
             // payload.setMessage("deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);

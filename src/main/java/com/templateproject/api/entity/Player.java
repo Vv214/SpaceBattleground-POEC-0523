@@ -11,7 +11,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column( unique = true, nullable = false, length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     private String nickname;
     @Column(nullable = true)
     private String email;
@@ -36,6 +36,10 @@ public class Player {
         this.email = email;
         this.password = password;
         this.level = level;
+    }
+
+    public Player(String playerName) {
+        this.nickname = playerName;
     }
 
     public void setNickname(String nickname) {

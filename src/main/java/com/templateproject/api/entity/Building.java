@@ -2,7 +2,6 @@ package com.templateproject.api.entity;
 
 import java.util.Date;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +19,9 @@ public class Building {
     private String name;
     @Column(length = 50)
     private String type;
-    
+
     private Integer level;
-    
+
     private String description;
     private Integer coeff_prod;
 
@@ -30,12 +29,12 @@ public class Building {
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeBuilding;
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
- 
+
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
             Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
         this.name = name;
@@ -54,74 +53,92 @@ public class Building {
     public Building() {
     }
 
-
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getType() {
         return type;
     }
+
     public void setType(String type) {
         this.type = type;
     }
+
     public Integer getLevel() {
         return level;
     }
+
     public void setLevel(Integer level) {
         this.level = level;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public Integer getCoeff_prod() {
         return coeff_prod;
     }
+
     public void setCoeff_prod(Integer coeff_prod) {
         this.coeff_prod = coeff_prod;
     }
+
     public Integer getIronPrice() {
         return ironPrice;
     }
+
     public void setIronPrice(Integer ironPrice) {
         this.ironPrice = ironPrice;
     }
+
     public Integer getDiamondPrice() {
         return diamondPrice;
     }
+
     public void setDiamondPrice(Integer diamondPrice) {
         this.diamondPrice = diamondPrice;
     }
+
     public Integer getHydrogenPrice() {
         return hydrogenPrice;
     }
+
     public void setHydrogenPrice(Integer hydrogenPrice) {
         this.hydrogenPrice = hydrogenPrice;
     }
+
     public Integer getEnergyPrice() {
         return energyPrice;
     }
+
     public void setEnergyPrice(Integer energyPrice) {
         this.energyPrice = energyPrice;
     }
+
     public Date getTimeBuilding() {
         return timeBuilding;
     }
+
     public void setTimeBuilding(Date timeBuilding) {
         this.timeBuilding = timeBuilding;
     }
+
     public Date getTimeToStart() {
         return timeToStart;
     }
+
     public void setTimeToStart(Date timeToStart) {
         this.timeToStart = timeToStart;
     }
-
-    
 
 }
