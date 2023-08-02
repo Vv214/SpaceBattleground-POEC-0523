@@ -45,8 +45,7 @@ public class FleetService {
       currentFleet.setTotalCapacity(Fleet.getTotalCapacity());
       currentFleet.setTotalPv(Fleet.getTotalPv());
       currentFleet.setSpeed(Fleet.getSpeed());
-      currentFleet.setTotalRange(Fleet.getTotalRange());
-
+      
       Fleet updateFleet = FleetRepository.save(currentFleet);
         return updateFleet;
   }

@@ -9,7 +9,7 @@ import com.templateproject.api.entity.Player;
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     public Player findByNickname(String nickname);
-    public Player delePlayer(String name);
+    public Player deletePlayerByNickname(String nickname);
     public Player findByLevel(Integer level);
 
 }
