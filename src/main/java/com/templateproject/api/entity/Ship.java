@@ -12,9 +12,9 @@ public class Ship {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column( unique = true, nullable = false, length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
-    
+
     private String type;
     private Integer ironPrice;
     private Integer diamondPrice;
@@ -151,6 +151,7 @@ public class Ship {
     public Integer getCapacity() {
         return capacity;
     }
+
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
@@ -163,5 +164,4 @@ public class Ship {
         this.size = size;
     }
 
-   
 }

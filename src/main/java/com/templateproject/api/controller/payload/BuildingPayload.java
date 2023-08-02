@@ -4,20 +4,16 @@ import java.util.Date;
 
 public class BuildingPayload {
 
-    private String message; 
-    
+    private String message;
     private String name;
     private String type;
     private Integer level;
-    
     private String description;
     private Integer coeff_prod;
-
     private Integer ironPrice;
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
-        
     private Date timeBuilding;
     private Date timeToStart;
 
@@ -137,6 +133,5 @@ public class BuildingPayload {
     public void setTimeToStart(Date timeToStart) {
         this.timeToStart = timeToStart;
     }
-     
 
 }
