@@ -1,4 +1,4 @@
--- Active: 1690547072753@@127.0.0.1@3306@space
+-- Active: 1688044672103@@127.0.0.1@3306@space
 
 CREATE DATABASE IF NOT EXISTS `space`;
 
@@ -14,3 +14,7 @@ FLUSH PRIVILEGES;
 Use `space`;
 
 SELECT * FROM player;
+
+show TABLES;
+
+-- drop DATABASE `space`;

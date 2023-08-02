@@ -1,11 +1,8 @@
 package com.templateproject.api.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import org.apache.catalina.connector.Response;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.entity.Building;
@@ -27,15 +24,18 @@ public class BuildingService {
       newBuilding.setName(building.getName());
       newBuilding.setType(building.getType());
       newBuilding.setLevel(building.getLevel());
-      newBuilding.setBuildingSize(building.getBuildingSize());
       newBuilding.setDescription(building.getDescription());
       newBuilding.setCoeff_prod(building.getCoeff_prod());
       newBuilding.setIronPrice(building.getIronPrice());
       newBuilding.setDiamondPrice(building.getDiamondPrice());
       newBuilding.setHydrogenPrice(building.getHydrogenPrice());
-      newBuilding.setPriceEnergy(building.getPriceEnergy());
+
+      newBuilding.setEnergyPrice(building.getEnergyPrice());
+
       newBuilding.setTimeBuilding(building.getTimeBuilding());
+      newBuilding.setTimeToStart(building.getTimeToStart());
       payload.add(newBuilding);
+
     }
     return payload;
   }
@@ -60,9 +60,6 @@ public class BuildingService {
     if (building.getLevel() != 0) {
       buildingToUpdate.setLevel(building.getLevel());
     }
-    if (building.getBuildingSize() != 0) {
-      buildingToUpdate.setBuildingSize(building.getBuildingSize());
-    }
     if (building.getDescription() != null) {
       buildingToUpdate.setDescription(building.getDescription());
     }
@@ -78,11 +75,14 @@ public class BuildingService {
     if (building.getHydrogenPrice() != 0) {
       buildingToUpdate.setHydrogenPrice(building.getHydrogenPrice());
     }
-    if (building.getPriceEnergy() != 0) {
-      buildingToUpdate.setPriceEnergy(building.getPriceEnergy());
+    if (building.getEnergyPrice() != 0) {
+      buildingToUpdate.setEnergyPrice(building.getEnergyPrice());
     }
-    if (building.getTimeBuilding() != 0) {
+    if (building.getTimeBuilding() != null) {
       buildingToUpdate.setTimeBuilding(building.getTimeBuilding());
+    }
+    if (building.getTimeBuilding() != null) {
+      buildingToUpdate.setTimeToStart(building.getTimeToStart());
     }
     buildingRepository.save(buildingToUpdate);
     /*
@@ -97,19 +97,31 @@ public class BuildingService {
      * buildingUpdated.getironPrice(),
      * buildingUpdated.getDiamondPrice(),
      * buildingUpdated.getHydrogenPrice(),
-     * buildingUpdated.getPriceEnergy(),
+
+     * buildingUpdated.getEnergyPrice(),
+
      * buildingUpdated.getTimeBuilding());
      */
   }
 
-  public void add(String name, String type, int level, int buildingSize, String description,
-      int coeff_prod, int ironPrice, int diamondPrice, int hydrogenPrice,
-      int priceEnergy, int timeBuilding) {
+  public void add(String name,
+      String type,
+      Integer level,
+      String description,
+      Integer coeff_prod,
+      Integer ironPrice,
+      Integer diamondPrice,
+      Integer hydrogenPrice,
+      Integer energyPrice,
+      Date timeBuilding,
+      Date timeToStart) {
     // Todo check params
-    var building = new Building(name, type, level, buildingSize,
-        description, coeff_prod, ironPrice, diamondPrice,
-        hydrogenPrice, priceEnergy, timeBuilding);
-    buildingRepository.save(building);
-  }
+    var building = new Building(name, type, level, description, coeff_prod,
+        ironPrice, diamondPrice, hydrogenPrice, energyPrice,
+        timeBuilding, timeToStart);
 
+
+    buildingRepository.save(building);
+
+  }
 }
