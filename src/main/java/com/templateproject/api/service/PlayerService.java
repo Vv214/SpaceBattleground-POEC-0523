@@ -23,20 +23,19 @@ public class PlayerService {
     return playerRepository.findAll();
   }
 
+  //CREATE 
   public Player addNewPlayer(Player player) {
     return playerRepository.save(player);
   }
-
-  public ResponseEntity<String> deletePlayerById(Integer id) {
-    playerRepository.deleteById(id);
-    return new ResponseEntity<>("Player successfully deleted!", HttpStatus.OK);
-  }
-
+  //RESEARCH ALL
+  
+  //RESEARCH ONE
   public Player getPlayer(Integer id) {
     Optional<Player> optionalPlayer = playerRepository.findById(id);
     return optionalPlayer.get();
   }
 
+  //UPDATE ONE
   public Player updateUser(Player player) {
     Player currentPlayer = playerRepository.findById(player.getId()).get();
     currentPlayer.setNickname(player.getNickname());
@@ -46,4 +45,10 @@ public class PlayerService {
     Player updatePlayer = playerRepository.save(currentPlayer);
     return updatePlayer;
   }
+
+  //DELETE ONE
+    public ResponseEntity<String> deletePlayerById(Integer id) {
+      playerRepository.deleteById(id);
+      return new ResponseEntity<>("Player successfully deleted!", HttpStatus.OK);
+    }
 }

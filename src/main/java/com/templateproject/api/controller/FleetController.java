@@ -32,7 +32,7 @@ public class FleetController {
     }
 
     @GetMapping("{id}")
-    public Optional<Fleet> getFleet(@PathVariable("id") int id) {
+    public Optional<Fleet> getFleet(@PathVariable("id") Integer id) {
         return FleetService.getFleet(id);
     }
 
@@ -42,7 +42,7 @@ public class FleetController {
     }
 
     @PutMapping("{id}")
-    public Fleet updateFleet(@PathVariable("id") int id, @RequestBody Fleet Fleet) {
+    public Fleet updateFleet(@PathVariable("id") Integer id, @RequestBody Fleet Fleet) {
         Fleet.setId(id);
         return FleetService.updateFleet(Fleet);
     }

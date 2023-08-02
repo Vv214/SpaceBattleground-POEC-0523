@@ -7,5 +7,6 @@ import com.templateproject.api.entity.Admin;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
-
+    public Admin findByName(String name);
+    public Admin deleteByName(String name);
 }

@@ -15,7 +15,17 @@ public class RessourceService {
   public Object getAll() {
     return ressourceRepository.findAll();
   }
-
+  //CREATE
+  public Ressource add(Ressource ressource) {
+    return ressourceRepository.save(ressource);
+  }
+  //RESARCH ALL
+  
+  //RESEARCH ONE
+  public Ressource getByName(String name) {
+    return ressourceRepository.findByName(name);
+  }
+  //UPDATE ONE
   public Ressource update(String name, Ressource ressource) {
     Ressource currentRessource = ressourceRepository.findByName(name);
     currentRessource.setName(ressource.getName());
@@ -24,17 +34,11 @@ public class RessourceService {
     return ressourceRepository.save(currentRessource);
   }
 
-  public Ressource getByName(String name) {
-    return ressourceRepository.findByName(name);
-  }
-
+  //DELETE ONE
   public void delete(String name) {
     Ressource ressource = ressourceRepository.findByName(name);
     ressourceRepository.delete(ressource);
   }
 
-  public Ressource add(Ressource ressource) {
-    return ressourceRepository.save(ressource);
-  }
 
 }
