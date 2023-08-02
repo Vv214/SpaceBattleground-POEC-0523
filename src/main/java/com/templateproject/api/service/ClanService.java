@@ -39,8 +39,10 @@ public void delete(String name) {
 //  clanRepository.deleteClanByClanName(name);
 }
 
-public Clan add(Clan clan) {
-  return clanRepository.save(clan);
+public void add(Clan clanToAdd) {
+  Clan clan = new Clan();
+  clan.setClanName(clanToAdd.getClanName());
+  clan.setClanTag(clanToAdd.getClanTag());
+  clanRepository.save(clan);
 }
-
 }

@@ -23,6 +23,11 @@ public class Clan {
     public Clan() {
     };
 
+    public Clan(String clanName, String clanTag){
+        this.clanName = clanName;
+        this.clanTag = clanTag;
+    }
+
     public Clan(String clanName, String clanTag, Integer clanLvl, Integer numberMaxPlayers,
             Integer currentNumberPlayers, String adminNickname) {
         this.clanName = clanName;

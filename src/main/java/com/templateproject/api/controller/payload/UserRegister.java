@@ -1,7 +1,10 @@
 package com.templateproject.api.controller.payload;
 
+import jakarta.validation.constraints.NotNull;
+
 public class UserRegister {
 
+    @NotNull
     private String nickname;
     private String email;
     private String password;

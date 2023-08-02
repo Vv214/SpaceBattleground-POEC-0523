@@ -13,4 +13,8 @@ FLUSH PRIVILEGES;
 
 Use `space`;
 
-SELECT * FROM player;
+SELECT * FROM clan;
+
+show TABLES;
+
+-- drop DATABASE `space`;

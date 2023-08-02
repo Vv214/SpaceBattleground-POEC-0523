@@ -1,36 +1,51 @@
 package com.templateproject.api.controller.payload;
 
+import java.util.Date;
+
 public class BuildingPayload {
 
     private String name;
     private String type;
-    private int level;
-    private int buildingSize;
+    private Integer level;
+
     private String description;
-    private int coeff_prod;
-    private int ironPrice;
-    private int diamondPrice;
-    private int hydrogenPrice;
-    private int priceEnergy;
-    private int timeBuilding;
+
+    private Integer coeff_prod;
+
+    private Integer ironPrice;
+    private Integer diamondPrice;
+    private Integer hydrogenPrice;
+    private Integer energyPrice;
+
+    private Date timeBuilding;
+    private Date timeToStart;
+
 
     public BuildingPayload() {
 
     }
 
-    public BuildingPayload(String name, String type, int level, int buildingSize, String description, int coeff_prod,
-            int ironPrice, int diamondPrice, int hydrogenPrice, int priceEnergy, int timeBuilding) {
+
+    public BuildingPayload(String name, String type, Integer level, String description, Integer coeff_prod,
+            Integer ironPrice,
+            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
+
         this.name = name;
         this.type = type;
         this.level = level;
-        this.buildingSize = buildingSize;
+
         this.description = description;
         this.coeff_prod = coeff_prod;
+
+
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
-        this.priceEnergy = priceEnergy;
+        this.energyPrice = energyPrice;
+
+
         this.timeBuilding = timeBuilding;
+        this.timeToStart = timeToStart;
     }
 
     public String getName() {
@@ -49,20 +64,12 @@ public class BuildingPayload {
         this.type = type;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
-    }
-
-    public int getBuildingSize() {
-        return buildingSize;
-    }
-
-    public void setBuildingSize(int buildingSize) {
-        this.buildingSize = buildingSize;
     }
 
     public String getDescription() {
@@ -73,52 +80,62 @@ public class BuildingPayload {
         this.description = description;
     }
 
-    public int getCoeff_prod() {
+    public Integer getCoeff_prod() {
         return coeff_prod;
     }
 
-    public void setCoeff_prod(int coeff_prod) {
+    public void setCoeff_prod(Integer coeff_prod) {
         this.coeff_prod = coeff_prod;
     }
 
-    public int getIronPrice() {
+
+    public Integer getIronPrice() {
         return ironPrice;
     }
 
-    public void setIronPrice(int ironPrice) {
+    public void setIronPrice(Integer ironPrice) {
         this.ironPrice = ironPrice;
     }
 
-    public int getDiamondPrice() {
+    public Integer getDiamondPrice() {
         return diamondPrice;
     }
 
-    public void setDiamondPrice(int diamondPrice) {
+    public void setDiamondPrice(Integer diamondPrice) {
         this.diamondPrice = diamondPrice;
     }
 
-    public int getHydrogenPrice() {
+    public Integer getHydrogenPrice() {
         return hydrogenPrice;
     }
 
-    public void setHydrogenPrice(int hydrogenPrice) {
+    public void setHydrogenPrice(Integer hydrogenPrice) {
+
         this.hydrogenPrice = hydrogenPrice;
     }
 
-    public int getPriceEnergy() {
-        return priceEnergy;
+    public Integer getEnergyPrice() {
+        return energyPrice;
     }
 
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
+    public void setEnergyPrice(Integer energyPrice) {
+        this.energyPrice = energyPrice;
     }
 
-    public int getTimeBuilding() {
+    public Date getTimeBuilding() {
         return timeBuilding;
     }
 
-    public void setTimeBuilding(int timeBuilding) {
+    public void setTimeBuilding(Date timeBuilding) {
         this.timeBuilding = timeBuilding;
+    }
+
+    public Date getTimeToStart() {
+        return timeToStart;
+    }
+
+    public void setTimeToStart(Date timeToStart) {
+        this.timeToStart = timeToStart;
     }
 
 }
