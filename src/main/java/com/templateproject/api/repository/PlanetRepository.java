@@ -10,6 +10,8 @@ import com.templateproject.api.entity.Planet;
 public interface PlanetRepository extends JpaRepository<Planet, Integer> {
     public Planet findByName(String name);
     public Planet deleteByName(String name);
-    public Planet findByPower(Integer power);
+    public Planet findByIsColonised(boolean isColonised);*
+    public Planet findByPositionX(Integer X);
+    public Planet findByPositiony(Integer Y);
 
 }
