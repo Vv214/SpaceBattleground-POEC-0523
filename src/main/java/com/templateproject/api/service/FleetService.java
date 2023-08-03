@@ -14,6 +14,7 @@ import com.templateproject.api.repository.FleetRepository;
 public class FleetService {
   private final FleetRepository FleetRepository;
 
+
   public FleetService(FleetRepository FleetRepository) {
     this.FleetRepository = FleetRepository;
   }
@@ -36,18 +37,18 @@ public class FleetService {
   // UPDATE ONE
   public Fleet updateFleet(Fleet Fleet) {
     Fleet currentFleet = FleetRepository.findById(Fleet.getId()).get();
-
-    currentFleet.setName(Fleet.getName());
-    currentFleet.setMaxNumberShip(Fleet.getMaxNumberShip());
-    currentFleet.setPositionX(Fleet.getPositionX());
-    currentFleet.setPositionY(Fleet.getPositionY());
-    currentFleet.setPower(Fleet.getPower());
-    currentFleet.setTotalCapacity(Fleet.getTotalCapacity());
-    currentFleet.setTotalPv(Fleet.getTotalPv());
-    currentFleet.setSpeed(Fleet.getSpeed());
-
-    Fleet updateFleet = FleetRepository.save(currentFleet);
-    return updateFleet;
+    
+      currentFleet.setName(Fleet.getName());
+      currentFleet.setMaxNumberShip(Fleet.getMaxNumberShip());
+      currentFleet.setPositionX(Fleet.getPositionX());
+      currentFleet.setPositionY(Fleet.getPositionY());
+      currentFleet.setPower(Fleet.getPower());
+      currentFleet.setTotalCapacity(Fleet.getTotalCapacity());
+      currentFleet.setTotalPv(Fleet.getTotalPv());
+      currentFleet.setSpeed(Fleet.getSpeed());
+      
+      Fleet updateFleet = FleetRepository.save(currentFleet);
+        return updateFleet;
   }
 
   // DELETE ONE

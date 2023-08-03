@@ -11,11 +11,8 @@ public interface PlanetRepository extends JpaRepository<Planet, Integer> {
     public Planet findByName(String name);
 
     public Planet deleteByName(String name);
-
     public Planet findByIsColonised(boolean isColonised);
-
     public Planet findByPositionX(Integer X);
-
     public Planet findByPositionY(Integer Y);
 
 }

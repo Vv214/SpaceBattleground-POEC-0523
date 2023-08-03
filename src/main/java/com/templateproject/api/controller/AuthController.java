@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+// import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.controller.payload.UserLogin;
 import com.templateproject.api.controller.payload.UserRegister;
-import com.templateproject.api.entity.Player;
 import com.templateproject.api.service.AuthService;
 
 import jakarta.servlet.http.HttpServletRequest;

@@ -10,17 +10,17 @@ import jakarta.persistence.Id;
 public class Ressource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column( unique = true, nullable = false, length = 50)
     private String name;
 
-    private int quantity;
-    private int maxStock;
+    private Integer quantity;
+    private Integer maxStock;
 
     public Ressource() {
     }
 
-    public Ressource(String name, int quantity, int maxStock) {
+    public Ressource(String name, Integer quantity, Integer maxStock) {
         this.name = name;
         this.quantity = quantity;
         this.maxStock = maxStock;
@@ -30,7 +30,7 @@ public class Ressource {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -42,19 +42,19 @@ public class Ressource {
         this.name = name;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public int getMaxStock() {
+    public Integer getMaxStock() {
         return maxStock;
     }
 
-    public void setMaxStock(int maxStock) {
+    public void setMaxStock(Integer maxStock) {
         this.maxStock = maxStock;
     }
 

@@ -29,7 +29,7 @@ public class Fleet {
     };
 
     public Fleet(String name, Integer maxNumberShip, Integer positionX, Integer positionY, Integer power, Integer totalPv,
-            Integer totalCapacity, Integer speed, Integer totalRange) {
+            Integer totalCapacity, Integer speed ) {
         this.name = name;
         this.maxNumberShip = maxNumberShip;
         this.positionX = positionX;
