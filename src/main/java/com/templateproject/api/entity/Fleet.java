@@ -9,24 +9,27 @@ import jakarta.persistence.Id;
 @Entity
 public class Fleet {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column( unique = true, nullable = false, length = 50)
     private String name;
-    private int maxNumberShip;
-    private int positionX;
-    private int positionY;
-    private int power;
-    private int totalPv;
-    private int totalCapacity;
-    private int speed;
-    private int totalRange; 
 
+    private Integer maxNumberShip;
+
+    private Integer positionX;
+    private Integer positionY;
+
+    private Integer power;
+    private Integer totalPv;
+    private Integer totalCapacity;
+
+    private Integer speed;
+   
     public Fleet() {
     };
 
-    public Fleet(String name, int maxNumberShip, int positionX, int positionY, int power, int totalPv,
-            int totalCapacity, int speed, int totalRange) {
+    public Fleet(String name, Integer maxNumberShip, Integer positionX, Integer positionY, Integer power, Integer totalPv,
+            Integer totalCapacity, Integer speed, Integer totalRange) {
         this.name = name;
         this.maxNumberShip = maxNumberShip;
         this.positionX = positionX;
@@ -34,15 +37,14 @@ public class Fleet {
         this.power = power;
         this.totalPv = totalPv;
         this.totalCapacity = totalCapacity;
-        this.speed = speed;
-        this.totalRange = totalRange;
+        this.speed = speed;        
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,84 +56,76 @@ public class Fleet {
         this.name = name;
     }
 
-    public int getMaxNumberShip() {
+    public Integer getMaxNumberShip() {
         return maxNumberShip;
     }
 
-    public void setMaxNumberShip(int maxNumberShip) {
+    public void setMaxNumberShip(Integer maxNumberShip) {
         this.maxNumberShip = maxNumberShip;
     }
 
-    public int getPositionX() {
+    public Integer getPositionX() {
         return positionX;
     }
 
-    public void setPositionX(int positionX) {
+    public void setPositionX(Integer positionX) {
         this.positionX = positionX;
     }
 
-    public int getPositionY() {
+    public Integer getPositionY() {
         return positionY;
     }
 
-    public void setPositionY(int positionY) {
+    public void setPositionY(Integer positionY) {
         this.positionY = positionY;
     }
 
-    public int getpower() {
+    public Integer getpower() {
         return power;
     }
 
-    public void setpower(int power) {
+    public void setpower(Integer power) {
         this.power = power;
     }
 
-    public int getTotalPv() {
+    public Integer getTotalPv() {
         return totalPv;
     }
 
-    public void setTotalPv(int totalPv) {
+    public void setTotalPv(Integer totalPv) {
         this.totalPv = totalPv;
     }
 
-    public int getTotalCapacity() {
+    public Integer getTotalCapacity() {
         return totalCapacity;
     }
 
-    public void setTotalCapacity(int totalCapacity) {
+    public void setTotalCapacity(Integer totalCapacity) {
         this.totalCapacity = totalCapacity;
     }
 
-    public int getspeed() {
+    public Integer getspeed() {
         return speed;
     }
 
-    public void setspeed(int speed) {
+    public void setspeed(Integer speed) {
         this.speed = speed;
     }
 
-    public int getPower() {
+    public Integer getPower() {
         return power;
     }
 
-    public void setPower(int power) {
+    public void setPower(Integer power) {
         this.power = power;
     }
 
-    public int getSpeed() {
+    public Integer getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(Integer speed) {
         this.speed = speed;
     }
-
-    public int getTotalRange() {
-        return totalRange;
-    }
-
-    public void setTotalRange(int totalRange) {
-        this.totalRange = totalRange;
-    }
-    
+       
 }

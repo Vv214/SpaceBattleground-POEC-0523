@@ -44,7 +44,7 @@ public class ShipService {
     currentShip.setIronPrice(Ship.getIronPrice());
     currentShip.setDiamondPrice(Ship.getDiamondPrice());
     currentShip.setHydrogenPrice(Ship.getHydrogenPrice());
-    currentShip.setPriceEnergy(Ship.getPriceEnergy());
+    currentShip.setenergyPrice(Ship.getEnergyPrice());
     currentShip.setDamage(Ship.getDamage());
     currentShip.setPV(Ship.getPv());
     currentShip.setFuel(Ship.getFuel());

@@ -1,42 +1,59 @@
 package com.templateproject.api.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Technologie {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; 
 
-    @Column(unique = true, nullable = false)
+    @Column( unique = true, nullable = false, length = 50)
     private String name;
-    private int ironPrice;
-    private int diamondPrice;
-    private int hydrogenPrice;
-    private int priceEnergy;
     private String description; 
-    private int lvl; 
+   
+    private Integer ironPrice;
+    private Integer diamondPrice;
+    private Integer hydrogenPrice;
+    private Integer energyPrice;
+    
+    private Integer level; 
     private float coef_modifier;
-    private int timeSearch;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeSearch;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeToStart;
+
     private boolean isDone;
 
-    public Technologie() {};
+    public Technologie() {}
 
-    public Technologie(String name, int ironPrice, int diamondPrice, int hydrogenPrice, int priceEnergy,
-                        String description, int lvl, float coef_modifier, int timeSearch, boolean isDone) {
+    public Technologie(String name, String description, Integer ironPrice, Integer diamondPrice, Integer hydrogenPrice,
+            Integer energyPrice, Integer level, float coef_modifier, Date timeSearch, Date timeToStart, boolean isDone) {
         this.name = name;
+        this.description = description;
+
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
-        this.priceEnergy = priceEnergy;
-        this.description = description;
-        this.lvl = lvl;
+        this.energyPrice = energyPrice;
+
+        this.level = level;
         this.coef_modifier = coef_modifier;
         this.timeSearch = timeSearch;
+        
+        this.timeToStart = timeToStart;
+        
         this.isDone = isDone;
     }
 
@@ -56,38 +73,6 @@ public class Technologie {
         this.name = name;
     }
 
-    public int getIronPrice() {
-        return ironPrice;
-    }
-
-    public void setIronPrice(int ironPrice) {
-        this.ironPrice = ironPrice;
-    }
-
-    public int getDiamondPrice() {
-        return diamondPrice;
-    }
-
-    public void setDiamondPrice(int diamondPrice) {
-        this.diamondPrice = diamondPrice;
-    }
-
-    public int getHydrogenPrice() {
-        return hydrogenPrice;
-    }
-
-    public void setHydrogenPrice(int hydrogenPrice) {
-        this.hydrogenPrice = hydrogenPrice;
-    }
-
-    public int getPriceEnergy() {
-        return priceEnergy;
-    }
-
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
-    }
- 
     public String getDescription() {
         return description;
     }
@@ -96,12 +81,44 @@ public class Technologie {
         this.description = description;
     }
 
-    public int getLvl() {
-        return lvl;
+    public Integer getIronPrice() {
+        return ironPrice;
     }
 
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
+    public void setIronPrice(Integer ironPrice) {
+        this.ironPrice = ironPrice;
+    }
+
+    public Integer getDiamondPrice() {
+        return diamondPrice;
+    }
+
+    public void setDiamondPrice(Integer diamondPrice) {
+        this.diamondPrice = diamondPrice;
+    }
+
+    public Integer getHydrogenPrice() {
+        return hydrogenPrice;
+    }
+
+    public void setHydrogenPrice(Integer hydrogenPrice) {
+        this.hydrogenPrice = hydrogenPrice;
+    }
+
+    public Integer getEnergyPrice() {
+        return energyPrice;
+    }
+
+    public void setEnergyPrice(Integer energyPrice) {
+        this.energyPrice = energyPrice;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public float getCoef_modifier() {
@@ -112,12 +129,20 @@ public class Technologie {
         this.coef_modifier = coef_modifier;
     }
 
-    public int getTimeSearch() {
+    public Date getTimeSearch() {
         return timeSearch;
     }
 
-    public void setTimeSearch(int timeSearch) {
+    public void setTimeSearch(Date timeSearch) {
         this.timeSearch = timeSearch;
+    }
+
+    public Date getTimeToStart() {
+        return timeToStart;
+    }
+
+    public void setTimeToStart(Date timeToStart) {
+        this.timeToStart = timeToStart;
     }
 
     public boolean isDone() {
@@ -126,6 +151,7 @@ public class Technologie {
 
     public void setDone(boolean isDone) {
         this.isDone = isDone;
-    }
- 
+    };
+
+    
 }

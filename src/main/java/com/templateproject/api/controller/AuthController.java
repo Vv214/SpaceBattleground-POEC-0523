@@ -40,6 +40,10 @@ public class AuthController {
                     user.getConfirmPassword(),
                     user.getEmail());
             payload.setMessage("Player '" + user.getNickname() + "' registered");
+            String token = authService.login(user.getNickname(), user.getPassword());
+            var data = new HashMap<String, String>();
+            data.put("token", token);
+            payload.setData(data);
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
             payload.setMessage(e.getMessage() + " déja présent en BDD, merci de choisir un autre nickname.");
@@ -51,7 +55,7 @@ public class AuthController {
 
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public ResponseEntity<Payload> logout(@RequestHeader HttpHeaders headers) {
         var payload = new Payload();
         var token = headers.get("x-token").get(0);

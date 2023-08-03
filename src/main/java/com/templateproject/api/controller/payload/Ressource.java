@@ -2,18 +2,18 @@ package com.templateproject.api.controller.payload;
 
 public class Ressource {
 
-    private int id;
+    private Integer id;
     private String name;
-    private int quantity;
-    private int maxStock;
+    private Integer quantity;
+    private Integer maxStock;
 
     public Ressource() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -25,19 +25,19 @@ public class Ressource {
         this.name = name;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public int getMaxStock() {
+    public Integer getMaxStock() {
         return maxStock;
     }
 
-    public void setMaxStock(int maxStock) {
+    public void setMaxStock(Integer maxStock) {
         this.maxStock = maxStock;
     }
 
