@@ -11,16 +11,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.templateproject.api.controller.payload.Payload;
+import com.templateproject.api.controller.payload.RessourcePayload;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.service.RessourceService;
 
 @RestController
 
-public class RessourceControler {
+public class RessourceController {
 
     private final RessourceService ressourceService;
 
-    RessourceControler(RessourceService ressourceService) {
+    RessourceController(RessourceService ressourceService) {
         this.ressourceService = ressourceService;
     }
 
@@ -29,7 +30,12 @@ public class RessourceControler {
     public ResponseEntity<Payload> addRessource(@RequestBody Ressource ressource) {
         var payload = new Payload();
         try {
-            ressourceService.add(ressource);
+
+            ressourceService.add(
+                    ressource.getName(),
+                    ressource.getQuantity(),
+                    ressource.getMaxStock());
+
             payload.setData(ressource);
             payload.setMessage(ressource.getName() + " added");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
@@ -72,12 +78,16 @@ public class RessourceControler {
 
     // UPDATE ONE
     @PutMapping("/ressource/{name}")
-    public ResponseEntity<Payload> updateRessource(@PathVariable("name") String name,
+    public ResponseEntity<RessourcePayload> updateRessource(@PathVariable String name,
             @RequestBody Ressource ressource) {
-        var payload = new Payload();
+        var payload = new RessourcePayload();
         try {
-            Ressource updatedRessource = ressourceService.update(name, ressource);
-            payload.setData(updatedRessource);
+            payload.setName(ressource.getName());
+            payload.setQuantity(ressource.getQuantity());
+            payload.setMaxStock(ressource.getMaxStock());
+
+            ressourceService.update(name, payload);
+
             payload.setMessage("Ressource updated");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
@@ -86,6 +96,7 @@ public class RessourceControler {
         }
     }
 
+    // DELETE ONE
     @DeleteMapping("/ressource/{name}")
     public ResponseEntity<Payload> deleteRessource(@PathVariable("name") String name) {
         var payload = new Payload();

@@ -80,11 +80,11 @@ public class Fleet {
         this.positionY = positionY;
     }
 
-    public Integer getpower() {
+    public Integer getPower() {
         return power;
     }
 
-    public void setpower(Integer power) {
+    public void setPower(Integer power) {
         this.power = power;
     }
 
@@ -102,22 +102,6 @@ public class Fleet {
 
     public void setTotalCapacity(Integer totalCapacity) {
         this.totalCapacity = totalCapacity;
-    }
-
-    public Integer getspeed() {
-        return speed;
-    }
-
-    public void setspeed(Integer speed) {
-        this.speed = speed;
-    }
-
-    public Integer getPower() {
-        return power;
-    }
-
-    public void setPower(Integer power) {
-        this.power = power;
     }
 
     public Integer getSpeed() {

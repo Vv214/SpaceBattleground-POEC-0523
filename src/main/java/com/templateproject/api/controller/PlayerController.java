@@ -1,7 +1,7 @@
 package com.templateproject.api.controller;
 
-import java.util.HashMap;
-import java.util.List;
+// import java.util.HashMap;
+// import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import com.templateproject.api.service.PlayerService;
 
 @RestController
 // @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/players")
+@RequestMapping(path = "/player")
 public class PlayerController {
   
   private PlayerService playerService;
@@ -38,7 +38,6 @@ public class PlayerController {
     playerService.addNewPlayer(
       player.getNickname(),
       player.getEmail(),
-      player.getPassword(),
       player.getPassword(),
       player.getLevel()  
     );
@@ -58,7 +57,7 @@ public class PlayerController {
   }
 
   //RESEARCH ALL
-  @GetMapping (/"players") 
+  @GetMapping ("/players") 
   public ResponseEntity <Payload> getPlayers() {
     var payload = new Payload();
     try {
@@ -76,7 +75,7 @@ public class PlayerController {
   }
 
   //RESEARCH ONE
-  @GetMapping("/player/{nickname}")
+  @GetMapping("/{nickname}")
   public ResponseEntity<Payload> getPlayer(@PathVariable String nickname) {
     var payload = new Payload(); 
     try {
@@ -97,7 +96,7 @@ public class PlayerController {
   }
 
   //UPDATE ONE
-  @PutMapping("/player/{nickname}")
+  @PutMapping("/{nickname}")
   public ResponseEntity<Payload> updatePlayer(@PathVariable String nickname, @RequestBody Player player) {
     var payload = new Payload();
     try {
@@ -119,8 +118,10 @@ public class PlayerController {
     
   }
 
+
+
 //DELETE ONE
-  @DeleteMapping("/player/{name}")
+  @DeleteMapping("/{name}")
   public ResponseEntity<Payload> deletePlayer(@PathVariable String nickname) {
     var payload = new Payload();
     try {
@@ -131,4 +132,7 @@ public class PlayerController {
       payload.setMessage(e.getMessage());
       return new ResponseEntity<>(payload, HttpStatus.OK);
       // TODO: handle exception
-    }  
+    }
+  }
+
+}

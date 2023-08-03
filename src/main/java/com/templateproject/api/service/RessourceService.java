@@ -1,5 +1,7 @@
 package com.templateproject.api.service;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.repository.RessourceRepository;
@@ -24,8 +26,33 @@ public class RessourceService {
     return ressourceRepository.save(currentRessource);
   }
 
-  public Ressource getByName(String name) {
-    return ressourceRepository.findByName(name);
+  // RESEARCH ONE
+  public HashMap<String, Object> getByName(String name) {
+    var ressource = new HashMap<String, Object>();
+    var ressourceEntity = ressourceRepository.findByName(name);
+    ressource.put("name", ressourceEntity.getName());
+    ressource.put("Quantity of" + ressourceEntity.getName() + "'", ressourceEntity.getQuantity());
+    ressource.put("Stock Max of " + ressourceEntity.getName() + "'", ressourceEntity.getMaxStock());
+    return ressource;
+  }
+
+  // UPDATE ONE
+  public void update(String nameRessourceToUpdate, String name, Integer quantity, Integer maxStock) throws Exception {
+    var ressource = ressourceRepository.findByName(nameRessourceToUpdate);
+
+    if (ressource == null) {
+      throw new Exception(nameRessourceToUpdate + "dosen't exist");
+    }
+    if (name != null) {
+      ressource.setName(name);
+    }
+    if (quantity != 0) {
+      ressource.setQuantity(quantity);
+    }
+    if (maxStock != 0) {
+      ressource.setMaxStock(maxStock);
+    }
+    ressourceRepository.save(ressource);
   }
 
   public void delete(String name) {
