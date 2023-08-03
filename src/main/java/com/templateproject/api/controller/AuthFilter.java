@@ -29,19 +29,20 @@ public class AuthFilter implements Filter {
         System.out.println(token + " token back");
 
         var path = request.getServletPath();
-        if (!path.equals("/register") && !path.equals("/login")) {
+        if (!path.equals("/register") && !path.equals("/login")
+                && !request.getMethod().toLowerCase().equals("options")) {
 
             response.setHeader("Access-Control-Allow-Origin", "*");
 
             response.setHeader("Access-Control-Allow-Credentials", "true");
-            response.setHeader("Access-Control-Allow-Methods", "POST, GET,HEAD,OPTIONS");
+            response.setHeader("Access-Control-Allow-Methods", "POST, GET, HEAD, OPTIONS, DELETE, PUT, PATCH");
             response.setHeader("Access-Control-Allow-Headers",
                     "Origin, Accept, X-Requested-With,Content-Type,Access-Control-Request-Method, Access-Control-Request-Headers");
 
             Integer playerID = authService.findUserIdByToken(token);
             if (playerID == null) {
                 response.setHeader("Content-type", "application/json");
-                response.setStatus(402);
+                response.setStatus(401);
                 response.getWriter().println("{" +
                         "\"message\" : \"Invalid Token\"" +
                         "}");

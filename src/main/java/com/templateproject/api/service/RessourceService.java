@@ -15,7 +15,16 @@ public class RessourceService {
   }
 
   public Object getAll() {
-    return ressourceRepository.findAll();
+    var diamond = getByName("diamond");
+    var energy = getByName("energy");
+    var iron = getByName("iron");
+    var hydrogene = getByName("hydrogene");
+    var ressources = new HashMap<String, Object>();
+    ressources.put("diamond", diamond);
+    ressources.put("energy", energy);
+    ressources.put("iron", iron);
+    ressources.put("hydrogene", hydrogene);
+    return ressources;
   }
 
   public Ressource update(String name, Ressource ressource) {
@@ -30,9 +39,11 @@ public class RessourceService {
   public HashMap<String, Object> getByName(String name) {
     var ressource = new HashMap<String, Object>();
     var ressourceEntity = ressourceRepository.findByName(name);
-    ressource.put("name", ressourceEntity.getName());
-    ressource.put("Quantity of" + ressourceEntity.getName() + "'", ressourceEntity.getQuantity());
-    ressource.put("Stock Max of " + ressourceEntity.getName() + "'", ressourceEntity.getMaxStock());
+    if (ressourceEntity == null) {
+      return ressource;
+    }
+    ressource.put("quantity", ressourceEntity.getQuantity());
+    ressource.put("maxStock", ressourceEntity.getMaxStock());
     return ressource;
   }
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.templateproject.api.controller.payload.Payload;
-import com.templateproject.api.controller.payload.RessourcePayload;
+import com.templateproject.api.controller.payload.RessourcesPayload;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.service.RessourceService;
 
@@ -78,9 +78,9 @@ public class RessourceController {
 
     // UPDATE ONE
     @PutMapping("/ressource/{name}")
-    public ResponseEntity<RessourcePayload> updateRessource(@PathVariable String name,
+    public ResponseEntity<RessourcesPayload> updateRessource(@PathVariable String name,
             @RequestBody Ressource ressource) {
-        var payload = new RessourcePayload();
+        var payload = new RessourcesPayload();
         try {
             payload.setName(ressource.getName());
             payload.setQuantity(ressource.getQuantity());
