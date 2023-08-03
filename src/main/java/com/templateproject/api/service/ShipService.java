@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.templateproject.api.controller.payload.Payload;
+
 import com.templateproject.api.entity.Ship;
 import com.templateproject.api.repository.ShipRepository;
 
@@ -20,7 +20,7 @@ public class ShipService {
     this.shipRepository = shipRepository;
   }
 
-  
+ 
   //CREATE ONE
   public void createShip(
     String name,
@@ -34,7 +34,6 @@ public class ShipService {
     Integer fuel,
     Integer speed,
     Integer capacity,
-    Integer size,
     Integer quantity)
 {
     var ship = new Ship(
@@ -49,7 +48,6 @@ public class ShipService {
           fuel,
           speed,
           capacity,
-          size,
           quantity
     );
     shipRepository.save(ship);
@@ -73,7 +71,6 @@ public class ShipService {
               newShip.put("Fuel Capacity : ", ship.getFuel());
               newShip.put("Speed : ", ship.getSpeed());
               newShip.put("Capacity : ", ship.getCapacity());
-              newShip.put("null", ship.getSize());
               newShip.put("null", ship.getQuantity());
               payload.add(newShip);     
     }
@@ -96,7 +93,6 @@ public class ShipService {
               ship.put("Fuel Capacity : ", shipEntity.getFuel());
               ship.put("Speed : ", shipEntity.getSpeed());
               ship.put("Capacity : ", shipEntity.getCapacity());
-              ship.put("null", shipEntity.getSize());
               ship.put("null", shipEntity.getQuantity());
 
     return ship;
@@ -115,16 +111,15 @@ public class ShipService {
     Integer fuel,
     Integer speed,
     Integer capacity,
-    Integer size,
     Integer quantity
-    ) {
+    ) throws Exception {
     var shipUpdate = shipRepository.findByName(shipTarget); 
      
     if (shipUpdate == null) {
-            throw new Exception(shipTarget + "doesn't exist"); // TODO make our Exception (404 - Not found)
-        }
+      throw new Exception( shipTarget + "doesn't exist"); // TODO make our Exception (404 - Not found)
+    }
         if (name != null) {
-            shipUpdate.setNickname();
+            shipUpdate.setName(name);
         }
         if (type != null) {
             shipUpdate.setType(type);
@@ -141,15 +136,32 @@ public class ShipService {
         if(energyPrice != 0){
           shipUpdate.setenergyPrice(energyPrice);
         }
-
+        if(pv !=0){
+          shipUpdate.setPV(pv);
+        }
+        if(damage != 0){
+          shipUpdate.setDamage(damage);
+        }
+        if(fuel != 0){
+          shipUpdate.setFuel(fuel);
+        }
+        if(speed != 0){
+          shipUpdate.setSpeed(speed);
+        }
+        if(capacity != 0){
+          shipUpdate.setCapacity(capacity);
+        }
+        if(quantity !=0){
+          shipUpdate.setQuantity(quantity);
+        }
 
         shipRepository.save(shipUpdate);
 
   }
 
   //DELETE ONE
-  public ResponseEntity<String> deleteShipById(Integer id) {
-    shipRepository.deleteById(id);
+  public ResponseEntity<String> deleteShipByName(String name) {
+    shipRepository.deleteByName(name);
     return new ResponseEntity<>("Ship successfully deleted!", HttpStatus.OK);
   }
 

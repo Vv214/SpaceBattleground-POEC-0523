@@ -25,7 +25,6 @@ public class Ship {
     private Integer fuel;
     private Integer speed;
     private Integer capacity;
-    private Integer size;
     private Integer quantity;
 
     public Ship() {
@@ -43,7 +42,6 @@ public class Ship {
             Integer fuel,
             Integer speed, 
             Integer capacity, 
-            Integer size, 
             Integer quantity) {
 
         this.name = name;
@@ -57,7 +55,6 @@ public class Ship {
         this.fuel = fuel;
         this.speed = speed;
         this.capacity = capacity;
-        this.size = size;
         this.quantity = quantity;
     }
 
@@ -165,12 +162,5 @@ public class Ship {
         this.capacity = capacity;
     }
 
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
+   
 }
