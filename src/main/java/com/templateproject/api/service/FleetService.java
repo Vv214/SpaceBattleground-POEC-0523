@@ -121,11 +121,11 @@ public class FleetService {
     
     fleetRepository.save(fleet);
     }    
-  }
+  
 
   // DELETE ONE
   public ResponseEntity<String> deleteFleetByName(String name) {
     fleetRepository.deleteByName(name);
-    return new ResponseEntity<>("Fleet successfully deleted!", HttpStatus.OK);
+    return new ResponseEntity<String>("Fleet successfully deleted!", HttpStatus.OK);
   }
 }
