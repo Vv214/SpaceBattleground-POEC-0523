@@ -1,5 +1,7 @@
 package com.templateproject.api.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,47 +14,118 @@ import com.templateproject.api.repository.FleetRepository;
 
 @Service
 public class FleetService {
-  private final FleetRepository FleetRepository;
+  private final FleetRepository fleetRepository;
 
-  public FleetService(FleetRepository FleetRepository) {
-    this.FleetRepository = FleetRepository;
+
+  public FleetService(FleetRepository fleetRepository) {
+    this.fleetRepository = fleetRepository;
   }
 
   // CREATE
-  public Fleet createFleet(Fleet Fleet) {
-    return FleetRepository.save(Fleet);
+  public void createFleet(
+      String name,
+      Integer maxNumberShip,
+      Integer positionX,
+      Integer positionY,
+      Integer power,
+      Integer totalPv,
+      Integer totalCapacity,
+      Integer speed 
+      ) {
+    var fleet = new Fleet(name, maxNumberShip, positionX, positionY, power, totalPv, totalCapacity, speed);
+    fleetRepository.save(fleet);  
+        
   }
 
   // RESEARCH ALL
-  public List<Fleet> getFleet() {
-    return FleetRepository.findAll();
+  public List<HashMap<String, Object>> getAllFleets() {
+    var payload = new ArrayList<HashMap<String,Object>>();
+
+    List <Fleet> fleetList = fleetRepository.findAll(); 
+    for (var fleet : fleetList){
+      var newFleet = new HashMap<String,Object>();
+      newFleet.put("Fleet's Name : ", fleet.getName()); 
+      newFleet.put("Max Fleet's Size : ", fleet.getMaxNumberShip()); 
+      newFleet.put("Fleet's Position X :", fleet.getPositionX()); 
+      newFleet.put("Fleet's Position Y: ", fleet.getPositionY()); 
+      newFleet.put("Fleet's Fire Power : ", fleet.getPower()); 
+      newFleet.put("Fleet's PV : ", fleet.getTotalPv()); 
+      newFleet.put("Fleet's Capcity : ", fleet.getTotalCapacity()); 
+      newFleet.put("Fleet's Speed : ", fleet.getSpeed());  
+      payload.add(newFleet);
+    }
+    return payload; 
   }
 
   // RESEARCH ONE
-  public Optional<Fleet> getFleet(int id) {
-    return FleetRepository.findById(id);
+  public HashMap<String, Object> getFleet(String name) {
+    //TO DO CHECK PARAM 
+    var fleet = new HashMap<String,Object>();
+
+    var fleetEntity = fleetRepository.findByName(name);
+      fleet.put("",fleetEntity.getName()); 
+      fleet.put("",fleetEntity.getMaxNumberShip()); 
+      fleet.put("",fleetEntity.getPositionX()); 
+      fleet.put("",fleetEntity.getPositionY()); 
+      fleet.put("",fleetEntity.getPower()); 
+      fleet.put("",fleetEntity.getTotalPv()); 
+      fleet.put("",fleetEntity.getTotalCapacity()); 
+      fleet.put("",fleetEntity.getSpeed());  
+
+    return fleet; 
   }
 
   // UPDATE ONE
-  public Fleet updateFleet(Fleet Fleet) {
-    Fleet currentFleet = FleetRepository.findById(Fleet.getId()).get();
+  public void updateFleet(
+    String nameFleetTarget, 
+      String name,
+      Integer maxNumberShip,
+      Integer positionX,
+      Integer positionY,
+      Integer power,
+      Integer totalPv,
+      Integer totalCapacity,
+      Integer speed 
+    
+    ) throws Exception {
 
-    currentFleet.setName(Fleet.getName());
-    currentFleet.setMaxNumberShip(Fleet.getMaxNumberShip());
-    currentFleet.setPositionX(Fleet.getPositionX());
-    currentFleet.setPositionY(Fleet.getPositionY());
-    currentFleet.setPower(Fleet.getPower());
-    currentFleet.setTotalCapacity(Fleet.getTotalCapacity());
-    currentFleet.setTotalPv(Fleet.getTotalPv());
-    currentFleet.setSpeed(Fleet.getSpeed());
-
-    Fleet updateFleet = FleetRepository.save(currentFleet);
-    return updateFleet;
-  }
+    var fleet = fleetRepository.findByName(name); 
+    if (fleet == null){
+      throw new Exception (nameFleetTarget + "doesn't exist.");
+      // TODO make our Exception (404 - Not found)
+    }
+    if(name != null){
+      fleet.setName(name);
+    }
+    if(maxNumberShip != 0){
+      fleet.setMaxNumberShip(maxNumberShip);
+    }
+    if(positionX !=0){
+      fleet.setPositionX(positionX);
+    }
+    if(positionY !=0){
+      fleet.setPositionY(positionY);
+    }
+    if(power !=0){
+      fleet.setPower(power);
+    }
+    if(totalPv !=0){
+      fleet.setTotalPv(totalPv);
+    }
+    if(totalCapacity !=0){
+      fleet.setTotalCapacity(totalCapacity);
+    }
+    if (speed !=0){
+      fleet.setSpeed(speed);
+    } 
+    
+    fleetRepository.save(fleet);
+    }    
+  
 
   // DELETE ONE
-  public ResponseEntity<String> deleteFleetById(Integer id) {
-    FleetRepository.deleteById(id);
-    return new ResponseEntity<>("Fleet successfully deleted!", HttpStatus.OK);
+  public ResponseEntity<String> deleteFleetByName(String name) {
+    fleetRepository.deleteByName(name);
+    return new ResponseEntity<String>("Fleet successfully deleted!", HttpStatus.OK);
   }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.controller.payload.Payload;
+import com.templateproject.api.entity.Building;
 import com.templateproject.api.service.BuildingService;
 
 @RestController
@@ -32,10 +33,19 @@ public class BuildingController {
     public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building) {
         var payload = new BuildingPayload();
         try {
-            buildingService.add(building.getName(), building.getType(), building.getLevel(), building.getBuildingSize(),
-                    building.getDescription(), building.getCoeff_prod(), building.getIronPrice(),
-                    building.getDiamondPrice(), building.getHydrogenPrice(), building.getPriceEnergy(),
-                    building.getTimeBuilding());
+            buildingService.add(
+                building.getName(), 
+                building.getType(), 
+                building.getLevel(),
+                building.getDescription(), 
+                building.getCoeff_prod(), 
+                building.getIronPrice(),
+                building.getDiamondPrice(), 
+                building.getHydrogenPrice(), 
+                building.getEnergyPrice(),
+                building.getTimeBuilding(),
+                building.getTimeToStart()
+                );
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {

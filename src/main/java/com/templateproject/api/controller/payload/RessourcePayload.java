@@ -1,13 +1,32 @@
 package com.templateproject.api.controller.payload;
 
-public class Ressource {
+public class RessourcePayload {
+
+    private String message;
 
     private Integer id;
     private String name;
     private Integer quantity;
     private Integer maxStock;
 
-    public Ressource() {}
+    public RessourcePayload() {}
+
+    
+
+    public RessourcePayload( String message, String name, Integer quantity, Integer maxStock) {
+        this.message = message;
+        this.name = name;
+        this.quantity = quantity;
+        this.maxStock = maxStock;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public Integer getId() {
         return id;
@@ -40,5 +59,9 @@ public class Ressource {
     public void setMaxStock(Integer maxStock) {
         this.maxStock = maxStock;
     }
+
+
+
+  
 
 }

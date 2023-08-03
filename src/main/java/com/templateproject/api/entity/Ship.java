@@ -25,17 +25,24 @@ public class Ship {
     private Integer fuel;
     private Integer speed;
     private Integer capacity;
-    private Integer size;
     private Integer quantity;
 
     public Ship() {
     };
 
-    public Ship(String name, String type, Integer ironPrice,
-            Integer diamondPrice, Integer hydrogenPrice,
-            Integer energyPrice, Integer pv, Integer damage,
-            Integer fuel, Integer speed, Integer range,
-            Integer capacity, Integer size, Integer quantity) {
+    public Ship(
+            String name, 
+            String type, 
+            Integer ironPrice,
+            Integer diamondPrice, 
+            Integer hydrogenPrice,
+            Integer energyPrice, 
+            Integer pv, 
+            Integer damage,
+            Integer fuel,
+            Integer speed, 
+            Integer capacity, 
+            Integer quantity) {
 
         this.name = name;
         this.type = type;
@@ -48,7 +55,6 @@ public class Ship {
         this.fuel = fuel;
         this.speed = speed;
         this.capacity = capacity;
-        this.size = size;
         this.quantity = quantity;
     }
 
@@ -156,12 +162,5 @@ public class Ship {
         this.capacity = capacity;
     }
 
-    public Integer getsize() {
-        return size;
-    }
-
-    public void setsize(Integer size) {
-        this.size = size;
-    }
-
+   
 }
