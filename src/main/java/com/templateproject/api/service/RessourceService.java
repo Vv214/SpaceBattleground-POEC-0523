@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.templateproject.api.controller.payload.RessourcePayload;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.repository.RessourceRepository;
 
@@ -48,22 +50,22 @@ public class RessourceService {
     return ressource;
   }
   //UPDATE ONE
-  public void update(String nameRessourceToUpdate, String name, Integer quantity, Integer maxStock) throws Exception {
-    var ressource = ressourceRepository.findByName(nameRessourceToUpdate);
+  public void update(String nameRessourceToUpdate, RessourcePayload ressource)  throws Exception {
+    var ressourceUpdate = ressourceRepository.findByName(nameRessourceToUpdate);
 
-    if (ressource == null){
+    if (ressourceUpdate == null){
       throw new Exception (nameRessourceToUpdate + "dosen't exist");
     }
-    if (name != null){
-      ressource.setName(name);
+    if (ressourceUpdate.getName() != null){
+      ressourceUpdate.setName(ressourceUpdate.getName());
     }
-    if (quantity != 0){
-      ressource.setQuantity(quantity);
+    if (ressourceUpdate.getQuantity() != 0){
+      ressourceUpdate.setQuantity(ressourceUpdate.getQuantity());
     }
-    if (maxStock != 0){
-      ressource.setMaxStock(maxStock);
+    if (ressourceUpdate.getMaxStock() != 0){
+      ressourceUpdate.setMaxStock(ressourceUpdate.getMaxStock());
     }    
-    ressourceRepository.save(ressource);
+    ressourceRepository.save(ressourceUpdate);
   }
 
   //DELETE ONE

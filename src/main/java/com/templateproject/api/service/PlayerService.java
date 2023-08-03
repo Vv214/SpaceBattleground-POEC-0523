@@ -3,7 +3,7 @@ package com.templateproject.api.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,28 +35,43 @@ public class PlayerService {
       var newPlayer = new HashMap<String, Object>();
       newPlayer.put("Nickname :", player.getNickname());
       newPlayer.put("Email :",player.getEmail());
-      newPlayer.put("Level: ",player.getLevel());
+      newPlayer.put("Level :",player.getLevel());
       payload.add(newPlayer);
     }
     return payload;
   }
   //RESEARCH ONE
-  public Player getPlayer(Integer id) {
-    Optional<Player> optionalPlayer = playerRepository.findById(id);
-    return optionalPlayer.get();
+  public HashMap<String, Object> getPlayer(String nickname) {
+    var newPlayer = new HashMap<String, Object>();
+    var playerEntity = playerRepository.findByNickname(nickname);
+    
+      newPlayer.put("Nickname :",playerEntity.getNickname());
+      newPlayer.put("Email :",playerEntity.getEmail());
+      newPlayer.put("Level :",playerEntity.getLevel());
+         
+    return newPlayer;
   }
 
   //UPDATE ONE
-  public Player updateUser(Player player) {
-    Player currentPlayer = playerRepository.findById(player.getId()).get();
+  public void updateUser(String nicknameTarget, String nickname, String email, String password, Integer level) throws Exception {
+    var player = playerRepository.findByNickname(nickname); 
     
-    currentPlayer.setNickname(player.getNickname());
-    currentPlayer.setEmail(player.getEmail());
-    currentPlayer.setPassword(player.getPassword());
-    currentPlayer.setLevel(player.getLevel());
-    
-    Player updatePlayer = playerRepository.save(currentPlayer);
-    return updatePlayer;
+        if (player == null) {
+            throw new Exception(nicknameTarget + "doesn't exist"); // TODO make our Exception (404 - Not found)
+        }
+        if (nickname != null) {
+            player.setNickname(nickname);
+        }
+        if (email != null) {
+            player.setEmail(email.toLowerCase());
+        }
+        if (password != null) {
+            player.setPassword(password); //TODO Use BCrypt
+        }
+        if (level > 1){
+          player.setLevel(level);
+        }
+        playerRepository.save(player);
   }
 
   //DELETE ONE 

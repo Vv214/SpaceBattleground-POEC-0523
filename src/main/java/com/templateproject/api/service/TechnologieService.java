@@ -102,7 +102,7 @@ public class TechnologieService {
             technologie.put("Technologie Statut",technologieEntity.isDone());
             return technologie; 
      }
-
+    //UPDATE ONE
     public void updateTechnologie(String name, TechnologiePayload technologie) throws Exception {
         var technologieToUpdate = technologieRepository.findByName(name);
 
