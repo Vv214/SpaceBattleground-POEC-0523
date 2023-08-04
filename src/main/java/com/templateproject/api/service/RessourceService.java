@@ -3,6 +3,8 @@ package com.templateproject.api.service;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
+
+import com.templateproject.api.controller.payload.RessourcePayload;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.repository.RessourceRepository;
 
@@ -27,7 +29,7 @@ public class RessourceService {
     return ressources;
   }
 
-  public Ressource update(String name, Ressource ressource) {
+  public Ressource update(String name, RessourcePayload ressource) {
     Ressource currentRessource = ressourceRepository.findByName(name);
     currentRessource.setName(ressource.getName());
     currentRessource.setQuantity(ressource.getQuantity());
