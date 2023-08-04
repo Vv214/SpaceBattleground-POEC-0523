@@ -55,7 +55,7 @@ public class ClanController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//REEARCH ONE 
+//RESEARCH ONE 
     @GetMapping("/clan/{name}")
     public ResponseEntity<Payload> getClanByTag(@PathVariable("name") String name) {
         var payload = new Payload();
