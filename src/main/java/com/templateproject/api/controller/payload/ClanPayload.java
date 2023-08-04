@@ -4,6 +4,9 @@ public class ClanPayload {
 
     private String clanName;
     private String clanTag;
+    private String adminNickname;
+    
+
     private Integer clanLvl;
 
     public ClanPayload() {}
@@ -30,6 +33,14 @@ public class ClanPayload {
 
     public void setLvl(Integer clanLvl) {
         this.clanLvl = clanLvl;
+    }
+
+    public String getAdminNickname() {
+        return adminNickname;
+    }
+
+    public void setAdminNickname(String adminNickname) {
+        this.adminNickname = adminNickname;
     }
 }
 

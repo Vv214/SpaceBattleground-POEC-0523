@@ -15,8 +15,8 @@ Use `space`;
 
 
 
-SELECT * FROM player;
+SELECT * FROM clan;
 
 show TABLES;
 
--- drop DATABASE `space`;
+ drop DATABASE `space`;

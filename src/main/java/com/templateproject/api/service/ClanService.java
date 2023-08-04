@@ -43,6 +43,7 @@ public void add(Clan clanToAdd) {
   Clan clan = new Clan();
   clan.setClanName(clanToAdd.getClanName());
   clan.setClanTag(clanToAdd.getClanTag());
+  clan.setAdminNickname(clanToAdd.getAdminNickname());
   clanRepository.save(clan);
 }
 }
