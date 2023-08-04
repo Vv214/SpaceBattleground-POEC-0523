@@ -26,7 +26,7 @@ public class PlanetService {
   }
 
   // CREATE
-  public void addNewPlanet(
+  public Planet addNewPlanet(
       String name,
       boolean isColonised,
       Integer positionX,
@@ -48,11 +48,30 @@ public class PlanetService {
         planetSize,
         player);
         
-    planetRepository.save(planet);
+    return planetRepository.save(planet);
+    
   }
 
   // RESARCH ALL
   public List<PlanetPayload> getAllPlanets() {
+    var planetPayload = new ArrayList<PlanetPayload>();
+    List<Planet> planetList = planetRepository.findAll();
+    for (var planet : planetList) {
+
+      var newPlanet = new PlanetPayload();
+
+      newPlanet.setName(planet.getName());
+      newPlanet.setColonised(planet.isColonised());
+      newPlanet.setPositionX(planet.getPositionX());
+      newPlanet.setPositionY(planet.getPositionY());
+      newPlanet.setPlanetSize(planet.getPlanetSize());
+
+      planetPayload.add(newPlanet);
+    }
+    return planetPayload;
+  }
+  //RESARCH ALL PLANET by playerID 
+    public List<PlanetPayload> getAllPlanets(Integer playerID) {
     var planetPayload = new ArrayList<PlanetPayload>();
     List<Planet> planetList = planetRepository.findAll();
     for (var planet : planetList) {

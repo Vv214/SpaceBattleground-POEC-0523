@@ -33,16 +33,23 @@ public class PlanetController {
   public ResponseEntity<PlanetPayload> addNewPlanet(HttpServletRequest request, @RequestBody Planet planet) {
     var payload = new PlanetPayload();
     try {
-      Integer playerID = (Integer)request.getAttribute("player_id");
-      planetService.addNewPlanet(
+      Integer playerID = (Integer)request.getAttribute("playerID");
+      System.out.println("Player ID is :" + playerID);
+      var newPlanet = planetService.addNewPlanet(
           planet.getName(),
           planet.isColonised(),
           planet.getPlanetSize(),
           planet.getPositionX(),
           planet.getPositionY(), 
           playerID);
-
-      payload.setMessage(planet.getName() + "created");
+      payload.set(
+          newPlanet.getName() + " created",
+          newPlanet.getName(),
+          newPlanet.isColonised(),
+          newPlanet.getPlanetSize(),
+          newPlanet.getPositionX(),
+          newPlanet.getPositionY());
+      // payload.setMessage(planet.getName() + " created");
       return new ResponseEntity<>(payload, HttpStatus.CREATED);
 
     } catch (Exception e) {
@@ -53,8 +60,26 @@ public class PlanetController {
   }
 
   // RESEARCH ALL
+  // @GetMapping("/planets")
+  // public ResponseEntity<Payload> getPlanets() {
+  //   var payload = new Payload();
+  //   try {
+  //     payload.setData(planetService.getAllPlanets());
+  //     payload.setMessage("Get all Planets");
+  //     return new ResponseEntity<>(payload, HttpStatus.OK);
+  //   } catch (Exception e) {
+  //     payload.setMessage(e.getMessage());
+  //     payload.setData(null);
+  //     return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+
+  //   }
+
+  // }
+  //RESEARCH ALL PLANET by playerID
   @GetMapping("/planets")
-  public ResponseEntity<Payload> getPlanets() {
+  public ResponseEntity<Payload> getPlanets(HttpServletRequest request) {
+    var playerID = (Integer)request.getAttribute("playerID");
+
     var payload = new Payload();
     try {
       payload.setData(planetService.getAllPlanets());
