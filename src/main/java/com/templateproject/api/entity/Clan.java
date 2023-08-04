@@ -19,23 +19,21 @@ public class Clan {
     private Integer level;
     private Integer numberMaxPlayers;
     private Integer currentNumberPlayers;
-    
-    @Column( unique = true, nullable = true, length = 50)
+
+    @Column(unique = true, nullable = false, length = 50)
     private String adminNickname;
 
     public Clan() {
     };
 
-    public Clan(String clanName, String clanTag, String adminNickname){
+    public Clan(String clanName, String clanTag, String adminNickname) {
         this.clanName = clanName;
         this.clanTag = clanTag;
         this.adminNickname = adminNickname;
     }
 
-
-    
     public Clan(String clanName, String clanTag, Integer level, Integer numberMaxPlayers,
-    Integer currentNumberPlayers, String adminNickname) {
+            Integer currentNumberPlayers, String adminNickname) {
         this.clanName = clanName;
         this.clanTag = clanTag;
         this.level = level;
