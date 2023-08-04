@@ -1,7 +1,6 @@
 package com.templateproject.api.controller;
 
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.entity.Ship;
 import com.templateproject.api.service.ShipService;
 
 @RestController
-@RequestMapping (path = "/ship")
+@RequestMapping(path = "/ships")
 public class ShipController {
+
   
   private final ShipService shipService;
   
@@ -133,5 +132,12 @@ public class ShipController {
         payload.setMessage(e.getMessage());
         return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
    }
+
+  }
+
+  @PutMapping("{id}")
+  public Ship updateShip(@PathVariable("id") Integer id, @RequestBody Ship Ship) {
+    Ship.setId(id);
+    return ShipService.updateShip(Ship);
   }
 }
