@@ -1,5 +1,6 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,60 +9,68 @@ import jakarta.persistence.Id;
 @Entity
 public class Ship {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
+
     private String type;
-    private int ironPrice;
-    private int diamondPrice;
-    private int hydrogenPrice;
-    private int priceEnergy;
-    private int pv;
-    private int damage;
-    private int fuel;
-    private int speed;
-    private int capacity;
-    private int shipSize;
-    private int quantity;
+    private Integer ironPrice;
+    private Integer diamondPrice;
+    private Integer hydrogenPrice;
+    private Integer energyPrice;
+    private Integer pv;
+    private Integer damage;
+    private Integer fuel;
+    private Integer speed;
+    private Integer capacity;
+    private Integer quantity;
 
     public Ship() {
     };
 
-    public Ship(String name, String type, int priceRessource1,
-            int priceRessource2, int priceRessource3,
-            int priceEnergy, int pv, int damage,
-            int fuel, int speed,
-            int capacity, int shipSize, int quantity) {
+    public Ship(
+            String name, 
+            String type, 
+            Integer ironPrice,
+            Integer diamondPrice, 
+            Integer hydrogenPrice,
+            Integer energyPrice, 
+            Integer pv, 
+            Integer damage,
+            Integer fuel,
+            Integer speed, 
+            Integer capacity, 
+            Integer quantity) {
 
         this.name = name;
         this.type = type;
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
-        this.priceEnergy = priceEnergy;
+        this.energyPrice = energyPrice;
         this.pv = pv;
         this.damage = damage;
         this.fuel = fuel;
         this.speed = speed;
-
         this.capacity = capacity;
-        this.shipSize = shipSize;
         this.quantity = quantity;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -81,83 +90,77 @@ public class Ship {
         this.type = type;
     }
 
-    public void setIronPrice(int ironPrice) {
+    public Integer getIronPrice() {
+        return ironPrice;
+    }
+
+    public void setIronPrice(Integer ironPrice) {
         this.ironPrice = ironPrice;
     }
 
-    public int getDiamondPrice() {
+    public Integer getDiamondPrice() {
         return diamondPrice;
     }
 
-    public void setDiamondPrice(int diamondPrice) {
+    public void setDiamondPrice(Integer diamondPrice) {
         this.diamondPrice = diamondPrice;
     }
 
-    public int getHydrogenPrice() {
+    public Integer getHydrogenPrice() {
         return hydrogenPrice;
     }
 
-    public void setHydrogenPrice(int hydrogenPrice) {
+    public void setHydrogenPrice(Integer hydrogenPrice) {
         this.hydrogenPrice = hydrogenPrice;
     }
 
-    public int getPriceEnergy() {
-        return priceEnergy;
+    public Integer getEnergyPrice() {
+        return energyPrice;
     }
 
-    public void setPriceEnergy(int priceEnergy) {
-        this.priceEnergy = priceEnergy;
+    public void setenergyPrice(Integer energyPrice) {
+        this.energyPrice = energyPrice;
     }
 
-    public int getPv() {
+    public Integer getPv() {
         return pv;
     }
 
-    public void setPV(int pv) {
+    public void setPV(Integer pv) {
         this.pv = pv;
     }
 
-    public int getDamage() {
+    public Integer getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
+    public void setDamage(Integer damage) {
         this.damage = damage;
     }
 
-    public int getFuel() {
+    public Integer getFuel() {
         return fuel;
     }
 
-    public void setFuel(int fuel) {
+    public void setFuel(Integer fuel) {
         this.fuel = fuel;
     }
 
-    public int getSpeed() {
+    public Integer getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(Integer speed) {
         this.speed = speed;
     }
 
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 
-    public int getShipSize() {
-        return shipSize;
-    }
-
-    public void setShipSize(int shipSize) {
-        this.shipSize = shipSize;
-    }
-
-    public int getIronPrice() {
-        return ironPrice;
-    }
+   
 }

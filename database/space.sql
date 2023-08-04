@@ -13,7 +13,9 @@ FLUSH PRIVILEGES;
 
 Use `space`;
 
-SELECT * FROM clan;
+
+
+SELECT * FROM player;
 
 show TABLES;
 

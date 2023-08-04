@@ -4,7 +4,7 @@ public class ClanPayload {
 
     private String clanName;
     private String clanTag;
-    private int clanLvl;
+    private Integer clanLvl;
 
     public ClanPayload() {}
 
@@ -24,11 +24,11 @@ public class ClanPayload {
         this.clanTag = clanTag;
     }
 
-    public int getLvl() {
+    public Integer getLvl() {
         return clanLvl;
     }
 
-    public void setLvl(int clanLvl) {
+    public void setLvl(Integer clanLvl) {
         this.clanLvl = clanLvl;
     }
 }

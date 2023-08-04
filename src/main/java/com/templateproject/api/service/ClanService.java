@@ -22,7 +22,7 @@ public Clan update(Clan clan) {
   currentClan.setAdminNickname(clan.getAdminNickname());
   currentClan.setClanTag(clan.getClanTag());
   currentClan.setClanName(clan.getClanName());
-  currentClan.setClanLvl(clan.getClanLvl());
+  currentClan.setlevel(clan.getlevel());
   currentClan.setCurrentNumberPlayers(clan.getCurrentNumberPlayers());
   currentClan.setNumberMaxPlayers(clan.getNumberMaxPlayers());
   Clan updateClan = clanRepository.save(currentClan);

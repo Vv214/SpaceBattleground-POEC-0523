@@ -4,48 +4,46 @@ import java.util.Date;
 
 public class BuildingPayload {
 
+    private String message;
     private String name;
     private String type;
     private Integer level;
-
     private String description;
-
     private Integer coeff_prod;
-
     private Integer ironPrice;
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
-
     private Date timeBuilding;
     private Date timeToStart;
-
 
     public BuildingPayload() {
 
     }
 
-
-    public BuildingPayload(String name, String type, Integer level, String description, Integer coeff_prod,
-            Integer ironPrice,
-            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
-
+    public BuildingPayload(String message, String name, String type, Integer level, String description,
+            Integer coeff_prod, Integer ironPrice, Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice,
+            Date timeBuilding, Date timeToStart) {
+        this.message = message;
         this.name = name;
         this.type = type;
         this.level = level;
-
         this.description = description;
         this.coeff_prod = coeff_prod;
-
-
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
         this.energyPrice = energyPrice;
-
-
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getName() {
@@ -88,7 +86,6 @@ public class BuildingPayload {
         this.coeff_prod = coeff_prod;
     }
 
-
     public Integer getIronPrice() {
         return ironPrice;
     }
@@ -110,7 +107,6 @@ public class BuildingPayload {
     }
 
     public void setHydrogenPrice(Integer hydrogenPrice) {
-
         this.hydrogenPrice = hydrogenPrice;
     }
 
