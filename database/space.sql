@@ -17,7 +17,9 @@ SELECT * FROM player;
 
 show TABLES;
 
-SELECT * FROM ressource;
+SELECT * FROM building;
+
+describe clan;
 
 -- drop DATABASE `space`;
 

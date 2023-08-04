@@ -6,158 +6,145 @@ INSERT INTO
         type,
         description,
         level,
-        time_building,
         iron_price,
         hydrogen_price,
         diamond_price,
-        price_energy,
-        building_size,
-        coeff_prod
+        energy_price,
+        coeff_prod,
+        is_build
     )
 VALUES (
         'Mine de fer',
         'Récolte',
         "Une mine permettant de récolter du fer",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         "Extracteur d'Hydrogène",
         'Récolte',
         "Un extracteur permettant d'obtenir de l'hydrogène à partir de n'importe quelle atmosphère",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Mine de Diamant',
         'Récolte',
         'Une mine permettant de récolter du diamant',
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Centrale électrique',
         'Récolte',
         "Produit de l'énergie grâce au soleil",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Hangar de fer',
         'Récolte',
         'Permet de stocker plus de fer',
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         "Hangar d'hydrogène",
         'Récolte',
         "Permet de stocker plus d'hydrogène",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Hangar de diamants',
         'Récolte',
         'Permet de stocker plus de diamant',
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Foreuse',
         'Récolte',
         "Permet d'augmenter la production de fer, hydrogène et diamant de x %",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Usine de robots',
         'Production',
         'Construit des robots qui à leur tour accélèrent la vitesse de construction des bâtiments et des vaisseaux',
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Chantier spatial',
         'Production',
         "Partez dans l'espace ! Débloque le chantier spatial.",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Laboratoire',
         'Production',
         "Un laboratoire très bien équipé permettant de débloquer l'accès aux recherches",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     ), (
         'Terraformeur',
         'Production',
         "Rend la planète habitable, permettant d'augmenter sa capacité",
         0,
-        1,
         200,
         200,
         200,
         0,
-        2,
-        1
+        1,
+        true
     );
 
 INSERT INTO

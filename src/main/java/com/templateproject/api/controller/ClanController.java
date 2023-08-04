@@ -2,6 +2,7 @@ package com.templateproject.api.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,31 +16,34 @@ import com.templateproject.api.service.ClanService;
 
 import com.templateproject.api.controller.payload.Payload;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
-//@RequestMapping("/clans")
+// @RequestMapping("/clans")
 
 public class ClanController {
 
-   private final ClanService clanService;
+    private final ClanService clanService;
 
-   ClanController(ClanService clanService) {
+    ClanController(ClanService clanService) {
         this.clanService = clanService;
     }
-//CREATE
+
+    // CREATE
     @PostMapping("/clan")
     public ResponseEntity<Payload> addClan(@RequestBody Clan clan) {
+        System.out.println("Clan " + clan.getAdminNickname() + " " + clan.getClanName() + " " + clan.getClanTag());
         var payload = new Payload();
         try {
-            clanService.add(clan);
-            payload.setData(clan);
+            payload.setData(clanService.add(clan));
             payload.setMessage(clan.getClanName() + " added");
-            return new ResponseEntity<>(payload ,HttpStatus.CREATED);
+            return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
-                return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//RESEARCH ALL 
+
+    // RESEARCH ALL
     @GetMapping("/clan")
     public ResponseEntity<Payload> getAllClan() {
         var payload = new Payload();
@@ -53,13 +57,14 @@ public class ClanController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//REEARCH ONE 
+
+    // RESEARCH ONE
     @GetMapping("/clan/{name}")
     public ResponseEntity<Payload> getClanByTag(@PathVariable("name") String name) {
         var payload = new Payload();
         try {
             var clan = clanService.getByName(name);
-            payload.setMessage("Get clan by name '" + name +"'");
+            payload.setMessage("Get clan by name '" + name + "'");
             payload.setData(clan);
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
@@ -68,7 +73,8 @@ public class ClanController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//UPDATE ONE
+
+    // UPDATE ONE
     @PutMapping("/clan/{name}")
     public ResponseEntity<Payload> updateClan(@PathVariable("name") String name, @RequestBody Clan clan) {
         var payload = new Payload();
@@ -77,20 +83,21 @@ public class ClanController {
             payload.setData(clan);
             payload.setMessage("Clan updated");
             return new ResponseEntity<>(payload, HttpStatus.OK);
-        } catch (Exception e) { 
+        } catch (Exception e) {
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//DELETE ONE 
+
+    // DELETE ONE
     @DeleteMapping("/clan/{name}")
     public ResponseEntity<Payload> deleteClan(@PathVariable("name") String name) {
         var payload = new Payload();
         try {
             clanService.delete(name);
-            payload.setMessage("'" + name+ "' deleted");
+            payload.setMessage("'" + name + "' deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);
-        } catch (Exception e) { 
+        } catch (Exception e) {
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
