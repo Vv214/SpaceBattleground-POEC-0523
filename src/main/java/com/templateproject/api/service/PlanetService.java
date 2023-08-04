@@ -73,7 +73,7 @@ public class PlanetService {
   //RESARCH ALL PLANET by playerID 
     public List<PlanetPayload> getAllPlanets(Integer playerID) {
     var planetPayload = new ArrayList<PlanetPayload>();
-    List<Planet> planetList = planetRepository.findAll();
+    List<Planet> planetList = planetRepository.findAllByPlayerID(playerID);
     for (var planet : planetList) {
 
       var newPlanet = new PlanetPayload();
