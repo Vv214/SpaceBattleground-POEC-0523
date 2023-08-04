@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.controller.payload.Payload;
@@ -16,7 +17,8 @@ import com.templateproject.api.entity.Building;
 import com.templateproject.api.service.BuildingService;
 
 @RestController
-public class BuildingController {
+@CrossOrigin(origins="http://localhost:4200")
+public class BuildingController  {
 
     private BuildingService buildingService;
 

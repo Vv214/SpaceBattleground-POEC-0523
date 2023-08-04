@@ -98,7 +98,7 @@ public class ShipService {
     return ship;
   }
   //UPDATE ONE
-  public void updateShip(
+  public void updateShip (
      String shipTarget, 
     String name,
     String type,
@@ -112,7 +112,9 @@ public class ShipService {
     Integer speed,
     Integer capacity,
     Integer quantity
+
     ) throws Exception {
+
     var shipUpdate = shipRepository.findByName(shipTarget); 
      
     if (shipUpdate == null) {
