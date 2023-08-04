@@ -18,14 +18,14 @@ import com.templateproject.api.controller.payload.Payload;
 @RestController
 //@RequestMapping("/clans")
 
-public class ClanControler {
+public class ClanController {
 
    private final ClanService clanService;
 
-   ClanControler(ClanService clanService) {
+   ClanController(ClanService clanService) {
         this.clanService = clanService;
     }
-
+//CREATE
     @PostMapping("/clan")
     public ResponseEntity<Payload> addClan(@RequestBody Clan clan) {
         var payload = new Payload();
@@ -39,7 +39,7 @@ public class ClanControler {
                 return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//RESEARCH ALL 
     @GetMapping("/clan")
     public ResponseEntity<Payload> getAllClan() {
         var payload = new Payload();
@@ -53,7 +53,7 @@ public class ClanControler {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//REEARCH ONE 
     @GetMapping("/clan/{name}")
     public ResponseEntity<Payload> getClanByTag(@PathVariable("name") String name) {
         var payload = new Payload();
@@ -68,7 +68,7 @@ public class ClanControler {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//UPDATE ONE
     @PutMapping("/clan/{name}")
     public ResponseEntity<Payload> updateClan(@PathVariable("name") String name, @RequestBody Clan clan) {
         var payload = new Payload();
@@ -82,7 +82,7 @@ public class ClanControler {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//DELETE ONE 
     @DeleteMapping("/clan/{name}")
     public ResponseEntity<Payload> deleteClan(@PathVariable("name") String name) {
         var payload = new Payload();

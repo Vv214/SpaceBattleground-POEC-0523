@@ -9,9 +9,9 @@ import jakarta.persistence.Id;
 @Entity
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false, length = 50)
     private String nickname;
     @Column(nullable = true)
     private String email;

@@ -1,5 +1,7 @@
 package com.templateproject.api.service;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.repository.RessourceRepository;
@@ -13,7 +15,16 @@ public class RessourceService {
   }
 
   public Object getAll() {
-    return ressourceRepository.findAll();
+    var diamond = getByName("diamond");
+    var energy = getByName("energy");
+    var iron = getByName("iron");
+    var hydrogene = getByName("hydrogene");
+    var ressources = new HashMap<String, Object>();
+    ressources.put("diamond", diamond);
+    ressources.put("energy", energy);
+    ressources.put("iron", iron);
+    ressources.put("hydrogene", hydrogene);
+    return ressources;
   }
 
   public Ressource update(String name, Ressource ressource) {
@@ -24,8 +35,35 @@ public class RessourceService {
     return ressourceRepository.save(currentRessource);
   }
 
-  public Ressource getByName(String name) {
-    return ressourceRepository.findByName(name);
+  // RESEARCH ONE
+  public HashMap<String, Object> getByName(String name) {
+    var ressource = new HashMap<String, Object>();
+    var ressourceEntity = ressourceRepository.findByName(name);
+    if (ressourceEntity == null) {
+      return ressource;
+    }
+    ressource.put("quantity", ressourceEntity.getQuantity());
+    ressource.put("maxStock", ressourceEntity.getMaxStock());
+    return ressource;
+  }
+
+  // UPDATE ONE
+  public void update(String nameRessourceToUpdate, String name, Integer quantity, Integer maxStock) throws Exception {
+    var ressource = ressourceRepository.findByName(nameRessourceToUpdate);
+
+    if (ressource == null) {
+      throw new Exception(nameRessourceToUpdate + "dosen't exist");
+    }
+    if (name != null) {
+      ressource.setName(name);
+    }
+    if (quantity != 0) {
+      ressource.setQuantity(quantity);
+    }
+    if (maxStock != 0) {
+      ressource.setMaxStock(maxStock);
+    }
+    ressourceRepository.save(ressource);
   }
 
   public void delete(String name) {
