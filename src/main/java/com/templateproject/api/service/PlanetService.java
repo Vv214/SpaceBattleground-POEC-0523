@@ -10,15 +10,19 @@ import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.PlanetPayload;
 import com.templateproject.api.entity.Planet;
+import com.templateproject.api.entity.Player;
 import com.templateproject.api.repository.PlanetRepository;
+import com.templateproject.api.repository.PlayerRepository;
 
 @Service
 public class PlanetService {
 
   private final PlanetRepository planetRepository;
+  private final PlayerRepository playerRepository;
 
-  public PlanetService(PlanetRepository planetRepository) {
+  public PlanetService(PlanetRepository planetRepository, PlayerRepository playerRepository) {
     this.planetRepository = planetRepository;
+    this.playerRepository = playerRepository;
   }
 
   // CREATE
@@ -27,13 +31,23 @@ public class PlanetService {
       boolean isColonised,
       Integer positionX,
       Integer positionY,
-      Integer planetSize) {
+      Integer planetSize,
+      Integer playerID) {
+      
+    Player player = null; 
+    
+    if (playerID != null){    
+      player = playerRepository.findById(playerID).get();    
+    }    
+
     var planet = new Planet(
         name,
         isColonised,
         positionX,
         positionY,
-        planetSize);
+        planetSize,
+        player);
+        
     planetRepository.save(planet);
   }
 
@@ -100,6 +114,11 @@ public class PlanetService {
   public ResponseEntity<String> delete(String name) {
     planetRepository.deleteByName(name);
     return new ResponseEntity<String>("Planet successfull delete", HttpStatus.OK);
+
+  }
+
+  //Serv. CREATE PLANET :
+  public void CreatePlanet(){
 
   }
 

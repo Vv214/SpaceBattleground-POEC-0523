@@ -16,6 +16,8 @@ import com.templateproject.api.controller.payload.PlanetPayload;
 import com.templateproject.api.entity.Planet;
 import com.templateproject.api.service.PlanetService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping(path = "/planet")
 public class PlanetController {
@@ -28,16 +30,17 @@ public class PlanetController {
 
   // CREATE
   @PostMapping("/planet")
-  public ResponseEntity<PlanetPayload> addNewPlanet(@RequestBody Planet planet) {
+  public ResponseEntity<PlanetPayload> addNewPlanet(HttpServletRequest request, @RequestBody Planet planet) {
     var payload = new PlanetPayload();
     try {
-
+      Integer playerID = (Integer)request.getAttribute("player_id");
       planetService.addNewPlanet(
           planet.getName(),
           planet.isColonised(),
           planet.getPlanetSize(),
           planet.getPositionX(),
-          planet.getPositionY());
+          planet.getPositionY(), 
+          playerID);
 
       payload.setMessage(planet.getName() + "created");
       return new ResponseEntity<>(payload, HttpStatus.CREATED);
