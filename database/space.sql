@@ -17,4 +17,8 @@ SELECT * FROM player;
 
 show TABLES;
 
+SELECT * FROM ressource;
+
 -- drop DATABASE `space`;
+
+-- DELETE FROM `ressource` WHERE `id` = '13';
