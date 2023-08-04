@@ -102,7 +102,7 @@ public class ShipService {
     return ship;
   }
   //UPDATE ONE
-  public void updateShip(
+  public void updateShip (
      String shipTarget, 
     String name,
     String type,
@@ -117,14 +117,16 @@ public class ShipService {
     Integer capacity,
     Integer size,
     Integer quantity
-    ) {
+    ) 
+    throws Exception
+    {
     var shipUpdate = shipRepository.findByName(shipTarget); 
      
     if (shipUpdate == null) {
             throw new Exception(shipTarget + "doesn't exist"); // TODO make our Exception (404 - Not found)
         }
         if (name != null) {
-            shipUpdate.setNickname();
+            shipUpdate.setName(name);
         }
         if (type != null) {
             shipUpdate.setType(type);
