@@ -32,7 +32,6 @@ public class RessourceController {
         try {
 
             ressourceService.add(ressource);
-
             payload.setData(ressource);
             payload.setMessage(ressource.getName() + " added");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
