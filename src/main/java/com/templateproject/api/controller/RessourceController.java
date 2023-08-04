@@ -19,32 +19,29 @@ import com.templateproject.api.service.RessourceService;
 
 public class RessourceController {
 
-   private final RessourceService ressourceService;
+    private final RessourceService ressourceService;
 
-   RessourceController(RessourceService ressourceService) {
+    RessourceController(RessourceService ressourceService) {
         this.ressourceService = ressourceService;
     }
-//CREATE
+
+    // CREATE
     @PostMapping("/ressource")
     public ResponseEntity<Payload> addRessource(@RequestBody Ressource ressource) {
         var payload = new Payload();
         try {
 
-            ressourceService.add(
-                ressource.getName(),
-                ressource.getQuantity(),
-                ressource.getMaxStock()
-            );
-
+            ressourceService.add(ressource);
             payload.setData(ressource);
             payload.setMessage(ressource.getName() + " added");
-            return new ResponseEntity<>(payload ,HttpStatus.CREATED);
+            return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
-                return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//RESEARCH ALL
+
+    // RESEARCH ALL
     @GetMapping("/ressource")
     public ResponseEntity<Payload> getAllRessource() {
         var payload = new Payload();
@@ -58,13 +55,14 @@ public class RessourceController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//RESEARCH ONE
+
+    // RESEARCH ONE
     @GetMapping("/ressource/{name}")
     public ResponseEntity<Payload> getRessourceByTag(@PathVariable("name") String name) {
         var payload = new Payload();
         try {
             // var ressource = ressourceService.getByName(name);
-            payload.setMessage("Get ressource by name '" + name +"'");
+            payload.setMessage("Get ressource by name '" + name + "'");
             payload.setData(ressourceService.getByName(name));
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
@@ -73,36 +71,38 @@ public class RessourceController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//UPDATE ONE
+
+    // UPDATE ONE
     @PutMapping("/ressource/{name}")
-    public ResponseEntity<RessourcePayload> updateRessource(@PathVariable String name, @RequestBody Ressource ressource) {
+    public ResponseEntity<RessourcePayload> updateRessource(@PathVariable String name,
+            @RequestBody Ressource ressource) {
         var payload = new RessourcePayload();
         try {
             payload.setName(ressource.getName());
             payload.setQuantity(ressource.getQuantity());
             payload.setMaxStock(ressource.getMaxStock());
-            
+
             ressourceService.update(name, payload);
-            
+
             payload.setMessage("Ressource updated");
             return new ResponseEntity<>(payload, HttpStatus.OK);
-        } catch (Exception e) { 
+        } catch (Exception e) {
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//DELETE ONE
+
+    // DELETE ONE
     @DeleteMapping("/ressource/{name}")
     public ResponseEntity<Payload> deleteRessource(@PathVariable("name") String name) {
         var payload = new Payload();
         try {
             ressourceService.delete(name);
-            payload.setMessage("'" + name+ "' deleted");
+            payload.setMessage("'" + name + "' deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);
-        } catch (Exception e) { 
+        } catch (Exception e) {
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
-
