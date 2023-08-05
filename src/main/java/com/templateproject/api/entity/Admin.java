@@ -32,6 +32,26 @@ public class Admin {
     private boolean addToClan;
     private boolean deleteToClan;
     
+    public Admin(){}
+
+    public Admin(String name, boolean createPlayer, boolean removPlayer, boolean createPlanet, boolean removePlanet,
+            boolean giveRessources, boolean removeRessources, boolean createBuilding, boolean removeBuilding,
+            boolean giveClan, boolean removeClan, boolean addToClan, boolean deleteToClan) {
+       
+                this.name = name;
+        this.createPlayer = createPlayer;
+        this.removPlayer = removPlayer;
+        this.createPlanet = createPlanet;
+        this.removePlanet = removePlanet;
+        this.giveRessources = giveRessources;
+        this.removeRessources = removeRessources;
+        this.createBuilding = createBuilding;
+        this.removeBuilding = removeBuilding;
+        this.giveClan = giveClan;
+        this.removeClan = removeClan;
+        this.addToClan = addToClan;
+        this.deleteToClan = deleteToClan;
+    }
     public String getName() {
         return name;
     }

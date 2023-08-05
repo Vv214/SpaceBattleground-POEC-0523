@@ -18,7 +18,8 @@ import com.templateproject.api.service.BuildingService;
 
 // @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-public class BuildingController {
+@CrossOrigin(origins="http://localhost:4200")
+public class BuildingController  {
 
     private final BuildingService buildingService;
 

@@ -13,6 +13,8 @@ FLUSH PRIVILEGES;
 
 Use `space`;
 
+show TABLES;
+
 SELECT * FROM player;
 
 show TABLES;
