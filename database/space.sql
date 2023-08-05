@@ -25,4 +25,6 @@ SELECT * FROM building;
 
 SELECT * FROM technologie;
 
+DESCRIBE technologie;
+
 SELECT * FROM planet;

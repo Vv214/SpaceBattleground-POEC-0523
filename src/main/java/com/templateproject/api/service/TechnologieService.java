@@ -21,29 +21,30 @@ public class TechnologieService {
     public TechnologieService(TechnologieRepository technologieRepository) {
         this.technologieRepository = technologieRepository;
     }
-//CREATE ONE
+
+    // CREATE ONE
     public void add(
-            
-        String name,
-        String description, 
-        Integer ironPrice,
-        Integer diamondPrice,
-        Integer hydrogenPrice,
-        Integer energyPrice,
-        Integer level, 
-        float coef_modifier,
-        Date timeSearch,
-        Date timeToStart,
-        boolean isDone){
+
+            String name,
+            String description,
+            Integer ironPrice,
+            Integer diamondPrice,
+            Integer hydrogenPrice,
+            Integer energyPrice,
+            Integer level,
+            float coef_modifier,
+            Date timeSearch,
+            Date timeToStart,
+            boolean isDone) {
 
         var technologie = new Technologie(
                 name,
-                description, 
+                description,
                 ironPrice,
                 diamondPrice,
                 hydrogenPrice,
                 energyPrice,
-                level, 
+                level,
                 coef_modifier,
                 timeSearch,
                 timeToStart,
@@ -52,7 +53,7 @@ public class TechnologieService {
         technologieRepository.save(technologie);
     }
 
-    //RESEARCH ALL
+    // RESEARCH ALL
     public List<TechnologiePayload> getTechnologies() {
         var techPayload = new ArrayList<TechnologiePayload>();
         List<Technologie> technologieList = technologieRepository.findAll();
@@ -67,11 +68,10 @@ public class TechnologieService {
             newTechnologie.setDiamondPrice(technologie.getDiamondPrice());
             newTechnologie.setHydrogenPrice(technologie.getHydrogenPrice());
             newTechnologie.setEnergyPrice(technologie.getEnergyPrice());
-            
-            
+
             newTechnologie.setLevel(technologie.getLevel());
             newTechnologie.setCoef_modifier(technologie.getCoef_modifier());
-            
+
             newTechnologie.setTimeSearch(technologie.getTimeSearch());
             newTechnologie.setTimeToStart(technologie.getTimeToStart());
 
@@ -81,28 +81,30 @@ public class TechnologieService {
         }
         return techPayload;
     }
-    //RESEARCH ONE
-     public HashMap<String, Object> getTechnologie(String name){
+
+    // RESEARCH ONE
+    public HashMap<String, Object> getTechnologie(String name) {
         var technologie = new HashMap<String, Object>();
 
         var technologieEntity = technologieRepository.findByName(name);
-            technologie.put("Description(s): ",technologieEntity.getDescription());
-                        
-            technologie.put("Iron Price: ",technologieEntity.getIronPrice());
-            technologie.put("Diamond Price: ",technologieEntity.getDiamondPrice());
-            technologie.put("Hydrogen Price: ",technologieEntity.getHydrogenPrice());
-            technologie.put("Energy Price: ",technologieEntity.getEnergyPrice());
-          
-            technologie.put("Level: ",technologieEntity.getLevel());
-            technologie.put("Coefficient Mood: ",technologieEntity.getCoef_modifier());
-           
-            technologie.put("Time to Research: ",technologieEntity.getTimeSearch());
-            technologie.put("Date to Strat Research: ",technologieEntity.getTimeToStart());
+        if (technologieEntity == null) {
+            return technologie;
+        }
+        technologie.put("name", technologieEntity.getName());
+        technologie.put("description", technologieEntity.getDescription());
+        technologie.put("ironPrice", technologieEntity.getIronPrice());
+        technologie.put("diamondPrice", technologieEntity.getDiamondPrice());
+        technologie.put("hydrogenPrice", technologieEntity.getHydrogenPrice());
+        technologie.put("energyPrice", technologieEntity.getEnergyPrice());
+        technologie.put("level", technologieEntity.getLevel());
+        technologie.put("coef_modifier", technologieEntity.getCoef_modifier());
+        technologie.put("timeSearch", technologieEntity.getTimeSearch());
+        technologie.put("timeToStart", technologieEntity.getTimeToStart());
+        technologie.put("isDone", technologieEntity.isDone());
+        return technologie;
+    }
 
-            technologie.put("Technologie Statut",technologieEntity.isDone());
-            return technologie; 
-     }
-    //UPDATE ONE
+    // UPDATE ONE
     public void updateTechnologie(String name, TechnologiePayload technologie) throws Exception {
         var technologieToUpdate = technologieRepository.findByName(name);
 
@@ -150,12 +152,10 @@ public class TechnologieService {
 
     }
 
-
-//DELETE ONE
+    // DELETE ONE
     public ResponseEntity<String> delete(String name) {
         technologieRepository.deleteByName(name);
         return new ResponseEntity<String>("Player successfully deleted!", HttpStatus.OK);
     }
-
 
 }
