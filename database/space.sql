@@ -13,6 +13,8 @@ FLUSH PRIVILEGES;
 
 Use `space`;
 
+show TABLES;
+
 SELECT * FROM player;
 
 SELECT * FROM ressource;
@@ -22,5 +24,7 @@ SELECT * FROM clan;
 SELECT * FROM building;
 
 SELECT * FROM technologie;
+
+DESCRIBE technologie;
 
 SELECT * FROM planet;

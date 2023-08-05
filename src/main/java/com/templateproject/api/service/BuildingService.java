@@ -7,19 +7,38 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.entity.Building;
 import com.templateproject.api.repository.BuildingRepository;
 
+@Service
 public class BuildingService {
   private final BuildingRepository buildingRepository;
 
   public BuildingService(BuildingRepository buildingRepository) {
+    System.out.println("je suis dans le cosntr");
     this.buildingRepository = buildingRepository;
+
+  }
+
+  public Object getAll() {
+    var laboratory = getBuilding("Laboratoire");
+    var robotFactory = getBuilding("Usine de robots");
+    var shipyard = getBuilding("Chantier spatial");
+    var drill = getBuilding("Terraformeur");
+    var buildings = new HashMap<String, Object>();
+    buildings.put("laboratory", laboratory);
+    buildings.put("Usine de robots", robotFactory);
+    buildings.put("Chantier spatial", shipyard);
+    buildings.put("Terraformeur", drill);
+    System.out.println(buildings + " building back");
+    return buildings;
   }
 
   // CREATE
+
   public void add(String name,
       String type,
       Integer level,
@@ -32,11 +51,11 @@ public class BuildingService {
       Date timeBuilding,
       Date timeToStart) {
     // Todo check params
-    var building = new Building(name, type, level, description, coeff_prod,
-        ironPrice, diamondPrice, hydrogenPrice, energyPrice,
-        timeBuilding, timeToStart);
+    // var building = new Building(name, type, level, description, coeff_prod,
+    // ironPrice, diamondPrice, hydrogenPrice, energyPrice,
+    // timeBuilding, timeToStart);
 
-    buildingRepository.save(building);
+    // buildingRepository.save(building);
 
   }
 
@@ -70,13 +89,17 @@ public class BuildingService {
   }
 
   // RESEARCH ONE
+
   public HashMap<String, Object> getBuilding(String name) {
     var building = new HashMap<String, Object>();
 
     var buildingEntity = buildingRepository.findByName(name);
-    building.put("Name: ", buildingEntity.getName());
-    building.put("type: ", buildingEntity.getType());
-    building.put("Level: ", buildingEntity.getLevel());
+    if (buildingEntity == null) {
+      return building;
+    }
+    building.put("name", buildingEntity.getName());
+    building.put("type", buildingEntity.getType());
+    building.put("level", buildingEntity.getLevel());
     building.put("Description: ", buildingEntity.getDescription());
     building.put("Production Coefficient: ", buildingEntity.getCoeff_prod());
     building.put("Iron Price: ", buildingEntity.getIronPrice());
@@ -136,6 +159,7 @@ public class BuildingService {
   // DELETE ONE
   public ResponseEntity<String> deleteBuilding(String name) {
     buildingRepository.deleteByName(name);
-    return new ResponseEntity<String>("Player successfully deleted!", HttpStatus.OK);
+    return new ResponseEntity<String>("Player successfully deleted!",
+        HttpStatus.OK);
   }
 }

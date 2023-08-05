@@ -16,6 +16,8 @@ import com.templateproject.api.controller.payload.PlanetPayload;
 import com.templateproject.api.entity.Planet;
 import com.templateproject.api.service.PlanetService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping(path = "/planet")
 public class PlanetController {
@@ -28,18 +30,26 @@ public class PlanetController {
 
   // CREATE
   @PostMapping("/planet")
-  public ResponseEntity<PlanetPayload> addNewPlanet(@RequestBody Planet planet) {
+  public ResponseEntity<PlanetPayload> addNewPlanet(HttpServletRequest request, @RequestBody Planet planet) {
     var payload = new PlanetPayload();
     try {
-
-      planetService.addNewPlanet(
+      Integer playerID = (Integer)request.getAttribute("playerID");
+      System.out.println("Player ID is :" + playerID);
+      var newPlanet = planetService.addNewPlanet(
           planet.getName(),
           planet.isColonised(),
           planet.getPlanetSize(),
           planet.getPositionX(),
-          planet.getPositionY());
-
-      payload.setMessage(planet.getName() + "created");
+          planet.getPositionY(), 
+          playerID);
+      payload.set(
+          newPlanet.getName() + " created",
+          newPlanet.getName(),
+          newPlanet.isColonised(),
+          newPlanet.getPlanetSize(),
+          newPlanet.getPositionX(),
+          newPlanet.getPositionY());
+      // payload.setMessage(planet.getName() + " created");
       return new ResponseEntity<>(payload, HttpStatus.CREATED);
 
     } catch (Exception e) {
@@ -50,8 +60,27 @@ public class PlanetController {
   }
 
   // RESEARCH ALL
+  // @GetMapping("/planets")
+  // public ResponseEntity<Payload> getPlanets() {
+  //   var payload = new Payload();
+  //   try {
+  //     payload.setData(planetService.getAllPlanets());
+  //     payload.setMessage("Get all Planets");
+  //     return new ResponseEntity<>(payload, HttpStatus.OK);
+  //   } catch (Exception e) {
+  //     payload.setMessage(e.getMessage());
+  //     payload.setData(null);
+  //     return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+
+  //   }
+
+  // }
+  
+  //RESEARCH ALL PLANET by playerID
   @GetMapping("/planets")
-  public ResponseEntity<Payload> getPlanets() {
+  public ResponseEntity<Payload> getPlanets(HttpServletRequest request) {
+    var playerID = (Integer)request.getAttribute("playerID");
+
     var payload = new Payload();
     try {
       payload.setData(planetService.getAllPlanets());

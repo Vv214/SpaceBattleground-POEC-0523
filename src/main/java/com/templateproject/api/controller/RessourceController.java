@@ -30,7 +30,6 @@ public class RessourceController {
     public ResponseEntity<Payload> addRessource(@RequestBody Ressource ressource) {
         var payload = new Payload();
         try {
-
             ressourceService.add(ressource);
             payload.setData(ressource);
             payload.setMessage(ressource.getName() + " added");
