@@ -54,8 +54,8 @@ public class TechnologieService {
     }
 
     // RESEARCH ALL
-    public List<TechnologiePayload> getTechnologies() {
-        var techPayload = new ArrayList<TechnologiePayload>();
+    public Object getTechnologies() {
+        var techPayload = new HashMap<String, Object>();
         List<Technologie> technologieList = technologieRepository.findAll();
         for (var technologie : technologieList) {
 
@@ -77,7 +77,7 @@ public class TechnologieService {
 
             newTechnologie.setDone(technologie.isDone());
 
-            techPayload.add(newTechnologie);
+            techPayload.put(technologie.getName(), newTechnologie);
         }
         return techPayload;
     }
@@ -87,9 +87,9 @@ public class TechnologieService {
         var technologie = new HashMap<String, Object>();
 
         var technologieEntity = technologieRepository.findByName(name);
-        if (technologieEntity == null) {
-            return technologie;
-        }
+        // if (technologieEntity == null) {
+        // return technologie;
+        // }
         technologie.put("name", technologieEntity.getName());
         technologie.put("description", technologieEntity.getDescription());
         technologie.put("ironPrice", technologieEntity.getIronPrice());
