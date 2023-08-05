@@ -17,7 +17,11 @@ SELECT * FROM player;
 
 show TABLES;
 
+SELECT * FROM clan;
+
 SELECT * FROM building;
+
+SELECT * FROM ressource;
 
 describe clan;
 
