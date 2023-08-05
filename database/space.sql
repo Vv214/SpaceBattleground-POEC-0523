@@ -17,16 +17,12 @@ show TABLES;
 
 SELECT * FROM player;
 
-show TABLES;
+SELECT * FROM ressource;
 
 SELECT * FROM clan;
 
 SELECT * FROM building;
 
-SELECT * FROM ressource;
+SELECT * FROM technologie;
 
-describe clan;
-
--- drop DATABASE `space`;
-
--- DELETE FROM `ressource` WHERE `id` = '13';
+SELECT * FROM planet;
