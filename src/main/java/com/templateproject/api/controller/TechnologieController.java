@@ -17,7 +17,8 @@ public class TechnologieController {
     public TechnologieController(TechnologieService technologieService) {
         this.technologieService = technologieService;
     }
-    // CREATE 
+
+    // CREATE
     @PostMapping("/technologie")
     public ResponseEntity<TechnologiePayload> addTechnologie(@RequestBody Technologie technologie) {
         var payload = new TechnologiePayload();
@@ -25,20 +26,20 @@ public class TechnologieController {
             technologieService.add(
                     technologie.getName(),
                     technologie.getDescription(),
-                    
+
                     technologie.getIronPrice(),
                     technologie.getDiamondPrice(),
                     technologie.getHydrogenPrice(),
                     technologie.getEnergyPrice(),
-                    
+
                     technologie.getLevel(),
                     technologie.getCoef_modifier(),
-                    
+
                     technologie.getTimeSearch(),
                     technologie.getTimeToStart(),
 
                     technologie.isDone());
-            
+
             payload.setMessage(technologie.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -46,29 +47,29 @@ public class TechnologieController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     // RESEARCH ALL
-    @GetMapping("/technologies")
+    @GetMapping("/technologie")
     public ResponseEntity<Payload> getAllTechnoligie() {
         var payload = new Payload();
         try {
             payload.setData(technologieService.getTechnologies());
             payload.setMessage("Get all Technologies");
             return new ResponseEntity<>(payload, HttpStatus.OK);
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             payload.setMessage(e.getMessage());
             payload.setData(null);
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
+
     // RESEARCH ONE
     @GetMapping("/technologie/{name}")
     public ResponseEntity<Payload> getTechnoligieByName(@PathVariable String name) {
         var payload = new Payload();
         try {
-            var technologie = technologieService.getTechnologie(name); 
+            var technologie = technologieService.getTechnologie(name);
             payload.setMessage("Get Technologie by Name '" + name + "'");
             payload.setData(technologie);
             return new ResponseEntity<>(payload, HttpStatus.OK);
@@ -78,13 +79,15 @@ public class TechnologieController {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    //UPDATE ONE
+
+    // UPDATE ONE
     @PutMapping("/technologie/{name}")
-    public ResponseEntity<TechnologiePayload> updateTechnologie(@PathVariable String name, @RequestBody Technologie technologie) {
+    public ResponseEntity<TechnologiePayload> updateTechnologie(@PathVariable String name,
+            @RequestBody Technologie technologie) {
         var payload = new TechnologiePayload();
         try {
-            
-            payload.setName(technologie.getName()); 
+
+            payload.setName(technologie.getName());
             payload.setIronPrice(technologie.getIronPrice());
             payload.setDiamondPrice(technologie.getDiamondPrice());
             payload.setHydrogenPrice(technologie.getHydrogenPrice());
@@ -92,20 +95,21 @@ public class TechnologieController {
             payload.setDescription(technologie.getDescription());
             payload.setLevel(technologie.getLevel());
             payload.setCoef_modifier(technologie.getCoef_modifier());
-            payload.setTimeSearch(technologie.getTimeSearch()); 
+            payload.setTimeSearch(technologie.getTimeSearch());
             payload.setTimeToStart(technologie.getTimeToStart());
-            payload.setDone(technologie.isDone()); 
+            payload.setDone(technologie.isDone());
 
             technologieService.updateTechnologie(name, payload);
-             payload.setMessage("Technologie Update");
-             return new ResponseEntity<>(payload, HttpStatus.OK);
+            payload.setMessage("Technologie Update");
+            return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) { // TODO NOT FOUND && verify all the method
             payload.setMessage(e.getMessage());
-             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
-    //DELETE ONE
+
+    // DELETE ONE
     @DeleteMapping("/technologie/{name}")
     public ResponseEntity<Payload> deleteTechnologie(@PathVariable String name) {
         // TODO set message ?

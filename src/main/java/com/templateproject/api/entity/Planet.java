@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Planet {
@@ -19,15 +21,22 @@ public class Planet {
     private Integer positionY;
     private Integer planetSize;
 
+    //JOINT DECLARATION
+    @ManyToOne
+    @JoinColumn(name = "player_id", nullable = true, referencedColumnName = "id")
+    private Player player;
+
+
     public Planet() {
     };
 
-    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize) {
+    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize, Player player) {
         this.name = name;
         this.isColonised = isColonised;
         this.positionX = positionX;
         this.positionY = positionY;
         this.planetSize = planetSize;
+        this.player = player;
     }
 
     public String getName() {
@@ -68,6 +77,15 @@ public class Planet {
 
     public void setPlanetSize(Integer planetSize) {
         this.planetSize = planetSize;
+    }
+
+    // GETTER & SETTER to JOINT
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
    

@@ -14,7 +14,8 @@ INSERT INTO
         hydrogen_price,
         diamond_price,
         energy_price,
-        coeff_prod
+        coeff_prod,
+        is_build
     )
 VALUES (
         'Mine de fer',
@@ -25,7 +26,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         "Extracteur d'Hydrogène",
         'Récolte',
@@ -35,7 +37,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Mine de Diamant',
         'Récolte',
@@ -45,7 +48,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Centrale électrique',
         'Récolte',
@@ -55,7 +59,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Hangar de fer',
         'Récolte',
@@ -65,7 +70,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         "Hangar d'hydrogène",
         'Récolte',
@@ -75,7 +81,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Hangar de diamants',
         'Récolte',
@@ -85,7 +92,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Foreuse',
         'Récolte',
@@ -95,7 +103,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Usine de robots',
         'Production',
@@ -105,7 +114,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Chantier spatial',
         'Production',
@@ -115,7 +125,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Laboratoire',
         'Production',
@@ -125,7 +136,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     ), (
         'Terraformeur',
         'Production',
@@ -135,7 +147,8 @@ VALUES (
         200,
         200,
         0,
-        1
+        1,
+        true
     );
 
 INSERT INTO
@@ -272,12 +285,13 @@ INSERT INTO
     technologie (
         name,
         description,
-        lvl,
+        level,
         time_search,
+        time_to_start,
         iron_price,
         hydrogen_price,
         diamond_price,
-        price_energy,
+        energy_price,
         is_done,
         coef_modifier
     )
@@ -285,7 +299,8 @@ VALUES (
         'Technologie cargo',
         'Augmente la capacité des vaisseaux de transport',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -296,7 +311,8 @@ VALUES (
         'Réacteur à combustion',
         'Augmente la vitesse des vaisseaux',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -307,7 +323,8 @@ VALUES (
         'Réacteur à impulsion',
         'Augmente beaucoup la vitesse des vaisseaux',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -318,7 +335,8 @@ VALUES (
         'Coques améliorées',
         'Augmente les PV des vaisseaux',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -329,7 +347,8 @@ VALUES (
         'Astrophysique',
         'Augmente le nombre de planètes colonisables',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -340,7 +359,8 @@ VALUES (
         'Technologie Armes à feu',
         'Augmente les dégâts des vaisseaux de combat',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -351,7 +371,8 @@ VALUES (
         'Technologie Armes laser',
         'Augmente beaucoup les dégâts des vaisseaux de combat',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -362,7 +383,8 @@ VALUES (
         'Technologie flotte',
         'Augmente le nombre de flottes',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -373,7 +395,8 @@ VALUES (
         'Technologie plasma',
         'Augmente la production de ressources',
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -384,7 +407,8 @@ VALUES (
         'Technologie énergétique',
         "Augmente la production d'énergie",
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -395,7 +419,8 @@ VALUES (
         'Mine de fer améliorée',
         "Ajoute 10 niveaux d'amélioration",
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -406,7 +431,8 @@ VALUES (
         "Extracteur d'hydrogène amélioré",
         "Ajoute 10 niveaux d'amélioration",
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,
@@ -417,7 +443,8 @@ VALUES (
         'Mine de diamant améliorée',
         "Ajoute 10 niveaux d'amélioration",
         0,
-        1,
+        NOW(),
+        NOW(),
         200,
         200,
         200,

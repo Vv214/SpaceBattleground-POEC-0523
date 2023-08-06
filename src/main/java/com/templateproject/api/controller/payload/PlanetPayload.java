@@ -70,7 +70,15 @@ public class PlanetPayload {
         this.planetSize = planetSize;
     }
 
-    
+    public void set(String message, String name, boolean isColonised, Integer positionX, Integer positionY,
+            Integer planetSize) {
+        this.message = message;
+        this.name = name;
+        this.isColonised = isColonised;
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.planetSize = planetSize;
+    }
     
 
 }

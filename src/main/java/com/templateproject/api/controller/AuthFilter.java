@@ -40,6 +40,7 @@ public class AuthFilter implements Filter {
                     "Origin, Accept, X-Requested-With,Content-Type,Access-Control-Request-Method, Access-Control-Request-Headers");
 
             Integer playerID = authService.findUserIdByToken(token);
+            System.out.println("In filter PLayer ID is :" + playerID);
             if (playerID == null) {
                 response.setHeader("Content-type", "application/json");
                 response.setStatus(401);

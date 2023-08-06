@@ -10,37 +10,70 @@ import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.PlanetPayload;
 import com.templateproject.api.entity.Planet;
+import com.templateproject.api.entity.Player;
 import com.templateproject.api.repository.PlanetRepository;
+import com.templateproject.api.repository.PlayerRepository;
 
 @Service
 public class PlanetService {
 
   private final PlanetRepository planetRepository;
+  private final PlayerRepository playerRepository;
 
-  public PlanetService(PlanetRepository planetRepository) {
+  public PlanetService(PlanetRepository planetRepository, PlayerRepository playerRepository) {
     this.planetRepository = planetRepository;
+    this.playerRepository = playerRepository;
   }
 
   // CREATE
-  public void addNewPlanet(
+  public Planet addNewPlanet(
       String name,
       boolean isColonised,
       Integer positionX,
       Integer positionY,
-      Integer planetSize) {
+      Integer planetSize,
+      Integer playerID) {
+      
+    Player player = null; 
+    
+    if (playerID != null){    
+      player = playerRepository.findById(playerID).get();    
+    }    
+
     var planet = new Planet(
         name,
         isColonised,
         positionX,
         positionY,
-        planetSize);
-    planetRepository.save(planet);
+        planetSize,
+        player);
+        
+    return planetRepository.save(planet);
+    
   }
 
   // RESARCH ALL
   public List<PlanetPayload> getAllPlanets() {
     var planetPayload = new ArrayList<PlanetPayload>();
     List<Planet> planetList = planetRepository.findAll();
+    for (var planet : planetList) {
+
+      var newPlanet = new PlanetPayload();
+
+      newPlanet.setName(planet.getName());
+      newPlanet.setColonised(planet.isColonised());
+      newPlanet.setPositionX(planet.getPositionX());
+      newPlanet.setPositionY(planet.getPositionY());
+      newPlanet.setPlanetSize(planet.getPlanetSize());
+
+      planetPayload.add(newPlanet);
+    }
+    return planetPayload;
+  }
+  //RESARCH ALL PLANET by playerID 
+    public List<PlanetPayload> getAllPlanets(Integer playerID) {
+    var planetPayload = new ArrayList<PlanetPayload>();
+    List<Planet> planetList = planetRepository.findAllByPlayerID(playerID);
     for (var planet : planetList) {
 
       var newPlanet = new PlanetPayload();
@@ -100,6 +133,11 @@ public class PlanetService {
   public ResponseEntity<String> delete(String name) {
     planetRepository.deleteByName(name);
     return new ResponseEntity<String>("Planet successfull delete", HttpStatus.OK);
+
+  }
+
+  //Serv. CREATE PLANET :
+  public void CreatePlanet(){
 
   }
 

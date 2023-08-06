@@ -1,13 +1,18 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Player {
+
+    //FIELS DATA BASE
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,6 +25,11 @@ public class Player {
     @Column(nullable = true)
     private Integer level;
 
+    //JOINT DECLARATION
+    @OneToMany (mappedBy = "player")
+    private List<Planet> planets; 
+
+    //CONSTUCTORS
     public Player() {
         this.level = 1;
     };
@@ -31,6 +41,7 @@ public class Player {
         this.level = 1;
     }
 
+    //GETTERS & SETTERS
     public Player(String nickname, String email, String password, Integer level) {
         this.nickname = nickname;
         this.email = email;
@@ -73,7 +84,7 @@ public class Player {
     public int getLevel() {
         return level;
     }
-
+    
     public void setId(Integer id) {
         this.id = id;
     }
@@ -82,4 +93,13 @@ public class Player {
         this.level = level;
     }
 
+    //GETER & SETTER to JOINT 
+    public List<Planet> getPlanets() {
+        return planets;
+    }
+
+    public void setPlanets(List<Planet> planets) {
+        this.planets = planets;
+    }
+    
 }
