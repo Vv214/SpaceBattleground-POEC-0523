@@ -7,17 +7,35 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.entity.Building;
 import com.templateproject.api.repository.BuildingRepository;
 
+@Service
 public class BuildingService {
   private final BuildingRepository buildingRepository;
 
   public BuildingService(BuildingRepository buildingRepository) {
     this.buildingRepository = buildingRepository;
   }
+
+
+  public Object getAll() {
+    var laboratory = getBuilding("Laboratoire");
+    var robotFactory = getBuilding("Usine de robots");
+    var shipyard = getBuilding("Chantier spatial");
+    var drill = getBuilding("Terraformeur");
+    var buildings = new HashMap<String, Object>();
+    buildings.put("Laboratoire", laboratory);
+    buildings.put("Usine à robots", robotFactory);
+    buildings.put("Chantier spatial", shipyard);
+    buildings.put("Terraformeur", drill);
+    System.out.println(buildings + " building back");
+    return buildings;
+  }
+
 
   // CREATE
   public void add(String name,

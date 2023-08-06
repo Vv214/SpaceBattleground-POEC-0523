@@ -25,11 +25,6 @@ public class BuildingController  {
     public BuildingController(BuildingService buildingService) {
         this.buildingService = buildingService;
     }
-
-    public BuildingController() {
-
-    }
-
     // CREATE
     @PostMapping("/building")
     public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building) {
@@ -57,15 +52,16 @@ public class BuildingController  {
     }
 
     // RESEARCH ALL
-    @GetMapping("/buildings")
+    @GetMapping("/building")
     public ResponseEntity<Payload> getBuildingsList() {
         var payload = new Payload();
+        System.out.println("dans le building back");
         try {
-            payload.setMessage("Get All Buildings");
-            payload.setData(buildingService.getBuildings());
+            //payload.setMessage("Get All Buildings");
+            payload.setData(buildingService.getAll());
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
-            payload.setMessage(e.getMessage());
+            payload.setMessage(e.getMessage() + "ici ");
             payload.setData(null);
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -93,7 +89,7 @@ public class BuildingController  {
     }
 
     // UPDATE ONE
-    @PutMapping("/buildings/{name}")
+    @PutMapping("/building/{name}")
     public ResponseEntity<BuildingPayload> updateBuilding(@PathVariable String name, @RequestBody Building building) {
         var payload = new BuildingPayload();
         try {
