@@ -71,23 +71,23 @@ public class PlanetService {
     return planetPayload;
   }
   //RESARCH ALL PLANET by playerID 
-    public List<PlanetPayload> getAllPlanets(Integer playerID) {
-    var planetPayload = new ArrayList<PlanetPayload>();
-    List<Planet> planetList = planetRepository.findAllByPlayerID(playerID);
-    for (var planet : planetList) {
+  //   public List<PlanetPayload> getAllPlanets(Integer playerID) {
+  //   var planetPayload = new ArrayList<PlanetPayload>();
+  //   List<Planet> planetList = planetRepository.findAllByPlayerID(playerID);
+  //   for (var planet : planetList) {
 
-      var newPlanet = new PlanetPayload();
+  //     var newPlanet = new PlanetPayload();
 
-      newPlanet.setName(planet.getName());
-      newPlanet.setColonised(planet.isColonised());
-      newPlanet.setPositionX(planet.getPositionX());
-      newPlanet.setPositionY(planet.getPositionY());
-      newPlanet.setPlanetSize(planet.getPlanetSize());
+  //     newPlanet.setName(planet.getName());
+  //     newPlanet.setColonised(planet.isColonised());
+  //     newPlanet.setPositionX(planet.getPositionX());
+  //     newPlanet.setPositionY(planet.getPositionY());
+  //     newPlanet.setPlanetSize(planet.getPlanetSize());
 
-      planetPayload.add(newPlanet);
-    }
-    return planetPayload;
-  }
+  //     planetPayload.add(newPlanet);
+  //   }
+  //   return planetPayload;
+  // }
 
   // RESEARCH ONE
   public HashMap<String, Object> getPlanet(String name) {

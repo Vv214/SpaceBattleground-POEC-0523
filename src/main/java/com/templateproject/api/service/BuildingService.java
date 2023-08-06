@@ -23,31 +23,35 @@ public class BuildingService {
 
   }
 
-  public Object getAll() {
+
+
+public Object getAll() {
     var laboratory = getBuilding("Laboratoire");
     var robotFactory = getBuilding("Usine de robots");
     var shipyard = getBuilding("Chantier spatial");
-    var drill = getBuilding("Terraformeur");
+    var terraformer = getBuilding("Terraformeur");
+    var ironMine = getBuilding("Mine de fer");
+    var diamondMine = getBuilding("Mine de Diamant");
+    var hydrogeneMine = getBuilding("Extracteur d'Hydrogène");
+    var energyMine = getBuilding("Centrale électrique");
+    var ironStock = getBuilding("Hangar de fer");
+    var hydrogeneStock = getBuilding("Hangar d'hydrogene");
+    var diamondStock = getBuilding("Hangar de diamants");
+    var drillingMachine = getBuilding("Foreuse");
+
     var buildings = new HashMap<String, Object>();
     buildings.put("laboratory", laboratory);
-    buildings.put("Usine de robots", robotFactory);
-    buildings.put("Chantier spatial", shipyard);
-    buildings.put("Terraformeur", drill);
-    System.out.println(buildings + " building back");
-    return buildings;
-  }
-
-
-  public Object getAll() {
-    var laboratory = getBuilding("Laboratoire");
-    var robotFactory = getBuilding("Usine de robots");
-    var shipyard = getBuilding("Chantier spatial");
-    var drill = getBuilding("Terraformeur");
-    var buildings = new HashMap<String, Object>();
-    buildings.put("Laboratoire", laboratory);
-    buildings.put("Usine à robots", robotFactory);
-    buildings.put("Chantier spatial", shipyard);
-    buildings.put("Terraformeur", drill);
+    buildings.put("robotFactory", robotFactory);
+    buildings.put("shipyard", shipyard);
+    buildings.put("terraformer", terraformer);
+    buildings.put("ironMine", ironMine);
+    buildings.put("diamondMine", diamondMine);
+    buildings.put("hydrogeneMine", hydrogeneMine);
+    buildings.put("ironStock", ironStock);
+    buildings.put("hydrogeneStock", hydrogeneStock);
+    buildings.put("energyMine", energyMine);
+    buildings.put("diamondStock", diamondStock);
+    buildings.put("drillingMachine", drillingMachine);
     System.out.println(buildings + " building back");
     return buildings;
   }
@@ -116,14 +120,14 @@ public class BuildingService {
     building.put("name", buildingEntity.getName());
     building.put("type", buildingEntity.getType());
     building.put("level", buildingEntity.getLevel());
-    building.put("Description: ", buildingEntity.getDescription());
-    building.put("Production Coefficient: ", buildingEntity.getCoeff_prod());
-    building.put("Iron Price: ", buildingEntity.getIronPrice());
-    building.put("Diamond Price: ", buildingEntity.getDiamondPrice());
-    building.put("Hydrogen Price: ", buildingEntity.getHydrogenPrice());
-    building.put("Energy Price: ", buildingEntity.getEnergyPrice());
-    building.put("Time to Build: ", buildingEntity.getTimeBuilding());
-    building.put("Date to Start: ", buildingEntity.getTimeToStart());
+    building.put("description", buildingEntity.getDescription());
+    building.put("coeffProd", buildingEntity.getCoeff_prod());
+    building.put("ironPrice", buildingEntity.getIronPrice());
+    building.put("diamondPrice", buildingEntity.getDiamondPrice());
+    building.put("hydrogenPrice", buildingEntity.getHydrogenPrice());
+    building.put("energyPrice", buildingEntity.getEnergyPrice());
+    building.put("buildTime", buildingEntity.getTimeBuilding());
+    building.put("dateStart", buildingEntity.getTimeToStart());
 
     return building;
   }
