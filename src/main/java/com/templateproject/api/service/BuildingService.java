@@ -18,7 +18,7 @@ public class BuildingService {
   private final BuildingRepository buildingRepository;
 
   public BuildingService(BuildingRepository buildingRepository) {
-    System.out.println("je suis dans le cosntr");
+    // System.out.println("je suis dans le cosntr");
     this.buildingRepository = buildingRepository;
 
   }
@@ -27,12 +27,29 @@ public class BuildingService {
     var laboratory = getBuilding("Laboratoire");
     var robotFactory = getBuilding("Usine de robots");
     var shipyard = getBuilding("Chantier spatial");
-    var drill = getBuilding("Terraformeur");
+    var terraformer = getBuilding("Terraformeur");
+    var ironMine = getBuilding("Mine de fer");
+    var diamondMine = getBuilding("Mine de Diamant");
+    var hydrogeneMine = getBuilding("Extracteur d'Hydrogène");
+    var energyMine = getBuilding("Centrale électrique");
+    var ironStock = getBuilding("Hangar de fer");
+    var hydrogeneStock = getBuilding("Hangar d'hydrogene");
+    var diamondStock = getBuilding("Hangar de diamants");
+    var drillingMachine = getBuilding("Foreuse");
+
     var buildings = new HashMap<String, Object>();
     buildings.put("laboratory", laboratory);
-    buildings.put("Usine de robots", robotFactory);
-    buildings.put("Chantier spatial", shipyard);
-    buildings.put("Terraformeur", drill);
+    buildings.put("robotFactory", robotFactory);
+    buildings.put("shipyard", shipyard);
+    buildings.put("terraformer", terraformer);
+    buildings.put("ironMine", ironMine);
+    buildings.put("diamondMine", diamondMine);
+    buildings.put("hydrogeneMine", hydrogeneMine);
+    buildings.put("ironStock", ironStock);
+    buildings.put("hydrogeneStock", hydrogeneStock);
+    buildings.put("energyMine", energyMine);
+    buildings.put("diamondStock", diamondStock);
+    buildings.put("drillingMachine", drillingMachine);
     System.out.println(buildings + " building back");
     return buildings;
   }
