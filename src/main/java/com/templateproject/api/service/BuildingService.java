@@ -32,11 +32,11 @@ public Object getAll() {
     var terraformer = getBuilding("Terraformeur");
     var ironMine = getBuilding("Mine de fer");
     var diamondMine = getBuilding("Mine de Diamant");
-    var hydrogeneMine = getBuilding("Extracteur d'Hydrogène");
+    var hydrogenMine = getBuilding("Extracteur d'Hydrogène");
     var energyMine = getBuilding("Centrale électrique");
-    var ironStock = getBuilding("Hangar de fer");
-    var hydrogeneStock = getBuilding("Hangar d'hydrogene");
-    var diamondStock = getBuilding("Hangar de diamants");
+    var ironStockage = getBuilding("Hangar de fer");
+    var hydrogenStockage = getBuilding("Hangar d'hydrogene");
+    var diamondStockage = getBuilding("Hangar de diamants");
     var drillingMachine = getBuilding("Foreuse");
 
     var buildings = new HashMap<String, Object>();
@@ -46,11 +46,11 @@ public Object getAll() {
     buildings.put("terraformer", terraformer);
     buildings.put("ironMine", ironMine);
     buildings.put("diamondMine", diamondMine);
-    buildings.put("hydrogeneMine", hydrogeneMine);
-    buildings.put("ironStock", ironStock);
-    buildings.put("hydrogeneStock", hydrogeneStock);
+    buildings.put("hydrogenMine", hydrogenMine);
     buildings.put("energyMine", energyMine);
-    buildings.put("diamondStock", diamondStock);
+    buildings.put("ironStockage", ironStockage);
+    buildings.put("hydrogenStockage", hydrogenStockage);
+    buildings.put("diamondStockage", diamondStockage);
     buildings.put("drillingMachine", drillingMachine);
     System.out.println(buildings + " building back");
     return buildings;
@@ -68,6 +68,7 @@ public Object getAll() {
       Integer diamondPrice,
       Integer hydrogenPrice,
       Integer energyPrice,
+      boolean isBuild,
       Date timeBuilding,
       Date timeToStart) {
     // Todo check params
@@ -99,6 +100,8 @@ public Object getAll() {
       newBuilding.setHydrogenPrice(building.getHydrogenPrice());
       newBuilding.setEnergyPrice(building.getEnergyPrice());
 
+      newBuilding.setIsBuild(building.getIsBuild());
+
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       newBuilding.setTimeToStart(building.getTimeToStart());
 
@@ -126,6 +129,7 @@ public Object getAll() {
     building.put("diamondPrice", buildingEntity.getDiamondPrice());
     building.put("hydrogenPrice", buildingEntity.getHydrogenPrice());
     building.put("energyPrice", buildingEntity.getEnergyPrice());
+    building.put("isBuild", buildingEntity.getIsBuild());
     building.put("buildTime", buildingEntity.getTimeBuilding());
     building.put("dateStart", buildingEntity.getTimeToStart());
 
@@ -166,6 +170,9 @@ public Object getAll() {
     if (building.getEnergyPrice() != 0) {
       buildingToUpdate.setEnergyPrice(building.getEnergyPrice());
     }
+    if (building.getIsBuild() != null) {
+      buildingToUpdate.setIsBuild(building.getIsBuild());
+    }
     if (building.getTimeBuilding() != null) {
       buildingToUpdate.setTimeBuilding(building.getTimeBuilding());
     }
@@ -179,7 +186,7 @@ public Object getAll() {
   // DELETE ONE
   public ResponseEntity<String> deleteBuilding(String name) {
     buildingRepository.deleteByName(name);
-    return new ResponseEntity<String>("Player successfully deleted!",
+    return new ResponseEntity<String>("Building successfully deleted!",
         HttpStatus.OK);
   }
 }
