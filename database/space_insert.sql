@@ -1,4 +1,8 @@
+-- Active: 1690547072753@@127.0.0.1@3306@space
+
 USE space;
+
+DROP space;
 
 INSERT INTO
     building (
@@ -450,5 +454,54 @@ VALUES (
     );
 
 insert into
-    ressource (name, quantity, max_stock)
-values ('diamond', 42, 250), ('iron', 25, 470), ('hydrogene', 258, 579), ('energy', 135, 258);
+    ressource (id, name, quantity, max_stock)
+values (1, 'diamond', 42, 250), (2, 'iron', 25, 470), (3, 'hydrogene', 258, 579), (4, 'energy', 135, 258);
+
+insert into
+    planet (
+        name,
+        is_colonised,
+        positionx,
+        positiony,
+        planet_size
+    )
+values ("Cygnus", true, 1, 1, 100), ("Elysium", false, 2, 6, 500), ("Nova Prime", false, 3, 17, 500), ("Arkanis", true, 1, 12, 100), ("Umbra", false, 4, 19, 50), ("Nox", false, 5, 18, 50), ("Eclipsia", false, 5, 16, 50), ("Zephyria", false, 12, 19, 100), ("Pandora", false, 17, 17, 500), ("Aquilon", false, 20, 20, 100), ("Alpha", false, 18, 14, 100), ("Titanis", false, 13, 19, 500), ("Titanis-9", true, 10, 19, 100), ("Solaris", false, 8, 8, 100), ("Edenia", false, 2, 6, 500), ("Xerion", true, 2, 3, 100), ("Nereida", false, 5, 3, 50), ("Aetheria", false, 6, 2, 500), ("Lyra", false, 11, 2, 100), ("Terra Nova", true, 12, 6, 500), ("Rhea", false, 14, 6, 50), ("Seren", false, 18, 1, 500);
+
+insert into
+    clan (
+        clan_name,
+        clan_tag,
+        level,
+        current_number_players,
+        number_max_players,
+        admin_nickname
+    )
+values (
+        "Solarium",
+        "SOL",
+        10,
+        12,
+        50,
+        "Thane"
+    ), (
+        "Les Héros d'Aquilon",
+        "AQU",
+        25,
+        8,
+        50,
+        "Tiberius"
+    ), (
+        "Lunarium",
+        "LUN",
+        10,
+        10,
+        50,
+        "Nyx"
+    ), (
+        "Empire Galactique d'Orion",
+        "EGO",
+        99,
+        50,
+        50,
+        "Alzuran"
+    );

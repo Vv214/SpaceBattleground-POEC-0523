@@ -23,7 +23,9 @@ public class BuildingService {
 
   }
 
-  public Object getAll() {
+
+
+public Object getAll() {
     var laboratory = getBuilding("Laboratoire");
     var robotFactory = getBuilding("Usine de robots");
     var shipyard = getBuilding("Chantier spatial");
@@ -53,6 +55,7 @@ public class BuildingService {
     System.out.println(buildings + " building back");
     return buildings;
   }
+
 
   // CREATE
 
@@ -117,14 +120,14 @@ public class BuildingService {
     building.put("name", buildingEntity.getName());
     building.put("type", buildingEntity.getType());
     building.put("level", buildingEntity.getLevel());
-    building.put("Description: ", buildingEntity.getDescription());
-    building.put("Production Coefficient: ", buildingEntity.getCoeff_prod());
-    building.put("Iron Price: ", buildingEntity.getIronPrice());
-    building.put("Diamond Price: ", buildingEntity.getDiamondPrice());
-    building.put("Hydrogen Price: ", buildingEntity.getHydrogenPrice());
-    building.put("Energy Price: ", buildingEntity.getEnergyPrice());
-    building.put("Time to Build: ", buildingEntity.getTimeBuilding());
-    building.put("Date to Start: ", buildingEntity.getTimeToStart());
+    building.put("description", buildingEntity.getDescription());
+    building.put("coeffProd", buildingEntity.getCoeff_prod());
+    building.put("ironPrice", buildingEntity.getIronPrice());
+    building.put("diamondPrice", buildingEntity.getDiamondPrice());
+    building.put("hydrogenPrice", buildingEntity.getHydrogenPrice());
+    building.put("energyPrice", buildingEntity.getEnergyPrice());
+    building.put("buildTime", buildingEntity.getTimeBuilding());
+    building.put("dateStart", buildingEntity.getTimeToStart());
 
     return building;
   }
