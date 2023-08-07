@@ -1,5 +1,7 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Planet {
@@ -16,7 +19,6 @@ public class Planet {
     
     @Column( unique = true, nullable = false, length = 50)
     private String name;
-    private boolean isColonised;
     private Integer positionX;
     private Integer positionY;
     private Integer planetSize;
@@ -26,13 +28,16 @@ public class Planet {
     @JoinColumn(name = "player_id", nullable = true, referencedColumnName = "id")
     private Player player;
 
+    @OneToMany (mappedBy = "building")
+    private List<Building> buildings; 
 
-    public Planet() {
-    };
+    
+    
+    //CONSTRUCTORS
+    public Planet() {};
 
-    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize, Player player) {
+    public Planet(String name, Integer positionX, Integer positionY, Integer planetSize, Player player) {
         this.name = name;
-        this.isColonised = isColonised;
         this.positionX = positionX;
         this.positionY = positionY;
         this.planetSize = planetSize;
@@ -47,15 +52,7 @@ public class Planet {
         this.name = name;
     }
 
-    public boolean isColonised() {
-        return isColonised;
-    }
-
-    public void setColonised(boolean isColonised) {
-        this.isColonised = isColonised;
-    }
-
-    public Integer getPositionX() {
+      public Integer getPositionX() {
         return positionX;
     }
 
@@ -88,6 +85,13 @@ public class Planet {
         this.player = player;
     }
 
+     public List<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setPlanets(List<Building> buildings) {
+        this.buildings = buildings;
+    }
    
 
 }

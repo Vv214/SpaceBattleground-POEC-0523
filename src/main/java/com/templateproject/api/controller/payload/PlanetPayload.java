@@ -5,18 +5,16 @@ public class PlanetPayload {
     private String message;
 
     private String name;
-    private  boolean isColonised;
     private  Integer positionX;
     private  Integer positionY;
     private  Integer planetSize;
 
     public PlanetPayload(){}
 
-    public PlanetPayload(String message, String name, boolean isColonised, Integer positionX, Integer positionY,
+    public PlanetPayload(String message, String name, Integer positionX, Integer positionY,
             Integer planetSize) {
         this.message = message;
         this.name = name;
-        this.isColonised = isColonised;
         this.positionX = positionX;
         this.positionY = positionY;
         this.planetSize = planetSize;
@@ -36,14 +34,6 @@ public class PlanetPayload {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isColonised() {
-        return isColonised;
-    }
-
-    public void setColonised(boolean isColonised) {
-        this.isColonised = isColonised;
     }
 
     public Integer getPositionX() {
@@ -70,11 +60,10 @@ public class PlanetPayload {
         this.planetSize = planetSize;
     }
 
-    public void set(String message, String name, boolean isColonised, Integer positionX, Integer positionY,
-            Integer planetSize) {
+    public void set(String message, String name, Integer positionX, Integer positionY,
+        Integer planetSize) {
         this.message = message;
         this.name = name;
-        this.isColonised = isColonised;
         this.positionX = positionX;
         this.positionY = positionY;
         this.planetSize = planetSize;

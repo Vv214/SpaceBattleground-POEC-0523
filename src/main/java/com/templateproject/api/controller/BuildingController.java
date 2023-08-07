@@ -26,10 +26,6 @@ public class BuildingController  {
         this.buildingService = buildingService;
     }
 
-    public BuildingController() {
-
-    }
-
     // CREATE
     @PostMapping("/building")
     public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building) {

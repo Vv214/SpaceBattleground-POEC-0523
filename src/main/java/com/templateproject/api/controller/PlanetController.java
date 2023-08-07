@@ -29,7 +29,7 @@ public class PlanetController {
   }
 
   // CREATE
-  @PostMapping("/planet")
+  @PostMapping
   public ResponseEntity<PlanetPayload> addNewPlanet(HttpServletRequest request, @RequestBody Planet planet) {
     var payload = new PlanetPayload();
     try {
@@ -37,18 +37,16 @@ public class PlanetController {
       System.out.println("Player ID is :" + playerID);
       var newPlanet = planetService.addNewPlanet(
           planet.getName(),
-          planet.isColonised(),
-          planet.getPlanetSize(),
           planet.getPositionX(),
-          planet.getPositionY(), 
+          planet.getPositionY(),
+          planet.getPlanetSize(), 
           playerID);
       payload.set(
           newPlanet.getName() + " created",
           newPlanet.getName(),
-          newPlanet.isColonised(),
-          newPlanet.getPlanetSize(),
           newPlanet.getPositionX(),
-          newPlanet.getPositionY());
+          newPlanet.getPositionY(),
+          newPlanet.getPlanetSize());
       // payload.setMessage(planet.getName() + " created");
       return new ResponseEntity<>(payload, HttpStatus.CREATED);
 
@@ -75,18 +73,23 @@ public class PlanetController {
   //   }
 
   // }
-  
+
   //RESEARCH ALL PLANET by playerID
+
   @GetMapping("/planets")
   public ResponseEntity<Payload> getPlanets(HttpServletRequest request) {
-    var playerID = (Integer)request.getAttribute("playerID");
+    
+     var playerID = (Integer)request.getAttribute("playerID");
 
     var payload = new Payload();
+    
     try {
-      payload.setData(planetService.getAllPlanets());
+      payload.setData(planetService.getAllPlanets(playerID));
       payload.setMessage("Get all Planets");
       return new ResponseEntity<>(payload, HttpStatus.OK);
+
     } catch (Exception e) {
+
       payload.setMessage(e.getMessage());
       payload.setData(null);
       return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -96,7 +99,7 @@ public class PlanetController {
   }
 
   // RESEACH ONE
-  @GetMapping("/planet/{name}")
+  @GetMapping("/{name}")
   public ResponseEntity<Payload> getPlanetByName(@PathVariable String name) {
 
     var payload = new Payload();
@@ -116,13 +119,12 @@ public class PlanetController {
   }
 
   // UPDATE ONE
-  @PutMapping("/planet/{name}")
+  @PutMapping("/{name}")
   public ResponseEntity<PlanetPayload> updatePlanet(@PathVariable String name, @RequestBody Planet planet) {
     var payload = new PlanetPayload();
     try {
 
       payload.setName(planet.getName());
-      payload.setColonised(planet.isColonised());
       payload.setPositionX(planet.getPositionX());
       payload.setPositionY(planet.getPositionY());
       payload.setPlanetSize(planet.getPlanetSize());
@@ -138,7 +140,7 @@ public class PlanetController {
   }
 
   // DELETE ONE
-  @DeleteMapping("/planet/{name}")
+  @DeleteMapping("/{name}")
   public ResponseEntity<String> deletePlanet(@PathVariable String name) {
     return this.planetService.delete(name);
   }

@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -35,6 +37,14 @@ public class Building {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
+    //JOINT DECLARATION
+    @ManyToOne
+    @JoinColumn (name = "planet_id", nullable = true, referencedColumnName = "id")
+    private Planet planet;
+    
+    //CONSTRUCTOR
+    public Building(){};
+
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
             Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
         this.name = name;
@@ -48,9 +58,6 @@ public class Building {
         this.energyPrice = energyPrice;
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
-    }
-
-    public Building() {
     }
 
     public String getName() {
@@ -140,5 +147,14 @@ public class Building {
     public void setTimeToStart(Date timeToStart) {
         this.timeToStart = timeToStart;
     }
+    // GETTER & SETTER to JOINT
 
+    public Planet getPlanet() {
+        return planet;
+    }
+
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+    }
+    
 }

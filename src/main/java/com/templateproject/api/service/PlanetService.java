@@ -28,7 +28,6 @@ public class PlanetService {
   // CREATE
   public Planet addNewPlanet(
       String name,
-      boolean isColonised,
       Integer positionX,
       Integer positionY,
       Integer planetSize,
@@ -42,7 +41,6 @@ public class PlanetService {
 
     var planet = new Planet(
         name,
-        isColonised,
         positionX,
         positionY,
         planetSize,
@@ -51,6 +49,9 @@ public class PlanetService {
     return planetRepository.save(planet);
     
   }
+  public Planet addNewPlanet( String name, Integer positionX, Integer positionY, Integer planetSize ) {
+      return this.addNewPlanet(name, positionX, positionY, planetSize,null);
+      }
 
   // RESARCH ALL
   public List<PlanetPayload> getAllPlanets() {
@@ -61,7 +62,6 @@ public class PlanetService {
       var newPlanet = new PlanetPayload();
 
       newPlanet.setName(planet.getName());
-      newPlanet.setColonised(planet.isColonised());
       newPlanet.setPositionX(planet.getPositionX());
       newPlanet.setPositionY(planet.getPositionY());
       newPlanet.setPlanetSize(planet.getPlanetSize());
@@ -70,16 +70,16 @@ public class PlanetService {
     }
     return planetPayload;
   }
+
   //RESARCH ALL PLANET by playerID 
     public List<PlanetPayload> getAllPlanets(Integer playerID) {
     var planetPayload = new ArrayList<PlanetPayload>();
-    List<Planet> planetList = planetRepository.findAllByPlayerID(playerID);
+    List<Planet> planetList = planetRepository.findAllByPlayerId(playerID);
     for (var planet : planetList) {
 
       var newPlanet = new PlanetPayload();
 
       newPlanet.setName(planet.getName());
-      newPlanet.setColonised(planet.isColonised());
       newPlanet.setPositionX(planet.getPositionX());
       newPlanet.setPositionY(planet.getPositionY());
       newPlanet.setPlanetSize(planet.getPlanetSize());
@@ -94,7 +94,6 @@ public class PlanetService {
     var planet = new HashMap<String, Object>();
 
     var planetEntity = planetRepository.findByName(name);
-    planet.put("Colonise Status: ", planetEntity.isColonised());
     planet.put("Postion X", planetEntity.getPositionX());
     planet.put("Postion X", planetEntity.getPositionY());
     planet.put("Size Planet", planetEntity.getPlanetSize());
@@ -113,8 +112,6 @@ public class PlanetService {
     if (planet.getName() != null) {
       planetToUpdate.setName(planet.getName());
     }
-
-    planetToUpdate.setColonised(planet.isColonised());
 
     if (planet.getPositionX() != 0) {
       planetToUpdate.setPositionX(planet.getPositionX());
@@ -136,9 +133,6 @@ public class PlanetService {
 
   }
 
-  //Serv. CREATE PLANET :
-  public void CreatePlanet(){
-
-  }
+  
 
 }

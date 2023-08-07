@@ -24,10 +24,10 @@ public class AuthService {
         tokens = new ArrayList<>();
     }
 
-    public void register(String nickname, String password, String confirmPassword, String email) throws Exception {
+    public void register(String nickname, String email, String password, String confirmPassword ) throws Exception {
         if (password.equals(confirmPassword) && !email.isEmpty() && !nickname.isEmpty()) {
             String passwordHashed = BCrypt.withDefaults().hashToString(BCrypt.MIN_COST, password.toCharArray());
-            Player player = new Player(nickname, passwordHashed, email);
+            Player player = new Player(nickname, email, passwordHashed );
             playerRepository.save(player);
         } else {
             throw new Exception("Invalid params ");
