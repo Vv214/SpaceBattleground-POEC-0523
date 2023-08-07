@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.templateproject.api.controller.payload.ShipPayload;
+
 
 import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.entity.Ship;
 import com.templateproject.api.service.ShipService;
 
 @RestController
-@RequestMapping (path = "/ship")
 public class ShipController {
   
   private final ShipService shipService;
@@ -26,7 +27,7 @@ public class ShipController {
     this.shipService = shipService;
   }
   //CREATE
-  @PostMapping
+  @PostMapping("/ship")
   public ResponseEntity<Payload> addNewShip(@RequestBody Ship ship) {
     var payload = new Payload();
     var ShipName = ship.getName();
@@ -55,14 +56,15 @@ public class ShipController {
     
   }
   //RESEARCH ALL
-  @GetMapping ("/ships")
-  public ResponseEntity<Payload> getAllSip() {
+  @GetMapping ("/ship")
+  public ResponseEntity<Payload> getAllShip() {
     var payload = new Payload(); 
     try {
 
-      payload.setData(shipService.getAllShips());
       payload.setMessage("Get All Ships :");
-      payload.setData(payload);
+      // payload.setData(payload);
+      payload.setData(shipService.getAllShips());
+
       return new ResponseEntity<>(payload, HttpStatus.OK);
     } catch (Exception e) {
       payload.setMessage(e.getMessage());
@@ -72,7 +74,7 @@ public class ShipController {
     }
   }
   //RESEARCH ONE
-  @GetMapping("/{name}")
+  @GetMapping("/ship/{name}")
   public ResponseEntity<Payload> getShipByName(@PathVariable String name) {
     var payload = new Payload(); 
     try {
@@ -93,7 +95,7 @@ public class ShipController {
 
 
  //UPDATE ONE
-  @PutMapping("/{name}")
+  @PutMapping("/ship/{name}")
   public ResponseEntity<Payload> updateShip(@PathVariable String name, @RequestBody Ship ship) {
     var payload = new Payload();
     try {
@@ -122,7 +124,7 @@ public class ShipController {
 
 
   //DELETE ONE 
-  @DeleteMapping("/{name}")
+  @DeleteMapping("/ship/{name}")
   public ResponseEntity<Payload> deleteShip(@PathVariable String name) {
    var payload = new Payload();
    try {

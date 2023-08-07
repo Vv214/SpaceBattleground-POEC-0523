@@ -22,6 +22,44 @@ public class TechnologieService {
         this.technologieRepository = technologieRepository;
     }
 
+    public Object getAllTechnologies() {
+    var cargo = getTechnologie("Technologie cargo");
+    var protection = getTechnologie("Coques améliorées");
+    var astrophysique = getTechnologie("Astrophysique");
+    var combustion = getTechnologie("Réacteur à combustion");
+    var impulsion = getTechnologie("Réacteur à impulsion");
+
+    var fleet = getTechnologie("Technologie flotte");
+    var weapon = getTechnologie("Technologie Armes à feu");
+    var laser = getTechnologie("Technologie Armes laser");
+
+    var fer = getTechnologie("Mine de fer améliorée");
+    var hydrogene = getTechnologie("Extracteur d'hydrogène amélioré");
+    var diamant = getTechnologie("Mine de diamant améliorée");
+    var plasma = getTechnologie("Technologie plasma");
+    var energie = getTechnologie("Technologie énergétique");
+
+
+    var researchs = new HashMap<String, Object>();
+    researchs.put("cargo", cargo);
+    researchs.put("protection", protection);
+    researchs.put("astrophysique", astrophysique);
+    researchs.put("combustion", combustion);
+    researchs.put("impulsion", impulsion);
+
+    researchs.put("fleet", fleet);
+    researchs.put("weapon", weapon);
+    researchs.put("laser", laser);
+
+    researchs.put("fer", fer);
+    researchs.put("hydrogene", hydrogene);
+    researchs.put("diamant", diamant);
+    researchs.put("plasma", plasma);
+    researchs.put("energie", energie);
+
+    return researchs;
+  }
+
     // CREATE ONE
     public void add(
 
