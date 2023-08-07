@@ -39,12 +39,8 @@ public class ClanService {
     // clanRepository.deleteClanByClanName(name);
   }
 
-  public Clan add(Clan clanToAdd) {
-    Clan clan = new Clan();
-    clan.setClanName(clanToAdd.getClanName());
-    clan.setClanTag(clanToAdd.getClanTag());
-    clan.setAdminNickname(clanToAdd.getAdminNickname());
-    System.out.println("clan dans service" + clan);
-    return clanRepository.save(clan);
-  }
+public Clan add(Clan clan) {
+  return clanRepository.save(clan);
+}
+
 }
