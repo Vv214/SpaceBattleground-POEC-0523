@@ -14,6 +14,7 @@ public class BuildingPayload {
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
+    private Boolean isBuild;
     private Date timeBuilding;
     private Date timeToStart;
 
@@ -23,7 +24,7 @@ public class BuildingPayload {
 
     public BuildingPayload(String message, String name, String type, Integer level, String description,
             Integer coeff_prod, Integer ironPrice, Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice,
-            Date timeBuilding, Date timeToStart) {
+            Boolean isBuild, Date timeBuilding, Date timeToStart) {
         this.message = message;
         this.name = name;
         this.type = type;
@@ -34,6 +35,7 @@ public class BuildingPayload {
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
         this.energyPrice = energyPrice;
+        this.isBuild = isBuild;
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
     }
@@ -116,6 +118,14 @@ public class BuildingPayload {
 
     public void setEnergyPrice(Integer energyPrice) {
         this.energyPrice = energyPrice;
+    }
+
+    public Boolean getIsBuild() {
+        return isBuild;
+    }
+
+    public void setIsBuild(Boolean isBuild) {
+        this.isBuild = isBuild;
     }
 
     public Date getTimeBuilding() {

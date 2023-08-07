@@ -42,6 +42,7 @@ public class BuildingController  {
                     building.getDiamondPrice(),
                     building.getHydrogenPrice(),
                     building.getEnergyPrice(),
+                    building.getIsBuild(),
                     building.getTimeBuilding(),
                     building.getTimeToStart());
             payload.setMessage(building.getName() + "created");
@@ -106,6 +107,7 @@ public class BuildingController  {
             payload.setDiamondPrice(building.getDiamondPrice());
             payload.setHydrogenPrice(building.getHydrogenPrice());
             payload.setEnergyPrice(building.getEnergyPrice());
+            payload.setIsBuild(building.getIsBuild());
             payload.setTimeBuilding(building.getTimeBuilding());
             payload.setTimeToStart(building.getTimeToStart());
 
