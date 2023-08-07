@@ -27,29 +27,29 @@ VALUES (
         200,
         0,
         1,
-        true
+        false
     ), (
         "Extracteur d'Hydrogène",
         'Récolte',
         "Un extracteur permettant d'obtenir de l'hydrogène à partir de n'importe quelle atmosphère",
         0,
-        200,
-        200,
-        200,
+        300,
+        300,
+        300,
         0,
         1,
-        true
+        false
     ), (
         'Mine de Diamant',
         'Récolte',
         'Une mine permettant de récolter du diamant',
         0,
-        200,
-        200,
-        200,
+        600,
+        600,
+        600,
         0,
         1,
-        true
+        false
     ), (
         'Centrale électrique',
         'Récolte',
@@ -60,7 +60,7 @@ VALUES (
         200,
         0,
         1,
-        true
+        false
     ), (
         'Hangar de fer',
         'Récolte',
@@ -71,7 +71,7 @@ VALUES (
         200,
         0,
         1,
-        true
+        false
     ), (
         "Hangar d'hydrogène",
         'Récolte',
@@ -82,7 +82,7 @@ VALUES (
         200,
         0,
         1,
-        true
+        false
     ), (
         'Hangar de diamants',
         'Récolte',
@@ -93,7 +93,7 @@ VALUES (
         200,
         0,
         1,
-        true
+        false
     ), (
         'Foreuse',
         'Récolte',
@@ -109,46 +109,46 @@ VALUES (
         'Usine de robots',
         'Production',
         'Construit des robots qui à leur tour accélèrent la vitesse de construction des bâtiments et des vaisseaux',
-        0,
+        1,
         200,
         200,
         200,
         0,
         1,
-        true
+        false
     ), (
         'Chantier spatial',
         'Production',
         "Partez dans l'espace ! Débloque le chantier spatial.",
-        0,
-        200,
-        200,
-        200,
+        2,
+        1000,
+        1000,
+        1000,
         0,
         1,
-        true
+        false
     ), (
         'Laboratoire',
         'Production',
         "Un laboratoire très bien équipé permettant de débloquer l'accès aux recherches",
-        0,
-        200,
-        200,
-        200,
+        3,
+        50,
+        50,
+        50,
         0,
         1,
-        true
+        false
     ), (
         'Terraformeur',
         'Production',
         "Rend la planète habitable, permettant d'augmenter sa capacité",
-        0,
-        200,
-        200,
-        200,
+        4,
+        5000,
+        5000,
+        5000,
         0,
         1,
-        true
+        false
     );
 
 INSERT INTO
@@ -160,11 +160,10 @@ INSERT INTO
         speed,
         capacity,
         fuel,
-        ship_size,
         iron_price,
         hydrogen_price,
         diamond_price,
-        price_energy,
+        energy_price,
         quantity
     )
 VALUES (
@@ -175,7 +174,6 @@ VALUES (
         3,
         0,
         100,
-        2,
         200,
         200,
         200,
@@ -189,7 +187,6 @@ VALUES (
         2,
         0,
         150,
-        4,
         400,
         200,
         200,
@@ -203,7 +200,6 @@ VALUES (
         1,
         0,
         300,
-        30,
         2000,
         2000,
         2000,
@@ -217,7 +213,6 @@ VALUES (
         4,
         0,
         100,
-        2,
         100,
         100,
         100,
@@ -231,7 +226,6 @@ VALUES (
         2,
         600,
         100,
-        5,
         200,
         200,
         200,
@@ -245,7 +239,6 @@ VALUES (
         1,
         1800,
         150,
-        10,
         200,
         200,
         200,
@@ -259,7 +252,6 @@ VALUES (
         2,
         300,
         100,
-        10,
         300,
         200,
         200,
@@ -273,7 +265,6 @@ VALUES (
         1,
         0,
         100,
-        15,
         200,
         200,
         200,
@@ -455,7 +446,7 @@ VALUES (
 
 insert into
     ressource (id, name, quantity, max_stock)
-values (1, 'diamond', 42, 250), (2, 'iron', 25, 470), (3, 'hydrogene', 258, 579), (4, 'energy', 135, 258);
+values (1, 'diamond', 4000, 10000), (2, 'iron', 4000, 10000), (3, 'hydrogene', 4000, 10000), (4, 'energy', 4000, 10000);
 
 insert into
     planet (

@@ -53,11 +53,11 @@ public class Building {
         this.timeToStart = timeToStart;
     }
 
-    public boolean isBuild() {
+    public boolean getIsBuild() {
         return isBuild;
     }
 
-    public void setBuild(boolean isBuild) {
+    public void setIsBuild(boolean isBuild) {
         this.isBuild = isBuild;
     }
 
