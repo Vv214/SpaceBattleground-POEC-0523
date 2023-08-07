@@ -19,7 +19,7 @@ SELECT * FROM clan;
 show TABLES;
 
  drop DATABASE `space`;
-=======
+
 show TABLES;
 
 SELECT * FROM player;
