@@ -1,4 +1,6 @@
--- Active: 1688044672103@@127.0.0.1@3306@space
+-- Active: 1690547072753@@127.0.0.1@3306@space
+
+DROP DATABASE space;
 
 CREATE DATABASE IF NOT EXISTS `space`;
 
@@ -13,4 +15,18 @@ FLUSH PRIVILEGES;
 
 Use `space`;
 
+show TABLES;
+
 SELECT * FROM player;
+
+SELECT * FROM ressource;
+
+SELECT * FROM clan;
+
+SELECT * FROM building;
+
+SELECT * FROM technologie;
+
+DESCRIBE technologie;
+
+SELECT * FROM planet;

@@ -77,17 +77,18 @@ public class PlanetService {
     List<Planet> planetList = planetRepository.findAllByPlayerId(playerID);
     for (var planet : planetList) {
 
-      var newPlanet = new PlanetPayload();
+  //     var newPlanet = new PlanetPayload();
 
       newPlanet.setName(planet.getName());
+      newPlanet.setColonised(planet.isColonised());
       newPlanet.setPositionX(planet.getPositionX());
       newPlanet.setPositionY(planet.getPositionY());
       newPlanet.setPlanetSize(planet.getPlanetSize());
 
-      planetPayload.add(newPlanet);
-    }
-    return planetPayload;
-  }
+  //     planetPayload.add(newPlanet);
+  //   }
+  //   return planetPayload;
+  // }
 
   // RESEARCH ONE
   public HashMap<String, Object> getPlanet(String name) {

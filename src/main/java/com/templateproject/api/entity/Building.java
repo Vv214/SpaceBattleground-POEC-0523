@@ -31,6 +31,7 @@ public class Building {
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
+    private boolean isBuild;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeBuilding;
@@ -46,7 +47,8 @@ public class Building {
     public Building(){};
 
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
-            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding, Date timeToStart) {
+            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, boolean isBuild, Date timeBuilding,
+            Date timeToStart) {
         this.name = name;
         this.type = type;
         this.level = level;
@@ -56,6 +58,7 @@ public class Building {
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
         this.energyPrice = energyPrice;
+        this.isBuild = isBuild;
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
     }

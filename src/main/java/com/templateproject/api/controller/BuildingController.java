@@ -16,11 +16,12 @@ import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.entity.Building;
 import com.templateproject.api.service.BuildingService;
 
+// @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
 public class BuildingController  {
 
-    private BuildingService buildingService;
+    private final BuildingService buildingService;
 
     public BuildingController(BuildingService buildingService) {
         this.buildingService = buildingService;
@@ -32,18 +33,18 @@ public class BuildingController  {
         var payload = new BuildingPayload();
         try {
             buildingService.add(
-                building.getName(), 
-                building.getType(), 
-                building.getLevel(),
-                building.getDescription(), 
-                building.getCoeff_prod(), 
-                building.getIronPrice(),
-                building.getDiamondPrice(), 
-                building.getHydrogenPrice(), 
-                building.getEnergyPrice(),
-                building.getTimeBuilding(),
-                building.getTimeToStart()
-                );
+                    building.getName(),
+                    building.getType(),
+                    building.getLevel(),
+                    building.getDescription(),
+                    building.getCoeff_prod(),
+                    building.getIronPrice(),
+                    building.getDiamondPrice(),
+                    building.getHydrogenPrice(),
+                    building.getEnergyPrice(),
+                    building.getIsBuild(),
+                    building.getTimeBuilding(),
+                    building.getTimeToStart());
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -53,15 +54,19 @@ public class BuildingController  {
     }
 
     // RESEARCH ALL
-    @GetMapping("/buildings")
+    @GetMapping("/building")
     public ResponseEntity<Payload> getBuildingsList() {
         var payload = new Payload();
+        System.out.println("dans le building back");
         try {
+            System.out.println("je suis avangt de charger le building ");
             payload.setMessage("Get All Buildings");
-            payload.setData(buildingService.getBuildings());
+            System.out.println(this.buildingService);
+            // Object listBuilding = ;
+            payload.setData(buildingService.getAll());
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
-            payload.setMessage(e.getMessage());
+            payload.setMessage(e.getMessage() + " ici ");
             payload.setData(null);
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -89,7 +94,7 @@ public class BuildingController  {
     }
 
     // UPDATE ONE
-    @PutMapping("/buildings/{name}")
+    @PutMapping("/building/{name}")
     public ResponseEntity<BuildingPayload> updateBuilding(@PathVariable String name, @RequestBody Building building) {
         var payload = new BuildingPayload();
         try {
@@ -102,6 +107,7 @@ public class BuildingController  {
             payload.setDiamondPrice(building.getDiamondPrice());
             payload.setHydrogenPrice(building.getHydrogenPrice());
             payload.setEnergyPrice(building.getEnergyPrice());
+            payload.setIsBuild(building.getIsBuild());
             payload.setTimeBuilding(building.getTimeBuilding());
             payload.setTimeToStart(building.getTimeToStart());
 
