@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Player {
@@ -29,6 +30,18 @@ public class Player {
     @OneToMany (mappedBy = "player")
     private List<Planet> planets; 
 
+    @OneToMany (mappedBy = "player") //toVisit O.N-O.N >> ?? table de jonction ??
+    private List<Planet> planetsVisit; 
+    
+    @OneToMany(mappedBy = "player") //toOrder O.N-1.1
+    private List<Fleet> fleetsList; 
+
+    @OneToOne(mappedBy="player") //toOwn 1.1-0.1
+    private Admin admin;
+
+    @OneToOne(mappedBy = "player") // joint toSetUp 0.1-1.N
+    private Clan clan;
+
     //CONSTUCTORS
     public Player() {
         this.level = 1;
@@ -41,13 +54,14 @@ public class Player {
         this.level = 1;
     }
 
-    //GETTERS & SETTERS
     public Player(String nickname, String email, String password, Integer level) {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
         this.level = level;
     }
+    
+    //GETTERS & SETTERS
 
     public Player(String playerName) {
         this.nickname = playerName;
@@ -101,5 +115,31 @@ public class Player {
     public void setPlanets(List<Planet> planets) {
         this.planets = planets;
     }
+
+    public List<Planet> getPlanetsVisit() {
+        return planetsVisit;
+    }
+
+    public void setPlanetsVisit(List<Planet> planetsVisit) {
+        this.planetsVisit = planetsVisit;
+    }
+
+    public List<Fleet> getFleetsList() {
+        return fleetsList;
+    }
+
+    public void setFleetsList(List<Fleet> fleetsList) {
+        this.fleetsList = fleetsList;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
     
+    
+
 }

@@ -35,19 +35,24 @@ public class PlanetController {
     try {
       Integer playerID = (Integer)request.getAttribute("playerID");
       System.out.println("Player ID is :" + playerID);
-      var newPlanet = planetService.addNewPlanet(
-          planet.getName(),
-          planet.getPositionX(),
-          planet.getPositionY(),
-          planet.getPlanetSize(), 
-          playerID);
-      payload.set(
-          newPlanet.getName() + " created",
-          newPlanet.getName(),
-          newPlanet.getPositionX(),
-          newPlanet.getPositionY(),
-          newPlanet.getPlanetSize());
-      // payload.setMessage(planet.getName() + " created");
+      
+      var newPlanet = planetService.addNewPlanet( 
+        planet.getName(), 
+        planet.getPositionX(),
+        planet.getPositionY(), 
+        planet.getPlanetSize(), 
+        playerID, 
+        planet.getBuildings());
+      
+      payload.set( 
+        newPlanet.getName() + " created", 
+        newPlanet.getName(), 
+        newPlanet.getPositionX(),
+        newPlanet.getPositionY(), 
+        newPlanet.getPlanetSize(), 
+        newPlanet.getBuildings()
+        );
+      
       return new ResponseEntity<>(payload, HttpStatus.CREATED);
 
     } catch (Exception e) {
@@ -74,7 +79,10 @@ public class PlanetController {
 
   // }
 
-  //RESEARCH ALL PLANET by playerID
+  //RESEARCH ALL PLANET by playerID - On ServicePlanet
+  
+
+
 
   @GetMapping("/planets")
   public ResponseEntity<Payload> getPlanets(HttpServletRequest request) {

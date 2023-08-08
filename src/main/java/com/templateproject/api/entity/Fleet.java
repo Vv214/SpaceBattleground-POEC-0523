@@ -1,10 +1,15 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Fleet {
@@ -24,7 +29,18 @@ public class Fleet {
     private Integer totalCapacity;
 
     private Integer speed;
-   
+
+    //JOINTS DECLARATION 
+    @OneToMany (mappedBy = "fleet") //Joint to Acces 0.N-0.N
+    private List<Ship> shipsList;
+    
+    @OneToMany(mappedBy = "fleet") //toPark O.N-O.N
+    private List<Planet> planetsList;
+
+    @ManyToOne
+    @JoinColumn (name = "player_id", nullable = false, referencedColumnName = "id") // Joint ToOrder 0.N-1.1 
+    private Player player;
+
     public Fleet() {
     };
 
@@ -111,5 +127,34 @@ public class Fleet {
     public void setSpeed(Integer speed) {
         this.speed = speed;
     }
-       
+    
+    //GETTER & SETER JOINTS
+    public List<Ship> getShipsList() {
+        return shipsList;
+    }
+
+    public void setShipsList(List<Ship> shipsList) {
+        this.shipsList = shipsList;
+    }
+
+    public List<Planet> getPlanetsList() {
+        return planetsList;
+    }
+
+    public void setPlanetsList(List<Planet> planetsList) {
+        this.planetsList = planetsList;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
+    
+
+    
+
 }

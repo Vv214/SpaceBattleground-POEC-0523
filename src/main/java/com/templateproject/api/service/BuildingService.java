@@ -11,72 +11,75 @@ import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.entity.Building;
+import com.templateproject.api.entity.Planet;
 import com.templateproject.api.repository.BuildingRepository;
+import com.templateproject.api.repository.PlanetRepository;
 
 @Service
 public class BuildingService {
   private final BuildingRepository buildingRepository;
+  private final PlanetRepository planetRepository;
 
-  public BuildingService(BuildingRepository buildingRepository) {
-    System.out.println("je suis dans le cosntr");
+  public BuildingService(BuildingRepository buildingRepository, PlanetRepository planetRepository) {
+    
     this.buildingRepository = buildingRepository;
-
+    this.planetRepository = planetRepository;
   }
 
 
+// ==== Fonction a transfèrer dans le Bean d'initialisation de la partie !
+// public Object getAll() {
+//     var laboratory = getBuilding("Laboratoire");
+//     var robotFactory = getBuilding("Usine de robots");
+//     var shipyard = getBuilding("Chantier spatial");
+//     var terraformer = getBuilding("Terraformeur");
+//     var ironMine = getBuilding("Mine de fer");
 
-public Object getAll() {
-    var laboratory = getBuilding("Laboratoire");
-    var robotFactory = getBuilding("Usine de robots");
-    var shipyard = getBuilding("Chantier spatial");
-    var terraformer = getBuilding("Terraformeur");
-    var ironMine = getBuilding("Mine de fer");
-    var diamondMine = getBuilding("Mine de Diamant");
-    var hydrogenMine = getBuilding("Extracteur d'Hydrogène");
-    var energyMine = getBuilding("Centrale électrique");
-    var ironStockage = getBuilding("Hangar de fer");
-    var hydrogenStockage = getBuilding("Hangar d'hydrogene");
-    var diamondStockage = getBuilding("Hangar de diamants");
-    var drillingMachine = getBuilding("Foreuse");
+//     var diamondMine = getBuilding("Mine de Diamant");
+//     var hydrogenMine = getBuilding("Extracteur d'Hydrogène");
+//     var energyMine = getBuilding("Centrale électrique");
 
-    var buildings = new HashMap<String, Object>();
-    buildings.put("laboratory", laboratory);
-    buildings.put("robotFactory", robotFactory);
-    buildings.put("shipyard", shipyard);
-    buildings.put("terraformer", terraformer);
-    buildings.put("ironMine", ironMine);
-    buildings.put("diamondMine", diamondMine);
-    buildings.put("hydrogenMine", hydrogenMine);
-    buildings.put("energyMine", energyMine);
-    buildings.put("ironStockage", ironStockage);
-    buildings.put("hydrogenStockage", hydrogenStockage);
-    buildings.put("diamondStockage", diamondStockage);
-    buildings.put("drillingMachine", drillingMachine);
-    System.out.println(buildings + " building back");
-    return buildings;
-  }
+//     var ironStockage = getBuilding("Hangar de fer");
+//     var hydrogenStockage = getBuilding("Hangar d'hydrogene");
+//     var diamondStockage = getBuilding("Hangar de diamants");
+//     var drillingMachine = getBuilding("Foreuse");
+
+//     var buildings = new HashMap<String, Object>();
+//     buildings.put("laboratory", laboratory);
+//     buildings.put("robotFactory", robotFactory);
+//     buildings.put("shipyard", shipyard);
+//     buildings.put("terraformer", terraformer);
+//     buildings.put("ironMine", ironMine);
+//     buildings.put("diamondMine", diamondMine);
+//     buildings.put("hydrogenMine", hydrogenMine);
+//     buildings.put("energyMine", energyMine);
+//     buildings.put("ironStockage", ironStockage);
+//     buildings.put("hydrogenStockage", hydrogenStockage);
+//     buildings.put("diamondStockage", diamondStockage);
+//     buildings.put("drillingMachine", drillingMachine);
+//     System.out.println(buildings + " building back");
+//     return buildings;
+//   }
 
 
   // CREATE
 
-  public void add(String name,
-      String type,
-      Integer level,
-      String description,
-      Integer coeff_prod,
-      Integer ironPrice,
-      Integer diamondPrice,
-      Integer hydrogenPrice,
-      Integer energyPrice,
-      boolean isBuild,
-      Date timeBuilding,
-      Date timeToStart) {
-    // Todo check params
-    // var building = new Building(name, type, level, description, coeff_prod,
-    // ironPrice, diamondPrice, hydrogenPrice, energyPrice,
-    // timeBuilding, timeToStart);
+  public void add(
+      String name, String type, Integer level,
+      String description, Integer coeff_prod, Integer ironPrice,
+      Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice,
+      Date timeBuilding, Date timeToStart, Integer planetId ) {
+    //Todo check params
+    Planet planet = null;
+    if (planetId != null){
+        planet = planetRepository.findById(planetId).get();
+    }
 
-    // buildingRepository.save(building);
+    var building = new Building(name, type, level, description, coeff_prod, 
+    ironPrice, diamondPrice, hydrogenPrice, energyPrice, timeBuilding, 
+    timeToStart, planet);
+
+    buildingRepository.save(building);
 
   }
 
@@ -87,6 +90,34 @@ public Object getAll() {
     List<Building> buildingList = buildingRepository.findAll();
     for (var building : buildingList) {
       var newBuilding = new BuildingPayload();
+      newBuilding.setName(building.getName());
+      newBuilding.setType(building.getType());
+      newBuilding.setLevel(building.getLevel());
+      newBuilding.setDescription(building.getDescription());
+      newBuilding.setCoeff_prod(building.getCoeff_prod());
+      newBuilding.setIronPrice(building.getIronPrice());
+      newBuilding.setDiamondPrice(building.getDiamondPrice());
+      newBuilding.setHydrogenPrice(building.getHydrogenPrice());
+      newBuilding.setEnergyPrice(building.getEnergyPrice());
+      newBuilding.setTimeBuilding(building.getTimeBuilding());
+      newBuilding.setTimeToStart(building.getTimeToStart());
+
+      newBuilding.setP
+      newBuilding.setPlanet(building.getPlanetIdByBuildings());
+      
+      payload.add(newBuilding);
+
+    }
+    return payload;
+  }
+
+  //RESARCH ALL BUILDING by planetID 
+  public List<BuildingPayload> getAllBuildingsOnThisPlanet(Integer planetId){
+    var buildingPayload = new ArrayList<BuildingPayload>();
+    List<Building> buildingsList = buildingRepository.findAllByPlanetId(planetId);
+    for (var building : buildingsList){
+      var newBuilding = new BuildingPayload();
+
       newBuilding.setName(building.getName());
 
       newBuilding.setType(building.getType());
@@ -99,17 +130,17 @@ public Object getAll() {
       newBuilding.setDiamondPrice(building.getDiamondPrice());
       newBuilding.setHydrogenPrice(building.getHydrogenPrice());
       newBuilding.setEnergyPrice(building.getEnergyPrice());
-
-      newBuilding.setIsBuild(building.getIsBuild());
-
+     
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       newBuilding.setTimeToStart(building.getTimeToStart());
-
-      payload.add(newBuilding);
+      newBuilding.setPlanet(building.getPlanetIdByBuildings());
+      
+      buildingPayload.add(newBuilding);
 
     }
-    return payload;
+    return buildingPayload;
   }
+
 
   // RESEARCH ONE
 
@@ -129,7 +160,6 @@ public Object getAll() {
     building.put("diamondPrice", buildingEntity.getDiamondPrice());
     building.put("hydrogenPrice", buildingEntity.getHydrogenPrice());
     building.put("energyPrice", buildingEntity.getEnergyPrice());
-    building.put("isBuild", buildingEntity.getIsBuild());
     building.put("buildTime", buildingEntity.getTimeBuilding());
     building.put("dateStart", buildingEntity.getTimeToStart());
 
@@ -169,9 +199,6 @@ public Object getAll() {
     }
     if (building.getEnergyPrice() != 0) {
       buildingToUpdate.setEnergyPrice(building.getEnergyPrice());
-    }
-    if (building.getIsBuild() != null) {
-      buildingToUpdate.setIsBuild(building.getIsBuild());
     }
     if (building.getTimeBuilding() != null) {
       buildingToUpdate.setTimeBuilding(building.getTimeBuilding());

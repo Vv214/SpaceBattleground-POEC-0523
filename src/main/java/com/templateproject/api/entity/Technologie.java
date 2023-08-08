@@ -1,12 +1,14 @@
 package com.templateproject.api.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -34,7 +36,15 @@ public class Technologie {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
-    private boolean isDone;
+    private boolean isDone; // ?? interet >> si lvl à 0 techno non debloqué si >0 techno Done?? 
+
+    //JOINTS TABLE Attributes 
+    @OneToMany (mappedBy = "technlogie") //Joints toAcces 0.N-0.N
+    private List<Building> buildingsListByTechnologie; 
+
+     @OneToMany (mappedBy = "technlogie") //Joints toUnlock 0.N-0.N
+    private List<Ship> shipList; 
+
 
     public Technologie() {}
 
@@ -151,7 +161,36 @@ public class Technologie {
 
     public void setDone(boolean isDone) {
         this.isDone = isDone;
+    }
+
+    public Building getBuildingsList() {
+        return buildingsList;
+    }
+
+    public void setBuildingsList(Building buildingsList) {
+        this.buildingsList = buildingsList;
+    }
+
+
+    //GETTER & SETTER
+
+    public List<Ship> getShipList() {
+        return shipList;
+    }
+
+    public void setShipList(List<Ship> shipList) {
+        this.shipList = shipList;
+    }
+
+    public List<Building> getBuildingsListByTechnologie() {
+        return buildingsListByTechnologie;
+    }
+
+    public void setBuildingsListByTechnologie(List<Building> buildingsListByTechnologie) {
+        this.buildingsListByTechnologie = buildingsListByTechnologie;
     };
+
+    
 
     
 }

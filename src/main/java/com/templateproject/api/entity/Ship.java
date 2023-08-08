@@ -1,10 +1,16 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Ship {
@@ -26,6 +32,19 @@ public class Ship {
     private Integer speed;
     private Integer capacity;
     private Integer quantity;
+
+    //JOINT TABLE Attribute 
+     @OneToMany (mappedBy = "ship_id") //Joints toUnlock 0.N-0.N
+    private List<Technologie> technologiesList; 
+
+    @ManyToOne
+    @JoinColumn(name="building_id")//Joints toMake 1.N-0.N
+    private Building buiuBuilding;
+
+    @OneToMany (mappedBy = "ship_id") //Joints toCompose 0.N-0.N
+    private List<Fleet> fleetsList;
+    
+    
 
     public Ship() {
     };
@@ -162,5 +181,38 @@ public class Ship {
         this.capacity = capacity;
     }
 
-   
+    public void setEnergyPrice(Integer energyPrice) {
+        this.energyPrice = energyPrice;
+    }
+
+    public void setPv(Integer pv) {
+        this.pv = pv;
+    }
+
+    //GETTER & SETTER JOINTS 
+
+    public List<Technologie> getTechnologiesList() {
+        return technologiesList;
+    }
+
+    public void setTechnologiesList(List<Technologie> technologiesList) {
+        this.technologiesList = technologiesList;
+    }
+
+    public Building getBuiuBuilding() {
+        return buiuBuilding;
+    }
+
+    public void setBuiuBuilding(Building buiuBuilding) {
+        this.buiuBuilding = buiuBuilding;
+    }
+
+    public List<Fleet> getFleetsList() {
+        return fleetsList;
+    }
+
+    public void setFleetsList(List<Fleet> fleetsList) {
+        this.fleetsList = fleetsList;
+    }
+  
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.entity.Building;
+import com.templateproject.api.entity.Planet;
 import com.templateproject.api.service.BuildingService;
 
 // @CrossOrigin(origins = "http://localhost:4200")
@@ -22,16 +23,19 @@ import com.templateproject.api.service.BuildingService;
 public class BuildingController  {
 
     private final BuildingService buildingService;
+    
 
-    public BuildingController(BuildingService buildingService) {
+    public BuildingController(BuildingService buildingService, Planet planet) {
         this.buildingService = buildingService;
+       
     }
 
     // CREATE
     @PostMapping("/building")
-    public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building) {
+    public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building, @RequestBody Planet planet) {
         var payload = new BuildingPayload();
         try {
+            var planetId = planet.getId();
             buildingService.add(
                     building.getName(),
                     building.getType(),
@@ -42,9 +46,10 @@ public class BuildingController  {
                     building.getDiamondPrice(),
                     building.getHydrogenPrice(),
                     building.getEnergyPrice(),
-                    building.getIsBuild(),
                     building.getTimeBuilding(),
-                    building.getTimeToStart());
+                    building.getTimeToStart(),
+                    building.getPlanetIdByBuildings());
+
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -107,7 +112,6 @@ public class BuildingController  {
             payload.setDiamondPrice(building.getDiamondPrice());
             payload.setHydrogenPrice(building.getHydrogenPrice());
             payload.setEnergyPrice(building.getEnergyPrice());
-            payload.setIsBuild(building.getIsBuild());
             payload.setTimeBuilding(building.getTimeBuilding());
             payload.setTimeToStart(building.getTimeToStart());
 

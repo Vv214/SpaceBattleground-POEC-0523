@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Ressource {
@@ -16,6 +19,15 @@ public class Ressource {
 
     private Integer quantity;
     private Integer maxStock;
+
+    //JOINT ATTRIBUTES
+
+    @ManyToOne 
+    @JoinColumn(name = "planet_id", nullable = true, referencedColumnName = "id")
+    private Planet planet;
+
+    @OneToOne (mappedBy = "ressource_id") // toProduce Joint 1.1-1.1
+    private Building building; 
 
     public Ressource() {
     }
@@ -58,6 +70,24 @@ public class Ressource {
         this.maxStock = maxStock;
     }
 
+    
+    //GETTER & SETTER JOINT TABLE 
+    
+    public Planet getPlanet() {
+        return planet;
+    }
 
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+    
 
 }

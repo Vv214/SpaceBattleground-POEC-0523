@@ -12,10 +12,9 @@ import com.templateproject.api.entity.Planet;
 @Repository
 public interface PlanetRepository extends JpaRepository<Planet, Integer> {
     public Planet findByName(String name);
-
     public Planet deleteByName(String name);
     public Planet findByPositionX(Integer X);
     public Planet findByPositionY(Integer Y);
     public List<Planet> findAllByPlayerId(Integer playerID);
-
+    
 }
