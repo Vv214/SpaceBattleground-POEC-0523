@@ -64,6 +64,11 @@ public class Building {
     public Building() {
     }
 
+    public Building(boolean isBuild) {
+        this.isBuild = isBuild;
+        // Initialisez les propriétés de la classe avec les valeurs appropriées
+    }
+
     public String getName() {
         return name;
     }

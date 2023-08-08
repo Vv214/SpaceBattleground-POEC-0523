@@ -8,8 +8,6 @@ import com.templateproject.api.controller.payload.RessourcePayload;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.repository.RessourceRepository;
 
-
-
 @Service
 public class RessourceService {
   private final RessourceRepository ressourceRepository;
@@ -77,6 +75,11 @@ public class RessourceService {
 
   public Ressource add(Ressource ressource) {
     return ressourceRepository.save(ressource);
+  }
+
+  public Ressource findAllByPlanet(Integer planet) {
+    ressourceRepository.findAllByPlanet(planet);
+
   }
 
 }
