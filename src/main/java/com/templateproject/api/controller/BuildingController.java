@@ -103,10 +103,10 @@ public class BuildingController {
             if (building.getName() != null) {
                 payload.setName(building.getName());
             }
-            if (building.getType() != null) {
+            if (building.getLevel() != null) {
                 payload.setLevel(building.getLevel());
             }
-            if (building.getType() != null) {
+            if (building.getLevel() != null) {
                 payload.setType(building.getType());
             }
             if (building.getDescription() != null) {
@@ -140,7 +140,6 @@ public class BuildingController {
             payload.setMessage("Building updated successfully");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
-
             // Finir ca
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
