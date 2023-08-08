@@ -11,7 +11,7 @@ public class MethodeService {
     }
 
     public void buildingLevelUp(Integer buildingId, Integer planetId) {
-        ressourceService.findAllByPlanet(planetId);
+        // ressourceService.findAllByPlanet(planetId);
 
     }
 

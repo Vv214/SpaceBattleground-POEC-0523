@@ -78,8 +78,8 @@ public class RessourceService {
   }
 
   public Ressource findAllByPlanet(Integer planet) {
-    ressourceRepository.findAllByPlanet(planet);
-
+    // ressourceRepository.findAllByPlanet(planet);
+    return null;
   }
 
 }

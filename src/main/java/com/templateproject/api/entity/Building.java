@@ -36,6 +36,8 @@ public class Building {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
+    // private Planet planet;
+
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
             Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, boolean isBuild, Date timeBuilding,
             Date timeToStart) {
