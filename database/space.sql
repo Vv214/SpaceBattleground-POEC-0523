@@ -1,4 +1,4 @@
--- Active: 1690547072753@@127.0.0.1@3306@space
+-- Active: 1688044672103@@127.0.0.1@3306@space
 
 DROP DATABASE space;
 
@@ -27,6 +27,8 @@ SELECT * FROM building;
 
 SELECT * FROM technologie;
 
-DESCRIBE technologie;
+SELECT * FROM planet;
+
+DESCRIBE building;
 
 SELECT * FROM planet;

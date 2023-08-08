@@ -16,10 +16,12 @@ import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.entity.Building;
 import com.templateproject.api.service.BuildingService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 // @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
-public class BuildingController  {
+@CrossOrigin(origins = "http://localhost:4200")
+public class BuildingController {
 
     private final BuildingService buildingService;
 
@@ -98,24 +100,46 @@ public class BuildingController  {
     public ResponseEntity<BuildingPayload> updateBuilding(@PathVariable String name, @RequestBody Building building) {
         var payload = new BuildingPayload();
         try {
-            payload.setName(building.getName());
-            payload.setType(building.getType());
-            payload.setLevel(building.getLevel());
-            payload.setDescription(building.getDescription());
-            payload.setCoeff_prod(building.getCoeff_prod());
-            payload.setIronPrice(building.getIronPrice());
-            payload.setDiamondPrice(building.getDiamondPrice());
-            payload.setHydrogenPrice(building.getHydrogenPrice());
-            payload.setEnergyPrice(building.getEnergyPrice());
+            if (building.getName() != null) {
+                payload.setName(building.getName());
+            }
+            if (building.getLevel() != null) {
+                payload.setLevel(building.getLevel());
+            }
+            if (building.getLevel() != null) {
+                payload.setType(building.getType());
+            }
+            if (building.getDescription() != null) {
+                payload.setDescription(building.getDescription());
+            }
+            if (building.getCoeff_prod() != null) {
+                payload.setCoeff_prod(building.getCoeff_prod());
+            }
+            if (building.getIronPrice() != null) {
+                payload.setIronPrice(building.getIronPrice());
+            }
+            if (building.getDiamondPrice() != null) {
+                payload.setDiamondPrice(building.getDiamondPrice());
+            }
+            if (building.getHydrogenPrice() != null) {
+                payload.setHydrogenPrice(building.getHydrogenPrice());
+            }
+            if (building.getEnergyPrice() != null) {
+                payload.setEnergyPrice(building.getEnergyPrice());
+            }
+            // if(building.getIsBuild() != null) {
             payload.setIsBuild(building.getIsBuild());
-            payload.setTimeBuilding(building.getTimeBuilding());
-            payload.setTimeToStart(building.getTimeToStart());
-
+            // }
+            if (building.getTimeBuilding() != null) {
+                payload.setTimeBuilding(building.getTimeBuilding());
+            }
+            if (building.getTimeToStart() != null) {
+                payload.setTimeToStart(building.getTimeToStart());
+            }
             buildingService.updateBuilding(name, payload);
             payload.setMessage("Building updated successfully");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
-
             // Finir ca
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -137,5 +161,21 @@ public class BuildingController  {
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
+    }
+
+    @GetMapping("/building/{id}/levelup")
+    public ResponseEntity<Payload> levelUp(@PathVariable Integer id, HttpServletRequest request) {
+        var payload = new Payload();
+        try {
+            // var playerID = (Integer) request.getAttribute("playerID");
+            // to do verif building appratien au player id
+            // to do verif ressource methode service
+            buildingService.levelUp(id);
+
+        } catch (Exception e) {
+
+            // TODO: handle exception
+        }
+        return new ResponseEntity<>(payload, HttpStatus.OK);
     }
 }

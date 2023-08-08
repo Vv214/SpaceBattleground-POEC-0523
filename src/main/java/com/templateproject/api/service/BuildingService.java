@@ -18,14 +18,12 @@ public class BuildingService {
   private final BuildingRepository buildingRepository;
 
   public BuildingService(BuildingRepository buildingRepository) {
-    System.out.println("je suis dans le cosntr");
+    // System.out.println("je suis dans le cosntr");
     this.buildingRepository = buildingRepository;
 
   }
 
-
-
-public Object getAll() {
+  public Object getAll() {
     var laboratory = getBuilding("Laboratoire");
     var robotFactory = getBuilding("Usine de robots");
     var shipyard = getBuilding("Chantier spatial");
@@ -55,7 +53,6 @@ public Object getAll() {
     System.out.println(buildings + " building back");
     return buildings;
   }
-
 
   // CREATE
 
@@ -149,25 +146,25 @@ public Object getAll() {
     if (building.getType() != null) {
       buildingToUpdate.setType(building.getType());
     }
-    if (building.getLevel() != 0) {
+    if (building.getLevel() != null) {
       buildingToUpdate.setLevel(building.getLevel());
     }
     if (building.getDescription() != null) {
       buildingToUpdate.setDescription(building.getDescription());
     }
-    if (building.getCoeff_prod() != 0) {
+    if (building.getCoeff_prod() != null) {
       buildingToUpdate.setCoeff_prod(building.getCoeff_prod());
     }
-    if (building.getIronPrice() != 0) {
+    if (building.getIronPrice() != null) {
       buildingToUpdate.setIronPrice(building.getIronPrice());
     }
-    if (building.getDiamondPrice() != 0) {
+    if (building.getDiamondPrice() != null) {
       buildingToUpdate.setDiamondPrice(building.getDiamondPrice());
     }
-    if (building.getHydrogenPrice() != 0) {
+    if (building.getHydrogenPrice() != null) {
       buildingToUpdate.setHydrogenPrice(building.getHydrogenPrice());
     }
-    if (building.getEnergyPrice() != 0) {
+    if (building.getEnergyPrice() != null) {
       buildingToUpdate.setEnergyPrice(building.getEnergyPrice());
     }
     if (building.getIsBuild() != null) {
@@ -188,5 +185,13 @@ public Object getAll() {
     buildingRepository.deleteByName(name);
     return new ResponseEntity<String>("Building successfully deleted!",
         HttpStatus.OK);
+  }
+
+  // level up
+  public Building levelUp(Integer buildingId) {
+    var buildingToUpdate = buildingRepository.findById(buildingId).get();
+    buildingToUpdate.setLevel(buildingToUpdate.getLevel() + 1);
+    return buildingRepository.save(buildingToUpdate);
+
   }
 }
