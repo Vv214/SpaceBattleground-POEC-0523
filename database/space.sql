@@ -35,3 +35,5 @@ SELECT * FROM technologie;
 DESCRIBE technologie;
 
 SELECT * FROM planet;
+
+select user(), current_user();
