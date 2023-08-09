@@ -23,7 +23,7 @@ SELECT * FROM ressource;
 
 SELECT * FROM clan;
 
-SELECT * FROM building;
+SELECT * FROM ship;
 
 SELECT * FROM technologie;
 

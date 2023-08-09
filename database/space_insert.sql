@@ -445,8 +445,8 @@ VALUES (
     );
 
 insert into
-    ressource (id, name, quantity, max_stock)
-values (1, 'diamond', 4000, 10000), (2, 'iron', 4000, 10000), (3, 'hydrogene', 4000, 10000), (4, 'energy', 4000, 10000);
+    ressource (name, quantity, max_stock)
+values ('diamond', 4000, 10000), ('iron', 4000, 10000), ('hydrogene', 4000, 10000), ('energy', 4000, 10000);
 
 insert into
     planet (

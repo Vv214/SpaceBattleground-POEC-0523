@@ -1,6 +1,5 @@
 package com.templateproject.api.controller;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,47 +16,48 @@ import com.templateproject.api.entity.Ship;
 import com.templateproject.api.service.ShipService;
 
 @RestController
-@RequestMapping (path = "/ship")
+@RequestMapping(path = "/ship")
 public class ShipController {
-  
+
   private final ShipService shipService;
-  
+
   public ShipController(ShipService shipService) {
     this.shipService = shipService;
   }
-  //CREATE
+
+  // CREATE
   @PostMapping
   public ResponseEntity<Payload> addNewShip(@RequestBody Ship ship) {
     var payload = new Payload();
     var ShipName = ship.getName();
     try {
       shipService.createShip(
-        ship.getName(),
-        ship.getType(),
-        ship.getIronPrice(),
-        ship.getDiamondPrice(),
-        ship.getHydrogenPrice(),
-        ship.getEnergyPrice(),
-        ship.getPv(),
-        ship.getDamage(),
-        ship.getFuel(),
-        ship.getSpeed(),
-        ship.getCapacity(),
-        ship.getQuantity()      
-      );
-      payload.setMessage( ShipName + " created");
+          ship.getName(),
+          ship.getType(),
+          ship.getIronPrice(),
+          ship.getDiamondPrice(),
+          ship.getHydrogenPrice(),
+          ship.getEnergyPrice(),
+          ship.getPv(),
+          ship.getDamage(),
+          ship.getFuel(),
+          ship.getSpeed(),
+          ship.getCapacity(),
+          ship.getQuantity());
+      payload.setMessage(ShipName + " created");
       return new ResponseEntity<>(payload, HttpStatus.OK);
     } catch (Exception e) {
       payload.setMessage(e.getMessage());
       return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
       // TODO: handle exception
     }
-    
+
   }
-  //RESEARCH ALL
-  @GetMapping ("/ships")
-  public ResponseEntity<Payload> getAllSip() {
-    var payload = new Payload(); 
+
+  // RESEARCH ALL
+  @GetMapping("/ship")
+  public ResponseEntity<Payload> getAllShip() {
+    var payload = new Payload();
     try {
 
       payload.setData(shipService.getAllShips());
@@ -71,18 +71,19 @@ public class ShipController {
       // TODO: handle exception
     }
   }
-  //RESEARCH ONE
+
+  // RESEARCH ONE
   @GetMapping("/{name}")
   public ResponseEntity<Payload> getShipByName(@PathVariable String name) {
-    var payload = new Payload(); 
+    var payload = new Payload();
     try {
       var ship = shipService.getShipByName(name);
       payload.setMessage("Get Ship By Name :" + name + "'");
       payload.setData(ship);
       return new ResponseEntity<>(payload, HttpStatus.OK);
-    
+
     } catch (Exception e) {
-      
+
       payload.setMessage(e.getMessage());
       payload.setData(null);
       return new ResponseEntity<>(payload, HttpStatus.OK);
@@ -91,47 +92,45 @@ public class ShipController {
     }
   }
 
-
- //UPDATE ONE
+  // UPDATE ONE
   @PutMapping("/{name}")
   public ResponseEntity<Payload> updateShip(@PathVariable String name, @RequestBody Ship ship) {
     var payload = new Payload();
     try {
       shipService.updateShip(
-        name, 
-        ship.getName(), 
-        ship.getType(), 
-        ship.getIronPrice(), 
-        ship.getDiamondPrice(),
-        ship.getHydrogenPrice(),
-        ship.getEnergyPrice(),
-        ship.getPv(),
-        ship.getDamage(),
-        ship.getFuel(),
-        ship.getSpeed(),
-        ship.getCapacity(),
-        ship.getQuantity());
+          name,
+          ship.getName(),
+          ship.getType(),
+          ship.getIronPrice(),
+          ship.getDiamondPrice(),
+          ship.getHydrogenPrice(),
+          ship.getEnergyPrice(),
+          ship.getPv(),
+          ship.getDamage(),
+          ship.getFuel(),
+          ship.getSpeed(),
+          ship.getCapacity(),
+          ship.getQuantity());
       payload.setMessage("Ship Update");
-      return new ResponseEntity<>(payload,HttpStatus.OK);
+      return new ResponseEntity<>(payload, HttpStatus.OK);
     } catch (Exception e) {
-       payload.setMessage(e.getMessage());
-       return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+      payload.setMessage(e.getMessage());
+      return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
       // TODO: handle exception
     }
- }
+  }
 
-
-  //DELETE ONE 
+  // DELETE ONE
   @DeleteMapping("/{name}")
   public ResponseEntity<Payload> deleteShip(@PathVariable String name) {
-   var payload = new Payload();
-   try {
-    shipService.deleteShipByName(name);
-    payload.setMessage("The " + name + "class deleted");
-    return new ResponseEntity<>(payload,HttpStatus.OK);
-  } catch (Exception e) {
-        payload.setMessage(e.getMessage());
-        return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
-   }
+    var payload = new Payload();
+    try {
+      shipService.deleteShipByName(name);
+      payload.setMessage("The " + name + "class deleted");
+      return new ResponseEntity<>(payload, HttpStatus.OK);
+    } catch (Exception e) {
+      payload.setMessage(e.getMessage());
+      return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }
