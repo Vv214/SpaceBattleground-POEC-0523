@@ -50,10 +50,10 @@ public class TechnologieController {
 
     // RESEARCH ALL
     @GetMapping("/technologie")
-    public ResponseEntity<Payload> getAllTechnoligie() {
+    public ResponseEntity<Payload> getAllTechnologie() {
         var payload = new Payload();
         try {
-            payload.setData(technologieService.getTechnologies());
+            payload.setData(technologieService.getAllTechnologies());
             payload.setMessage("Get all Technologies");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class TechnologieController {
 
     // RESEARCH ONE
     @GetMapping("/technologie/{name}")
-    public ResponseEntity<Payload> getTechnoligieByName(@PathVariable String name) {
+    public ResponseEntity<Payload> getTechnologieByName(@PathVariable String name) {
         var payload = new Payload();
         try {
             var technologie = technologieService.getTechnologie(name);

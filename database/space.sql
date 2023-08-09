@@ -1,5 +1,7 @@
 -- Active: 1688044672103@@127.0.0.1@3306@space
 
+DROP DATABASE space;
+
 CREATE DATABASE IF NOT EXISTS `space`;
 
 CREATE USER
@@ -21,10 +23,12 @@ SELECT * FROM ressource;
 
 SELECT * FROM clan;
 
-SELECT * FROM building;
+SELECT * FROM ship;
 
 SELECT * FROM technologie;
 
-DESCRIBE technologie;
+SELECT * FROM building;
+
+DESCRIBE building;
 
 SELECT * FROM planet;
