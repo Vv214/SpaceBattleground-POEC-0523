@@ -2,18 +2,7 @@ package com.templateproject.api.entity;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-
-
-
+import jakarta.persistence.*;
 
 @Entity
 public class Planet {
@@ -27,22 +16,7 @@ public class Planet {
     private Integer positionY;
     private Integer planetSize;
 
-    //JOINT DECLARATION
-    @ManyToOne //toColonise 1.N-1.1
-    @JoinColumn(name = "player_id", nullable = true, referencedColumnName = "id")
-    private Player player;
 
-    @OneToMany (mappedBy = "planet") //toVisit O.N-O.N >> ?? table de jonction ??
-    private List<Player> playerVisit; 
-
-    @OneToMany (mappedBy = "building") //toSetUpJoint 1.N
-    private List<Building> buildingsList; 
-
-    @OneToMany(mappedBy = "ressource") //toStoreJoint 1.N
-    private List<Ressource> ressourcesList;
-
-    @OneToMany(mappedBy = "planet_id") //toPark O.N-O.N
-    private List<Fleet> fleetsList;
 
     //JOINT DECLARATION 
     @ManyToOne //toColonize 1.N-1.1
@@ -77,8 +51,6 @@ public class Planet {
         this.player = player;
         this.buildingsList = buildingsList; 
     }
-
-
     
     public Integer getId() {
         return id;

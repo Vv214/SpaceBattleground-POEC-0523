@@ -1,15 +1,29 @@
 package com.templateproject.api.entity;
 
+<<<<<<< HEAD
+import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.Column;
+=======
 import java.util.*;
 
 import jakarta.persistence.*;
+>>>>>>> 22faccaf10fe3cbe07c9acbde2599d914506bc4a
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+<<<<<<< HEAD
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+=======
+import jakarta.persistence.OneToOne;
+>>>>>>> 22faccaf10fe3cbe07c9acbde2599d914506bc4a
 
 @Entity
 public class Building {
@@ -24,36 +38,40 @@ public class Building {
     private Integer level;
 
     private String description;
-    private int coeff_prod;
-    private int ironPrice;
-    private int diamondPrice;
-    private int hydrogenPrice;
-    private int priceEnergy;
-    private int timeBuilding;
+    private Integer coeff_prod;
+
+    private Integer ironPrice;
+    private Integer diamondPrice;
+    private Integer hydrogenPrice;
+    private Integer energyPrice;
     
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeBuilding;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeToStart;
+
     //JOINT DECLARATION
-    @ManyToOne //toSetUp 1.N-1.1
+    @ManyToOne //tiSetUp Joint 1.1
     @JoinColumn (name = "planet_id", nullable = false, referencedColumnName = "id")
     private Planet planet;
 
-    @OneToOne//toProduce 0.1-1.1
+    @OneToOne //toStore Joint 1.N-1.N
+    @JoinColumn(name = "Ressoucre_id")
     private Ressource ressource;
 
-    @ManyToOne // toMake 1.N-O.N
-    @JoinColumn(name="ship_id")
-    private Ship ship;
+    @OneToMany (mappedBy = "buildingsListByTechnologie") //Joint to Acces 0.N-0.N
+    private List<Technologie> technologiesList; 
 
-    @ManyToMany(mappedBy="buildingsList")//toAcces 0.N-0.N
-    private List<Technologie> technologies; 
-
+    @OneToMany (mappedBy = "building") //Joints toCompose 0.N-0.N
+    private List<Ship> shipsList; 
     
-    public Building() {
-    };
+    //CONSTRUCTOR
+    public Building(){};
 
-    public Building(String name, String type, int level, int buildingSize, String description, int coeff_prod,
-            int ironPrice, int diamondPrice, int hydrogenPrice
-    ,
-            int priceEnergy, int timeBuilding) {
+    public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
+            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding,
+            Date timeToStart, Planet planet) {
         this.name = name;
         this.type = type;
         this.level = level;
@@ -61,25 +79,20 @@ public class Building {
         this.coeff_prod = coeff_prod;
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
-        this.hydrogenPrice
- = hydrogenPrice
-;
-        this.priceEnergy = priceEnergy;
+        this.hydrogenPrice = hydrogenPrice;
+        this.energyPrice = energyPrice;
         this.timeBuilding = timeBuilding;
+        this.timeToStart = timeToStart;
+        this.planet = planet;
     }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    
     public String getName() {
         return name;
     }
@@ -204,6 +217,6 @@ public class Building {
     public void setShipsList(List<Ship> shipsList) {
         this.shipsList = shipsList;
     }
-    
+
     
 }

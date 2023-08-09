@@ -2,18 +2,8 @@ package com.templateproject.api.entity;
 
 import java.util.List;
 
-import java.util.List;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Fleet {
@@ -33,33 +23,6 @@ public class Fleet {
     private Integer totalCapacity;
 
     private Integer speed;
-
-    //JOINTS DECLARATION 
-    @OneToMany (mappedBy = "fleet") //Joint to Acces 0.N-0.N
-    private List<Ship> shipsList;
-    
-    @OneToMany(mappedBy = "fleet") //toPark O.N-O.N
-    private List<Planet> planetsList;
-
-    @ManyToOne // Joint ToOrder 0.N-1.1 
-    @JoinColumn (name = "player_id", nullable = false, referencedColumnName = "id") 
-    private Player player;
-
-    //JOINTS DECLARATION 
-    @ManyToOne // Joint ToOrder 0.N-1.1 
-    @JoinColumn (name = "player_id", nullable = false, referencedColumnName = "id") 
-    private Player player;
-
-    @ManyToMany //toPark O.N-O.N
-    @JoinTable(
-        name ="fleet_parked_planet",
-        joinColumns = @JoinColumn(name = "fleet_id"),
-        inverseJoinColumns = @JoinColumn(name="planet_id")        
-    )
-    private List<Planet> parkedPlanets;
-
-    @ManyToMany (mappedBy = "fleetCompose")
-    private List<Ship> shipToComposeFleet;
 
     //JOINTS DECLARATION 
     @ManyToOne // Joint ToOrder 0.N-1.1 
@@ -163,31 +126,7 @@ public class Fleet {
     public void setSpeed(Integer speed) {
         this.speed = speed;
     }
-    
-    //GETTER & SETER JOINTS
-    public List<Ship> getShipsList() {
-        return shipsList;
-    }
 
-    public void setShipsList(List<Ship> shipsList) {
-        this.shipsList = shipsList;
-    }
-
-    public List<Planet> getPlanetsList() {
-        return planetsList;
-    }
-
-    public void setPlanetsList(List<Planet> planetsList) {
-        this.planetsList = planetsList;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 //GETTERS & SETTER to Joint 
 
     public Player getPlayer() {

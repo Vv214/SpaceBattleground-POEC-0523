@@ -7,8 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Clan {
@@ -106,6 +105,13 @@ public class Clan {
     public String getAdminNickname() {
         return adminNickname;
     }
+    public Integer getLevel() {
+        return level;
+    }
+    
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
 //GETTER & SETTER
 
     public Player getPlayer() {
@@ -115,7 +121,5 @@ public class Clan {
     public void setPlayer(Player player) {
         this.player = player;
     }
-
-
 
 }

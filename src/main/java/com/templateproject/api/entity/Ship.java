@@ -3,22 +3,14 @@ package com.templateproject.api.entity;
 import java.util.List;
 
 import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(unique = true, nullable = false, length = 50)
     private String name;
-
     private String type;
     private Integer ironPrice;
     private Integer diamondPrice;
@@ -30,41 +22,7 @@ public class Ship {
     private Integer speed;
     private Integer capacity;
     private Integer quantity;
-
-    //JOINT TABLE Attribute 
-     @OneToMany (mappedBy = "ship") //Joints toUnlock 0.N-0.N
-    private List<Technologie> technologiesList; 
-
-    @ManyToOne
-    @JoinColumn(name="building_id")//Joints toMake 1.N-0.N
-    private Building building;
-
-    @OneToMany (mappedBy = "ship") //Joints toCompose 0.N-0.N
-    private List<Fleet> fleetsList;
-    
-    
-
-    //JOINT DECLARATION
-    @ManyToMany
-    @JoinTable(
-        name = "ship_toCompose_fleet",
-        joinColumns = @JoinColumn(name="ship_id"),
-        inverseJoinColumns = @JoinColumn(name="fleet_id")
-    )
-    private List<Fleet> fleetCompose;
-
-    @OneToMany(mappedBy="ship")//toMake 1.N-0.N
-    private List<Building> buildingNecessary; 
-
-    // @OneToMany (mappedBy = "ship") //Joints toUnlock 0.N-0.N
-    @ManyToMany
-    @JoinTable(
-        name ="ship_technologie",
-        joinColumns = @JoinColumn(name="ship_id"),
-        inverseJoinColumns = @JoinColumn(name="technologie_id")
-    )
-    private List<Technologie> technologiesList; 
-
+  
     //JOINT DECLARATION
     @ManyToMany
     @JoinTable(
@@ -228,32 +186,12 @@ public class Ship {
     public void setPv(Integer pv) {
         this.pv = pv;
     }
-
-    //GETTER & SETTER JOINTS 
-
-    public List<Technologie> getTechnologiesList() {
-        return technologiesList;
-    }
-
-    public void setTechnologiesList(List<Technologie> technologiesList) {
-        this.technologiesList = technologiesList;
-    }
-
-    public Building getbuilding() {
-        return building;
-    }
-
-    public void setbuilding(Building building) {
-        this.building = building;
-    }
-
-    public List<Fleet> getFleetsList() {
-        return fleetsList;
-    }
     public void setPv(int pv) {
         this.pv = pv;
     }
-//GETTER & SETTER to JKOINTS
+
+    
+//GETTER & SETTER to JOINTS
 
     public List<Fleet> getFleetCompose() {
         return fleetCompose;
