@@ -1,12 +1,13 @@
 package com.templateproject.api.entity;
 
-import jakarta.persistence.Column;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -20,14 +21,12 @@ public class Ressource {
     private Integer quantity;
     private Integer maxStock;
 
-    //JOINT ATTRIBUTES
+    //JOINT DECLARATION
+    @ManyToMany(mappedBy="ressourcesList")
+    private List<Planet> planetToStore;
 
-    @ManyToOne //ToStore 0.N-1.N
-    @JoinColumn(name = "planet_id", nullable = true, referencedColumnName = "id")
-    private Planet planet;
-
-    @OneToOne (mappedBy = "ressource") // toProduce Joint 1.1-1.1
-    private Building building; 
+    @OneToOne(mappedBy="ressource")
+    private Building building;
 
     public Ressource() {
     }
@@ -70,15 +69,16 @@ public class Ressource {
         this.maxStock = maxStock;
     }
 
-    
-    //GETTER & SETTER JOINT TABLE 
-    
-    public Planet getPlanet() {
-        return planet;
+    public void setId(int id) {
+        this.id = id;
+    }
+    //GETTER & SETTER to JOINTS
+    public List<Planet> getPlanetToStore() {
+        return planetToStore;
     }
 
-    public void setPlanet(Planet planet) {
-        this.planet = planet;
+    public void setPlanetToStore(List<Planet> planetToStore) {
+        this.planetToStore = planetToStore;
     }
 
     public Building getBuilding() {
@@ -88,6 +88,8 @@ public class Ressource {
     public void setBuilding(Building building) {
         this.building = building;
     }
-    
+
+   
+
 
 }

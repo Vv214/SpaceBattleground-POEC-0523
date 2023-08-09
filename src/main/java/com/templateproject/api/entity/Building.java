@@ -1,19 +1,15 @@
 package com.templateproject.api.entity;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 @Entity
 public class Building {
@@ -28,40 +24,36 @@ public class Building {
     private Integer level;
 
     private String description;
-    private Integer coeff_prod;
-
-    private Integer ironPrice;
-    private Integer diamondPrice;
-    private Integer hydrogenPrice;
-    private Integer energyPrice;
+    private int coeff_prod;
+    private int ironPrice;
+    private int diamondPrice;
+    private int hydrogenPrice;
+    private int priceEnergy;
+    private int timeBuilding;
     
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timeBuilding;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timeToStart;
-
     //JOINT DECLARATION
-    @ManyToOne //tiSetUp Joint 1.1
+    @ManyToOne //toSetUp 1.N-1.1
     @JoinColumn (name = "planet_id", nullable = false, referencedColumnName = "id")
     private Planet planet;
 
-    @OneToOne //toStore Joint 1.N-1.N
-    @JoinColumn(name = "Ressoucre_id")
+    @OneToOne//toProduce 0.1-1.1
     private Ressource ressource;
 
-    @OneToMany (mappedBy = "buildingsListByTechnologie") //Joint to Acces 0.N-0.N
-    private List<Technologie> technologiesList; 
+    @ManyToOne // toMake 1.N-O.N
+    @JoinColumn(name="ship_id")
+    private Ship ship;
 
-    @OneToMany (mappedBy = "building") //Joints toCompose 0.N-0.N
-    private List<Ship> shipsList; 
+    @ManyToMany(mappedBy="buildingsList")//toAcces 0.N-0.N
+    private List<Technologie> technologies; 
+
     
-    //CONSTRUCTOR
-    public Building(){};
+    public Building() {
+    };
 
-    public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
-            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding,
-            Date timeToStart, Planet planet) {
+    public Building(String name, String type, int level, int buildingSize, String description, int coeff_prod,
+            int ironPrice, int diamondPrice, int hydrogenPrice
+    ,
+            int priceEnergy, int timeBuilding) {
         this.name = name;
         this.type = type;
         this.level = level;
@@ -69,11 +61,23 @@ public class Building {
         this.coeff_prod = coeff_prod;
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
-        this.hydrogenPrice = hydrogenPrice;
-        this.energyPrice = energyPrice;
+        this.hydrogenPrice
+ = hydrogenPrice
+;
+        this.priceEnergy = priceEnergy;
         this.timeBuilding = timeBuilding;
-        this.timeToStart = timeToStart;
-        this.planet = planet;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {

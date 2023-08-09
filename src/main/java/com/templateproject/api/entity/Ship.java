@@ -2,16 +2,13 @@ package com.templateproject.api.entity;
 
 import java.util.List;
 
-
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Ship {
@@ -46,6 +43,48 @@ public class Ship {
     private List<Fleet> fleetsList;
     
     
+
+    //JOINT DECLARATION
+    @ManyToMany
+    @JoinTable(
+        name = "ship_toCompose_fleet",
+        joinColumns = @JoinColumn(name="ship_id"),
+        inverseJoinColumns = @JoinColumn(name="fleet_id")
+    )
+    private List<Fleet> fleetCompose;
+
+    @OneToMany(mappedBy="ship")//toMake 1.N-0.N
+    private List<Building> buildingNecessary; 
+
+    // @OneToMany (mappedBy = "ship") //Joints toUnlock 0.N-0.N
+    @ManyToMany
+    @JoinTable(
+        name ="ship_technologie",
+        joinColumns = @JoinColumn(name="ship_id"),
+        inverseJoinColumns = @JoinColumn(name="technologie_id")
+    )
+    private List<Technologie> technologiesList; 
+
+    //JOINT DECLARATION
+    @ManyToMany
+    @JoinTable(
+        name = "ship_toCompose_fleet",
+        joinColumns = @JoinColumn(name="ship_id"),
+        inverseJoinColumns = @JoinColumn(name="fleet_id")
+    )
+    private List<Fleet> fleetCompose;
+
+    @OneToMany(mappedBy="ship")//toMake 1.N-0.N
+    private List<Building> buildingNecessary; 
+
+    // @OneToMany (mappedBy = "ship") //Joints toUnlock 0.N-0.N
+    @ManyToMany
+    @JoinTable(
+        name ="ship_technologie",
+        joinColumns = @JoinColumn(name="ship_id"),
+        inverseJoinColumns = @JoinColumn(name="technologie_id")
+    )
+    private List<Technologie> technologiesList; 
 
     public Ship() {
     };
@@ -211,9 +250,34 @@ public class Ship {
     public List<Fleet> getFleetsList() {
         return fleetsList;
     }
-
-    public void setFleetsList(List<Fleet> fleetsList) {
-        this.fleetsList = fleetsList;
+    public void setPv(int pv) {
+        this.pv = pv;
     }
-  
+//GETTER & SETTER to JKOINTS
+
+    public List<Fleet> getFleetCompose() {
+        return fleetCompose;
+    }
+
+    public void setFleetCompose(List<Fleet> fleetCompose) {
+        this.fleetCompose = fleetCompose;
+    }
+
+    public List<Building> getBuildingNecessary() {
+        return buildingNecessary;
+    }
+
+    public void setBuildingNecessary(List<Building> buildingNecessary) {
+        this.buildingNecessary = buildingNecessary;
+    }
+
+    public List<Technologie> getTechnologiesList() {
+        return technologiesList;
+    }
+
+    public void setTechnologiesList(List<Technologie> technologiesList) {
+        this.technologiesList = technologiesList;
+    }
+
+
 }

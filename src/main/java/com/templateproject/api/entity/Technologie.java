@@ -1,8 +1,8 @@
 package com.templateproject.api.entity;
 
-import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,23 +30,22 @@ public class Technologie {
     
     private Integer level; 
     private float coef_modifier;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timeSearch;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timeToStart;
+    private int timeSearch;
+    private boolean isDone;
 
-    private boolean isDone; // ?? interet >> si lvl à 0 techno non debloqué si >0 techno Done?? 
+    //JOINT DECLARATION 
+    @ManyToMany (mappedBy = "technologiesList") //Joints toUnlock 0.N-0.N
+    private List<Ship> ships; 
 
-    //JOINTS TABLE Attributes 
-    @OneToMany (mappedBy = "technlogie") //Joints toAcces 0.N-0.N
-    private List<Building> buildingsListByTechnologie; 
+    @ManyToMany// toAcces 0.N-0.N
+    @JoinTable(
+        name = "technologie_building",
+        joinColumns = @JoinColumn (name = "technoligie_id"),
+        inverseJoinColumns =  @JoinColumn(name ="building_id")
+    )
+    private List<Building> buildingsList;
 
-    @OneToMany (mappedBy = "technologie") //Joints toUnlock 0.N-0.N
-    private List<Ship> shipList; 
-
-
-    public Technologie() {}
+    public Technologie() {};
 
     public Technologie(String name, String description, Integer ironPrice, Integer diamondPrice, Integer hydrogenPrice,
             Integer energyPrice, Integer level, float coef_modifier, Date timeSearch, Date timeToStart, boolean isDone) {
@@ -162,26 +161,9 @@ public class Technologie {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+ //GETTERS & SETTERS to JOINTS
 
-    //GETTER & SETTER
 
-    public List<Ship> getShipList() {
-        return shipList;
-    }
 
-    public void setShipList(List<Ship> shipList) {
-        this.shipList = shipList;
-    }
 
-    public List<Building> getBuildingsListByTechnologie() {
-        return buildingsListByTechnologie;
-    }
-
-    public void setBuildingsListByTechnologie(List<Building> buildingsListByTechnologie) {
-        this.buildingsListByTechnologie = buildingsListByTechnologie;
-    };
-
-    
-
-    
 }
