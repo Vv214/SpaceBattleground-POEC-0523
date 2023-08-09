@@ -17,7 +17,7 @@ public class AuthService {
 
     private List<Token> tokens;
 
-    private final PlayerRepository playerRepository;
+    private PlayerRepository playerRepository;
 
     public AuthService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;

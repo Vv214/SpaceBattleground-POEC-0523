@@ -22,11 +22,11 @@ public class Ressource {
 
     //JOINT ATTRIBUTES
 
-    @ManyToOne 
+    @ManyToOne //ToStore 0.N-1.N
     @JoinColumn(name = "planet_id", nullable = true, referencedColumnName = "id")
     private Planet planet;
 
-    @OneToOne (mappedBy = "ressource_id") // toProduce Joint 1.1-1.1
+    @OneToOne (mappedBy = "ressource") // toProduce Joint 1.1-1.1
     private Building building; 
 
     public Ressource() {

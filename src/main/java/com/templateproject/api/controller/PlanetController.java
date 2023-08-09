@@ -42,15 +42,16 @@ public class PlanetController {
         planet.getPositionY(), 
         planet.getPlanetSize(), 
         playerID, 
-        planet.getBuildings());
+        planet.getBuildingsList());
       
       payload.set( 
         newPlanet.getName() + " created", 
         newPlanet.getName(), 
         newPlanet.getPositionX(),
         newPlanet.getPositionY(), 
-        newPlanet.getPlanetSize(), 
-        newPlanet.getBuildings()
+        newPlanet.getPlanetSize(),
+        newPlanet.getPlayer(), 
+        newPlanet.getBuildingsList()
         );
       
       return new ResponseEntity<>(payload, HttpStatus.CREATED);

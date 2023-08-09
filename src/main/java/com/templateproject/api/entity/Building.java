@@ -50,10 +50,10 @@ public class Building {
     @JoinColumn(name = "Ressoucre_id")
     private Ressource ressource;
 
-    @OneToMany (mappedBy = "building_id") //Joint to Acces 0.N-0.N
+    @OneToMany (mappedBy = "buildingsListByTechnologie") //Joint to Acces 0.N-0.N
     private List<Technologie> technologiesList; 
 
-    @OneToMany (mappedBy = "building_id") //Joints toCompose 0.N-0.N
+    @OneToMany (mappedBy = "building") //Joints toCompose 0.N-0.N
     private List<Ship> shipsList; 
     
     //CONSTRUCTOR
@@ -165,16 +165,12 @@ public class Building {
     }
 
     // GETTER & SETTER to JOINT
-    public Planet getPlanetIdByBuildings() {
+    public Planet getPlanet(){
         return planet;
     }
 
     public void setPlanetIdByBuildings(Planet planet) {
         this.planet = planet;
-    }
-
-    public Planet getPlanet() {
-        return planet;
     }
 
     public void setPlanet(Planet planet) {

@@ -24,11 +24,11 @@ public class Planet {
     private Integer planetSize;
 
     //JOINT DECLARATION
-    @ManyToOne
+    @ManyToOne //toColonise 1.N-1.1
     @JoinColumn(name = "player_id", nullable = true, referencedColumnName = "id")
     private Player player;
 
-    @OneToMany (mappedBy = "planet_id") //toVisit O.N-O.N >> ?? table de jonction ??
+    @OneToMany (mappedBy = "planet") //toVisit O.N-O.N >> ?? table de jonction ??
     private List<Player> playerVisit; 
 
     @OneToMany (mappedBy = "building") //toSetUpJoint 1.N

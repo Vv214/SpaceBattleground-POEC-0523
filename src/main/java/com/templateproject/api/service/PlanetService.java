@@ -19,9 +19,9 @@ import com.templateproject.api.repository.PlayerRepository;
 public class PlanetService {
 
   private final PlanetRepository planetRepository;
-  private final PlayerRepository playerRepository;
+  private  PlayerRepository playerRepository;
 
-  public PlanetService(PlanetRepository planetRepository, PlayerRepository playerRepository) {
+  public PlanetService(PlanetRepository planetRepository , PlayerRepository playerRepository) {
     this.planetRepository = planetRepository;
     this.playerRepository = playerRepository;
   }

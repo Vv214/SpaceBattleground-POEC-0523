@@ -83,6 +83,10 @@ public class BuildingService {
 
   }
 
+  public void add(Building building) {
+    
+  }
+
   // RESEARCH ALL
   public List<BuildingPayload> getBuildings() {
     var payload = new ArrayList<BuildingPayload>();
@@ -101,9 +105,7 @@ public class BuildingService {
       newBuilding.setEnergyPrice(building.getEnergyPrice());
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       newBuilding.setTimeToStart(building.getTimeToStart());
-
-      newBuilding.setP
-      newBuilding.setPlanet(building.getPlanetIdByBuildings());
+      newBuilding.setPlanet(building.getPlanet());
       
       payload.add(newBuilding);
 
@@ -133,7 +135,7 @@ public class BuildingService {
      
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       newBuilding.setTimeToStart(building.getTimeToStart());
-      newBuilding.setPlanet(building.getPlanetIdByBuildings());
+      newBuilding.setPlanet(building.getPlanet());
       
       buildingPayload.add(newBuilding);
 

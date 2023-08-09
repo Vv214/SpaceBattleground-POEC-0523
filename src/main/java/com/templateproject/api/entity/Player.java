@@ -33,8 +33,8 @@ public class Player {
     @OneToMany (mappedBy = "player") //toVisit O.N-O.N >> ?? table de jonction ??
     private List<Planet> planetsVisit; 
     
-    @OneToMany(mappedBy = "player") //toOrder O.N-1.1
-    private List<Fleet> fleetsList; 
+   @OneToMany(mappedBy = "player") //toOrder O.N-1.1
+   private List<Fleet> fleetsList; 
 
     @OneToOne(mappedBy="player") //toOwn 1.1-0.1
     private Admin admin;
@@ -118,6 +118,7 @@ public class Player {
 
     public List<Planet> getPlanetsVisit() {
         return planetsVisit;
+        
     }
 
     public void setPlanetsVisit(List<Planet> planetsVisit) {
@@ -138,6 +139,14 @@ public class Player {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public Clan getClan() {
+        return clan;
+    }
+
+    public void setClan(Clan clan) {
+        this.clan = clan;
     }
     
     

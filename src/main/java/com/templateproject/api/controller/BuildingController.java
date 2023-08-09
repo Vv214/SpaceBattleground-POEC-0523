@@ -31,11 +31,12 @@ public class BuildingController  {
     }
 
     // CREATE
-    @PostMapping("/building")
-    public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building, @RequestBody Planet planet) {
+    @PostMapping("/building/planet/{planetID}")
+    public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building, @PathVariable Integer planetID) {
         var payload = new BuildingPayload();
         try {
-            var planetId = planet.getId();
+            //TODO CHECK planetID validity
+           // var planetId = planet.getId();
             buildingService.add(
                     building.getName(),
                     building.getType(),
@@ -48,7 +49,10 @@ public class BuildingController  {
                     building.getEnergyPrice(),
                     building.getTimeBuilding(),
                     building.getTimeToStart(),
-                    building.getPlanetIdByBuildings());
+                    planetID
+                    );
+
+            buildingService.add(building);
 
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
@@ -64,11 +68,10 @@ public class BuildingController  {
         var payload = new Payload();
         System.out.println("dans le building back");
         try {
-            System.out.println("je suis avangt de charger le building ");
+            
             payload.setMessage("Get All Buildings");
             System.out.println(this.buildingService);
-            // Object listBuilding = ;
-            payload.setData(buildingService.getAll());
+            payload.setData(buildingService.getBuildings());
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
             payload.setMessage(e.getMessage() + " ici ");

@@ -37,8 +37,8 @@ public class Fleet {
     @OneToMany(mappedBy = "fleet") //toPark O.N-O.N
     private List<Planet> planetsList;
 
-    @ManyToOne
-    @JoinColumn (name = "player_id", nullable = false, referencedColumnName = "id") // Joint ToOrder 0.N-1.1 
+    @ManyToOne // Joint ToOrder 0.N-1.1 
+    @JoinColumn (name = "player_id", nullable = false, referencedColumnName = "id") 
     private Player player;
 
     public Fleet() {

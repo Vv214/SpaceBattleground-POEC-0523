@@ -42,7 +42,7 @@ public class Technologie {
     @OneToMany (mappedBy = "technlogie") //Joints toAcces 0.N-0.N
     private List<Building> buildingsListByTechnologie; 
 
-     @OneToMany (mappedBy = "technlogie") //Joints toUnlock 0.N-0.N
+    @OneToMany (mappedBy = "technologie") //Joints toUnlock 0.N-0.N
     private List<Ship> shipList; 
 
 
@@ -162,15 +162,6 @@ public class Technologie {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
-
-    public Building getBuildingsList() {
-        return buildingsList;
-    }
-
-    public void setBuildingsList(Building buildingsList) {
-        this.buildingsList = buildingsList;
-    }
-
 
     //GETTER & SETTER
 

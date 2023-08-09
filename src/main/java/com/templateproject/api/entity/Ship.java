@@ -2,13 +2,14 @@ package com.templateproject.api.entity;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
+
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -34,14 +35,14 @@ public class Ship {
     private Integer quantity;
 
     //JOINT TABLE Attribute 
-     @OneToMany (mappedBy = "ship_id") //Joints toUnlock 0.N-0.N
+     @OneToMany (mappedBy = "ship") //Joints toUnlock 0.N-0.N
     private List<Technologie> technologiesList; 
 
     @ManyToOne
     @JoinColumn(name="building_id")//Joints toMake 1.N-0.N
-    private Building buiuBuilding;
+    private Building building;
 
-    @OneToMany (mappedBy = "ship_id") //Joints toCompose 0.N-0.N
+    @OneToMany (mappedBy = "ship") //Joints toCompose 0.N-0.N
     private List<Fleet> fleetsList;
     
     
@@ -199,12 +200,12 @@ public class Ship {
         this.technologiesList = technologiesList;
     }
 
-    public Building getBuiuBuilding() {
-        return buiuBuilding;
+    public Building getbuilding() {
+        return building;
     }
 
-    public void setBuiuBuilding(Building buiuBuilding) {
-        this.buiuBuilding = buiuBuilding;
+    public void setbuilding(Building building) {
+        this.building = building;
     }
 
     public List<Fleet> getFleetsList() {
