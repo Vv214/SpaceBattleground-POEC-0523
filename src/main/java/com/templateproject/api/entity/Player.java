@@ -1,10 +1,17 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Player {
@@ -19,6 +26,28 @@ public class Player {
     private String password;
     @Column(nullable = true)
     private Integer level;
+
+    //JOINTS DECLARATION 
+    @OneToMany (mappedBy ="player") // toColonise 1.N-1.1
+    private List<Planet> planetsList; 
+
+    //@OneToMany(mappedBy = "player")// toVisit 0.N-0.N 
+    @ManyToMany
+    @JoinTable(
+        name = "player_planet_visit",
+        joinColumns = @JoinColumn(name="player_id"),
+        inverseJoinColumns = @JoinColumn(name="planet_id")
+    )
+    private List<Planet> planetsVisited; 
+
+    @OneToOne(mappedBy = "player") // joint toSetUp 0.1-1.N
+    private Clan clan;
+
+    @OneToOne(mappedBy="player") //toOwn 1.1-0.1
+    private Admin admin;
+
+    @OneToMany(mappedBy = "player") //toOrder O.N-1.1
+    private List<Fleet> fleetsList; 
 
     public Player() {
         this.level = 1;
@@ -77,5 +106,49 @@ public class Player {
     public void setLevel(Integer level) {
         this.level = level;
     }
+    
+    //GETTER & SETTER to JOINTS 
+    public List<Planet> getPlanetsList() {
+        return planetsList;
+    }
+
+    public void setPlanetsList(List<Planet> planetsList) {
+        this.planetsList = planetsList;
+    }
+
+    public List<Planet> getPlanetsVisited() {
+        return planetsVisited;
+    }
+
+    public void setPlanetsVisited(List<Planet> planetsVisited) {
+        this.planetsVisited = planetsVisited;
+    }
+
+    public Clan getClan() {
+        return clan;
+    }
+
+    public void setClan(Clan clan) {
+        this.clan = clan;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public List<Fleet> getFleetsList() {
+        return fleetsList;
+    }
+
+    public void setFleetsList(List<Fleet> fleetsList) {
+        this.fleetsList = fleetsList;
+    }
+
+    
+
 
 }

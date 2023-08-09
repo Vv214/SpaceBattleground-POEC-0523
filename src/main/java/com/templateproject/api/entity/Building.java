@@ -1,10 +1,15 @@
 package com.templateproject.api.entity;
 
-import jakarta.persistence.Column;
+import java.util.*;
+
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Building {
@@ -23,7 +28,23 @@ public class Building {
     private int hydrogenPrice;
     private int priceEnergy;
     private int timeBuilding;
+    
+    //JOINT DECLARATION
+    @ManyToOne //toSetUp 1.N-1.1
+    @JoinColumn (name = "planet_id", nullable = false, referencedColumnName = "id")
+    private Planet planet;
 
+    @OneToOne//toProduce 0.1-1.1
+    private Ressource ressource;
+
+    @ManyToOne // toMake 1.N-O.N
+    @JoinColumn(name="ship_id")
+    private Ship ship;
+
+    @ManyToMany(mappedBy="buildingsList")//toAcces 0.N-0.N
+    private List<Technologie> technologies; 
+
+    
     public Building() {
     };
 
@@ -39,12 +60,11 @@ public class Building {
         this.coeff_prod = coeff_prod;
         this.ironPrice = ironPrice;
         this.diamondPrice = diamondPrice;
-        this.hydrogenPrice
- = hydrogenPrice
-;
+        this.hydrogenPrice = hydrogenPrice;
         this.priceEnergy = priceEnergy;
         this.timeBuilding = timeBuilding;
     }
+
 
     public int getId() {
         return id;

@@ -1,9 +1,14 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Ressource {
@@ -13,6 +18,13 @@ public class Ressource {
     private String name;
     private int quantity;
     private int maxStock;
+
+    //JOINT DECLARATION
+    @ManyToMany(mappedBy="ressourcesList")
+    private List<Planet> planetToStore;
+
+    @OneToOne(mappedBy="ressource")
+    private Building building;
 
     public Ressource() {
     }
@@ -55,23 +67,27 @@ public class Ressource {
         this.maxStock = maxStock;
     }
 
-    // public String getRessourceName() {
-    //     return null;
-    // }
+    public void setId(int id) {
+        this.id = id;
+    }
+    //GETTER & SETTER to JOINTS
+    public List<Planet> getPlanetToStore() {
+        return planetToStore;
+    }
 
-    // public void setRessourceName(String ressourceName) {
-    // }
+    public void setPlanetToStore(List<Planet> planetToStore) {
+        this.planetToStore = planetToStore;
+    }
 
-    // public Object getRessourceQuantity() {
-    //     return null;
-    // }
+    public Building getBuilding() {
+        return building;
+    }
 
-    // public void setRessourceQuantity(Object ressourceQuantity) {
-    // }
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
 
-    // public Object getNumberMaxPlayers() {
-    //     return null;
-    // }
+   
 
 
 }

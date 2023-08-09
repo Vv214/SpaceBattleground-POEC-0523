@@ -1,5 +1,8 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
+import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +26,18 @@ public class Technologie {
     private float coef_modifier;
     private int timeSearch;
     private boolean isDone;
+
+    //JOINT DECLARATION 
+    @ManyToMany (mappedBy = "technologiesList") //Joints toUnlock 0.N-0.N
+    private List<Ship> ships; 
+
+    @ManyToMany// toAcces 0.N-0.N
+    @JoinTable(
+        name = "technologie_building",
+        joinColumns = @JoinColumn (name = "technoligie_id"),
+        inverseJoinColumns =  @JoinColumn(name ="building_id")
+    )
+    private List<Building> buildingsList;
 
     public Technologie() {};
 
@@ -119,5 +134,9 @@ public class Technologie {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
- 
+ //GETTERS & SETTERS to JOINTS
+
+
+
+
 }
