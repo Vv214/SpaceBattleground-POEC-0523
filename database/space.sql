@@ -27,7 +27,7 @@ SELECT * FROM ship;
 
 SELECT * FROM technologie;
 
-SELECT * FROM planet;
+SELECT * FROM building;
 
 DESCRIBE building;
 
