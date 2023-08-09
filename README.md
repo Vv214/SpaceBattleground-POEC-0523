@@ -1,17 +1,11 @@
-# YOUR SPRING API ARCHITECHTURE
+Bienvenue dans notre projet spatial, inspiré par Ogame. 
+Vous allez pouvoir jouer avec vos amis pour conquérir des planètes.
+-----------
+Comment installer : partie back : git clone this repository : git@github.com:Vv214/SpaceBattleground-POEC-0523.git Then mvn clean install And mvn spring-boot:run
 
-## Initialization
+partie front : git clone this repository : git@github.com:Vv214/SpaceBattleground-POEC-0523-frontend.git Puis npm install Et enfin ng serve
 
-- Clone this repository
-- Create a new Branch
-- With MySQL, create the database following your project name (ex: project_name), make sure to have correct access to it.
-- Duplicate the content from src/main/resources/application.properties into src/main/resources/application-dev.properties (create file, it will be ignored by Git)
-- Remove the line `spring.profiles.active=dev` from application-dev.properties
-- Add all your sensitive Datastore credentials to the application-dev.properties file
-- Add the project informations into the src/main/java/com/templateproject/config/OpenApiConfiguration.java file for Swagger information
+Après cela merci de créer un compte et puis en route vers l'espace 🙂 Have fun !
 
-## Launching the application
-
-- Run the application with the following command: `mvn spring-boot:run`
-- You can now go to http://localhost:8080/swagger-ui.html to see the Swagger UI
-- You are now ready to work !
+---------
+Credits : Adama Sonko Julien Murat Cakir Marco Hanquier Quentin Laurent Véran RUFFIER
