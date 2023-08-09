@@ -18,7 +18,4 @@ public interface PlanetRepository extends JpaRepository<Planet, Integer> {
     public Planet findByPositionX(Integer X);
     public Planet findByPositionY(Integer Y);
     public List<Planet> findAllByPlayerId(Integer playerID);
-
-    public List<Planet> findAllByPlayerID(Integer playerID);
-
 }
