@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-
+import com.templateproject.api.controller.payload.ShipPayload;
 import com.templateproject.api.entity.Ship;
 import com.templateproject.api.repository.ShipRepository;
 
@@ -20,6 +20,29 @@ public class ShipService {
     this.shipRepository = shipRepository;
   }
 
+
+public Object getAllShips() {
+    var lightShip = getShipByName("Chasseur léger");
+    var mediumShip = getShipByName("Chasseur lourd");
+    var heavyShip = getShipByName("Destroyer");
+    var scoutShip = getShipByName("Eclaireur");
+    var cargoShip = getShipByName("Transporteur léger");
+    var heavyCargoShip = getShipByName("Transporteur lourd");
+    var recyclerShip = getShipByName("Récolteur");
+    var colonisateur = getShipByName("Colonisateur");
+
+    var ships = new HashMap<String, Object>();
+    ships.put("lightShip", lightShip);
+    ships.put("mediumShip", mediumShip);
+    ships.put("heavyShip", heavyShip);
+    ships.put("scoutShip", scoutShip);
+    ships.put("cargoShip", cargoShip);
+    ships.put("heavyCargoShip", heavyCargoShip);
+    ships.put("recyclerShip", recyclerShip);
+    ships.put("colonisateur", colonisateur);
+    System.out.println(ships + " ship back");
+    return ships;
+  }
  
   //CREATE ONE
   public void createShip(
@@ -53,47 +76,76 @@ public class ShipService {
     shipRepository.save(ship);
   }
 
-  //RESEARCH ALL
-  public List<HashMap<String, Object>> getAllShips() {
-    var payload = new ArrayList<HashMap<String,Object>>();
+  // //RESEARCH ALL
+  // public List<HashMap<String, Object>> getAllShips() {
+  //   var payload = new ArrayList<HashMap<String,Object>>();
 
-    List <Ship> shipList = shipRepository.findAll();
-    for (var ship : shipList) {
-      var newShip= new HashMap<String, Object>();
-              newShip.put("Name : ", ship.getName());
-              newShip.put("Type : ", ship.getType());
-              newShip.put("Iron Price : ", ship.getIronPrice());
-              newShip.put("Diamond Price : ", ship.getDiamondPrice());
-              newShip.put("Hydrogen Price : ", ship.getHydrogenPrice());
-              newShip.put("Energu Price : ", ship.getEnergyPrice());
-              newShip.put("PV : ", ship.getPv());
-              newShip.put("Damage : ", ship.getDamage());
-              newShip.put("Fuel Capacity : ", ship.getFuel());
-              newShip.put("Speed : ", ship.getSpeed());
-              newShip.put("Capacity : ", ship.getCapacity());
-              newShip.put("null", ship.getQuantity());
-              payload.add(newShip);     
+  //   List <Ship> shipList = shipRepository.findAll();
+  //   for (var ship : shipList) {
+  //     var newShip= new HashMap<String, Object>();
+  //             newShip.put("name", ship.getName());
+  //             newShip.put("type", ship.getType());
+  //             newShip.put("ironPrice", ship.getIronPrice());
+  //             newShip.put("diamondPrice", ship.getDiamondPrice());
+  //             newShip.put("hydrogenPrice", ship.getHydrogenPrice());
+  //             newShip.put("energyPrice", ship.getEnergyPrice());
+  //             newShip.put("pv", ship.getPv());
+  //             newShip.put("damage", ship.getDamage());
+  //             newShip.put("fuel", ship.getFuel());
+  //             newShip.put("speed", ship.getSpeed());
+  //             newShip.put("capacity", ship.getCapacity());
+  //             newShip.put("quantity", ship.getQuantity());
+  //             payload.add(newShip);     
+  //   }
+  //   return payload;
+  // }
+
+
+    // RESEARCH ALL
+    public List<ShipPayload> getShips() {
+        var shipPayload = new ArrayList<ShipPayload>();
+        List<Ship> shipList = shipRepository.findAll();
+        for (var ship : shipList) {
+
+            var newShip = new ShipPayload();
+
+            newShip.setName(ship.getName());
+            newShip.setType(ship.getType());
+
+            newShip.setIronPrice(ship.getIronPrice());
+            newShip.setDiamondPrice(ship.getDiamondPrice());
+            newShip.setHydrogenPrice(ship.getHydrogenPrice());
+            newShip.setEnergyPrice(ship.getEnergyPrice());
+
+            newShip.setPv(ship.getPv());
+            newShip.setDamage(ship.getDamage());
+            newShip.setFuel(ship.getFuel());
+            newShip.setSpeed(ship.getSpeed());
+            newShip.setCapacity(ship.getCapacity());
+            newShip.setQuantity(ship.getQuantity());
+
+            shipPayload.add(newShip);
+        }
+        return shipPayload;
     }
-    return payload;
-  }
 
   //RESEARCH ONE
   public HashMap<String, Object> getShipByName(String name) {
     var ship = new HashMap<String,Object>();
     
     var shipEntity = shipRepository.findByName(name);
-              ship.put("Name : ", shipEntity.getName());
-              ship.put("Type : ", shipEntity.getType());
-              ship.put("Iron Price : ", shipEntity.getIronPrice());
-              ship.put("Diamond Price : ", shipEntity.getDiamondPrice());
-              ship.put("Hydrogen Price : ", shipEntity.getHydrogenPrice());
-              ship.put("Energu Price : ", shipEntity.getEnergyPrice());
-              ship.put("PV : ", shipEntity.getPv());
-              ship.put("Damage : ", shipEntity.getDamage());
-              ship.put("Fuel Capacity : ", shipEntity.getFuel());
-              ship.put("Speed : ", shipEntity.getSpeed());
-              ship.put("Capacity : ", shipEntity.getCapacity());
-              ship.put("null", shipEntity.getQuantity());
+              ship.put("name", shipEntity.getName());
+              ship.put("type", shipEntity.getType());
+              ship.put("ironPrice", shipEntity.getIronPrice());
+              ship.put("diamondPrice", shipEntity.getDiamondPrice());
+              ship.put("hydrogenPrice", shipEntity.getHydrogenPrice());
+              ship.put("energyPrice", shipEntity.getEnergyPrice());
+              ship.put("pv", shipEntity.getPv());
+              ship.put("damage", shipEntity.getDamage());
+              ship.put("fuel", shipEntity.getFuel());
+              ship.put("speed", shipEntity.getSpeed());
+              ship.put("capacity", shipEntity.getCapacity());
+              ship.put("quantity", shipEntity.getQuantity());
 
     return ship;
   }
