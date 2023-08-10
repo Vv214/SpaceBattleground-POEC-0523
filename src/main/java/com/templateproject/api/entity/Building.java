@@ -1,29 +1,10 @@
 package com.templateproject.api.entity;
 
-<<<<<<< HEAD
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.Column;
-=======
-import java.util.*;
-
 import jakarta.persistence.*;
->>>>>>> 22faccaf10fe3cbe07c9acbde2599d914506bc4a
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-<<<<<<< HEAD
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-=======
-import jakarta.persistence.OneToOne;
->>>>>>> 22faccaf10fe3cbe07c9acbde2599d914506bc4a
+
 
 @Entity
 public class Building {
@@ -63,7 +44,7 @@ public class Building {
     @OneToMany (mappedBy = "buildingsListByTechnologie") //Joint to Acces 0.N-0.N
     private List<Technologie> technologiesList; 
 
-    @OneToMany (mappedBy = "building") //Joints toCompose 0.N-0.N
+    @OneToMany (mappedBy = "buildingNecesseray") //Joints toCompose 0.N-0.N
     private List<Ship> shipsList; 
     
     //CONSTRUCTOR
