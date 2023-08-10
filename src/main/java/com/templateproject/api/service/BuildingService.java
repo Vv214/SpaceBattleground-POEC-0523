@@ -1,23 +1,83 @@
 package com.templateproject.api.service;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.entity.Building;
 import com.templateproject.api.repository.BuildingRepository;
 
+@Service
 public class BuildingService {
   private final BuildingRepository buildingRepository;
 
   public BuildingService(BuildingRepository buildingRepository) {
+    // System.out.println("je suis dans le cosntr");
     this.buildingRepository = buildingRepository;
+
   }
 
+  public Object getAll() {
+    var laboratory = getBuilding("Laboratoire");
+    var robotFactory = getBuilding("Usine de robots");
+    var shipyard = getBuilding("Chantier spatial");
+    var terraformer = getBuilding("Terraformeur");
+    var ironMine = getBuilding("Mine de fer");
+    var diamondMine = getBuilding("Mine de Diamant");
+    var hydrogenMine = getBuilding("Extracteur d'Hydrogène");
+    var energyMine = getBuilding("Centrale électrique");
+    var ironStockage = getBuilding("Hangar de fer");
+    var hydrogenStockage = getBuilding("Hangar d'hydrogene");
+    var diamondStockage = getBuilding("Hangar de diamants");
+    var drillingMachine = getBuilding("Foreuse");
+
+    var buildings = new HashMap<String, Object>();
+    buildings.put("laboratory", laboratory);
+    buildings.put("robotFactory", robotFactory);
+    buildings.put("shipyard", shipyard);
+    buildings.put("terraformer", terraformer);
+    buildings.put("ironMine", ironMine);
+    buildings.put("diamondMine", diamondMine);
+    buildings.put("hydrogenMine", hydrogenMine);
+    buildings.put("energyMine", energyMine);
+    buildings.put("ironStockage", ironStockage);
+    buildings.put("hydrogenStockage", hydrogenStockage);
+    buildings.put("diamondStockage", diamondStockage);
+    buildings.put("drillingMachine", drillingMachine);
+    System.out.println(buildings + " building back");
+    return buildings;
+  }
+
+  // CREATE
+
+  public void add(String name,
+      String type,
+      Integer level,
+      String description,
+      Integer coeff_prod,
+      Integer ironPrice,
+      Integer diamondPrice,
+      Integer hydrogenPrice,
+      Integer energyPrice,
+      boolean isBuild,
+      Date timeBuilding,
+      Date timeToStart) {
+    // Todo check params
+    // var building = new Building(name, type, level, description, coeff_prod,
+    // ironPrice, diamondPrice, hydrogenPrice, energyPrice,
+    // timeBuilding, timeToStart);
+
+    // buildingRepository.save(building);
+
+  }
+
+  // RESEARCH ALL
   public List<BuildingPayload> getBuildings() {
     var payload = new ArrayList<BuildingPayload>();
 
@@ -25,26 +85,55 @@ public class BuildingService {
     for (var building : buildingList) {
       var newBuilding = new BuildingPayload();
       newBuilding.setName(building.getName());
+
       newBuilding.setType(building.getType());
+
       newBuilding.setLevel(building.getLevel());
-      newBuilding.setBuildingSize(building.getBuildingSize());
       newBuilding.setDescription(building.getDescription());
       newBuilding.setCoeff_prod(building.getCoeff_prod());
+
       newBuilding.setIronPrice(building.getIronPrice());
       newBuilding.setDiamondPrice(building.getDiamondPrice());
       newBuilding.setHydrogenPrice(building.getHydrogenPrice());
-      newBuilding.setPriceEnergy(building.getPriceEnergy());
+      newBuilding.setEnergyPrice(building.getEnergyPrice());
+
+      newBuilding.setIsBuild(building.getIsBuild());
+
       newBuilding.setTimeBuilding(building.getTimeBuilding());
+      newBuilding.setTimeToStart(building.getTimeToStart());
+
       payload.add(newBuilding);
+
     }
     return payload;
   }
 
-  // public Building getBuilding(String name) {
-  // Building building = new Building(name, );
-  // return building;
-  // }
+  // RESEARCH ONE
 
+  public HashMap<String, Object> getBuilding(String name) {
+    var building = new HashMap<String, Object>();
+
+    var buildingEntity = buildingRepository.findByName(name);
+    if (buildingEntity == null) {
+      return building;
+    }
+    building.put("name", buildingEntity.getName());
+    building.put("type", buildingEntity.getType());
+    building.put("level", buildingEntity.getLevel());
+    building.put("description", buildingEntity.getDescription());
+    building.put("coeffProd", buildingEntity.getCoeff_prod());
+    building.put("ironPrice", buildingEntity.getIronPrice());
+    building.put("diamondPrice", buildingEntity.getDiamondPrice());
+    building.put("hydrogenPrice", buildingEntity.getHydrogenPrice());
+    building.put("energyPrice", buildingEntity.getEnergyPrice());
+    building.put("isBuild", buildingEntity.getIsBuild());
+    building.put("buildTime", buildingEntity.getTimeBuilding());
+    building.put("dateStart", buildingEntity.getTimeToStart());
+
+    return building;
+  }
+
+  // UPDATE ONE
   public void updateBuilding(String name, BuildingPayload building) throws Exception {
     var buildingToUpdate = buildingRepository.findByName(name);
 
@@ -57,59 +146,52 @@ public class BuildingService {
     if (building.getType() != null) {
       buildingToUpdate.setType(building.getType());
     }
-    if (building.getLevel() != 0) {
+    if (building.getLevel() != null) {
       buildingToUpdate.setLevel(building.getLevel());
-    }
-    if (building.getBuildingSize() != 0) {
-      buildingToUpdate.setBuildingSize(building.getBuildingSize());
     }
     if (building.getDescription() != null) {
       buildingToUpdate.setDescription(building.getDescription());
     }
-    if (building.getCoeff_prod() != 0) {
+    if (building.getCoeff_prod() != null) {
       buildingToUpdate.setCoeff_prod(building.getCoeff_prod());
     }
-    if (building.getIronPrice() != 0) {
+    if (building.getIronPrice() != null) {
       buildingToUpdate.setIronPrice(building.getIronPrice());
     }
-    if (building.getDiamondPrice() != 0) {
+    if (building.getDiamondPrice() != null) {
       buildingToUpdate.setDiamondPrice(building.getDiamondPrice());
     }
-    if (building.getHydrogenPrice() != 0) {
+    if (building.getHydrogenPrice() != null) {
       buildingToUpdate.setHydrogenPrice(building.getHydrogenPrice());
     }
-    if (building.getPriceEnergy() != 0) {
-      buildingToUpdate.setPriceEnergy(building.getPriceEnergy());
+    if (building.getEnergyPrice() != null) {
+      buildingToUpdate.setEnergyPrice(building.getEnergyPrice());
     }
-    if (building.getTimeBuilding() != 0) {
+    if (building.getIsBuild() != null) {
+      buildingToUpdate.setIsBuild(building.getIsBuild());
+    }
+    if (building.getTimeBuilding() != null) {
       buildingToUpdate.setTimeBuilding(building.getTimeBuilding());
     }
+    if (building.getTimeBuilding() != null) {
+      buildingToUpdate.setTimeToStart(building.getTimeToStart());
+    }
     buildingRepository.save(buildingToUpdate);
-    /*
-     * var buildingUpdated = buildingRepository.save(buildingToUpdate);
-     * return new BuildingPayload(
-     * buildingUpdated.getName(),
-     * buildingUpdated.getType(),
-     * buildingUpdated.getLevel(),
-     * buildingUpdated.getBuildingSize(),
-     * buildingUpdated.getDescription(),
-     * buildingUpdated.getCoeff_prod(),
-     * buildingUpdated.getironPrice(),
-     * buildingUpdated.getDiamondPrice(),
-     * buildingUpdated.getHydrogenPrice(),
-     * buildingUpdated.getPriceEnergy(),
-     * buildingUpdated.getTimeBuilding());
-     */
+
   }
 
-  public void add(String name, String type, int level, int buildingSize, String description,
-      int coeff_prod, int ironPrice, int diamondPrice, int hydrogenPrice,
-      int priceEnergy, int timeBuilding) {
-    // Todo check params
-    var building = new Building(name, type, level, buildingSize,
-        description, coeff_prod, ironPrice, diamondPrice,
-        hydrogenPrice, priceEnergy, timeBuilding);
-    buildingRepository.save(building);
+  // DELETE ONE
+  public ResponseEntity<String> deleteBuilding(String name) {
+    buildingRepository.deleteByName(name);
+    return new ResponseEntity<String>("Building successfully deleted!",
+        HttpStatus.OK);
   }
 
+  // level up
+  public Building levelUp(Integer buildingId) {
+    var buildingToUpdate = buildingRepository.findById(buildingId).get();
+    buildingToUpdate.setLevel(buildingToUpdate.getLevel() + 1);
+    return buildingRepository.save(buildingToUpdate);
+
+  }
 }

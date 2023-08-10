@@ -1,38 +1,42 @@
 package com.templateproject.api.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Planet {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @Column( unique = true, nullable = false, length = 50)
     private String name;
     private boolean isColonised;
-    private int positionX;
-    private int positionY;
-    private int planetSize;
+    private Integer positionX;
+    private Integer positionY;
+    private Integer planetSize;
+
+    //JOINT DECLARATION
+    @ManyToOne
+    @JoinColumn(name = "player_id", nullable = true, referencedColumnName = "id")
+    private Player player;
+
 
     public Planet() {
     };
 
-    public Planet(String name, boolean isColonised, int positionX, int positionY, int planetSize) {
+    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize, Player player) {
         this.name = name;
         this.isColonised = isColonised;
         this.positionX = positionX;
         this.positionY = positionY;
         this.planetSize = planetSize;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.player = player;
     }
 
     public String getName() {
@@ -51,28 +55,39 @@ public class Planet {
         this.isColonised = isColonised;
     }
 
-    public int getPositionX() {
+    public Integer getPositionX() {
         return positionX;
     }
 
-    public void setPositionX(int positionX) {
+    public void setPositionX(Integer positionX) {
         this.positionX = positionX;
     }
 
-    public int getPositionY() {
+    public Integer getPositionY() {
         return positionY;
     }
 
-    public void setPositionY(int positionY) {
+    public void setPositionY(Integer positionY) {
         this.positionY = positionY;
     }
 
-    public int getPlanetSize() {
+    public Integer getPlanetSize() {
         return planetSize;
     }
 
-    public void setPlanetSize(int planetSize) {
+    public void setPlanetSize(Integer planetSize) {
         this.planetSize = planetSize;
     }
+
+    // GETTER & SETTER to JOINT
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+   
 
 }

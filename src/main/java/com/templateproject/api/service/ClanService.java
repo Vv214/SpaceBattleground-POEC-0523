@@ -13,34 +13,38 @@ public class ClanService {
     this.clanRepository = clanRepository;
   }
 
-public Object getAll() {
+  public Object getAll() {
     return clanRepository.findAll();
-}
+  }
 
-public Clan update(Clan clan) {
-  Clan currentClan = clanRepository.findByClanName(clan.getClanName());
-  currentClan.setAdminNickname(clan.getAdminNickname());
-  currentClan.setClanTag(clan.getClanTag());
-  currentClan.setClanName(clan.getClanName());
-  currentClan.setClanLvl(clan.getClanLvl());
-  currentClan.setCurrentNumberPlayers(clan.getCurrentNumberPlayers());
-  currentClan.setNumberMaxPlayers(clan.getNumberMaxPlayers());
-  Clan updateClan = clanRepository.save(currentClan);
-  return updateClan;
-}
+  public Clan update(Clan clan) {
+    Clan currentClan = clanRepository.findByClanName(clan.getClanName());
+    currentClan.setAdminNickname(clan.getAdminNickname());
+    currentClan.setClanTag(clan.getClanTag());
+    currentClan.setClanName(clan.getClanName());
+    currentClan.setlevel(clan.getlevel());
+    currentClan.setCurrentNumberPlayers(clan.getCurrentNumberPlayers());
+    currentClan.setNumberMaxPlayers(clan.getNumberMaxPlayers());
+    Clan updateClan = clanRepository.save(currentClan);
+    return updateClan;
+  }
 
-public Clan getByName(String name) {
+  public Clan getByName(String name) {
     return clanRepository.findByClanName(name);
-}
+  }
 
-public void delete(String name) {
-  Clan clan = clanRepository.findByClanName(name);
-  clanRepository.delete(clan);  
-//  clanRepository.deleteClanByClanName(name);
-}
+  public void delete(String name) {
+    Clan clan = clanRepository.findByClanName(name);
+    clanRepository.delete(clan);
+    // clanRepository.deleteClanByClanName(name);
+  }
 
-public Clan add(Clan clan) {
-  return clanRepository.save(clan);
-}
-
+  public Clan add(Clan clanToAdd) {
+    Clan clan = new Clan();
+    clan.setClanName(clanToAdd.getClanName());
+    clan.setClanTag(clanToAdd.getClanTag());
+    clan.setAdminNickname(clanToAdd.getAdminNickname());
+    System.out.println("clan dans service" + clan);
+    return clanRepository.save(clan);
+  }
 }

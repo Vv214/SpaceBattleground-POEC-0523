@@ -9,25 +9,34 @@ import jakarta.persistence.Id;
 @Entity
 public class Clan {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
     private String clanName;
     @Column(unique = true)
     private String clanTag;
-    private Integer clanLvl;
+
+    private Integer level;
     private Integer numberMaxPlayers;
     private Integer currentNumberPlayers;
+
+    @Column(unique = true, nullable = false, length = 50)
     private String adminNickname;
 
     public Clan() {
     };
 
-    public Clan(String clanName, String clanTag, Integer clanLvl, Integer numberMaxPlayers,
+    public Clan(String adminNickname, String clanName, String clanTag) {
+        this.adminNickname = adminNickname;
+        this.clanName = clanName;
+        this.clanTag = clanTag;
+    }
+
+    public Clan(String clanName, String clanTag, Integer level, Integer numberMaxPlayers,
             Integer currentNumberPlayers, String adminNickname) {
         this.clanName = clanName;
         this.clanTag = clanTag;
-        this.clanLvl = clanLvl;
+        this.level = level;
         this.numberMaxPlayers = numberMaxPlayers;
         this.currentNumberPlayers = currentNumberPlayers;
         this.adminNickname = adminNickname;
@@ -49,8 +58,8 @@ public class Clan {
         this.clanTag = clanTag;
     }
 
-    public void setClanLvl(Integer clanLvl) {
-        this.clanLvl = clanLvl;
+    public void setlevel(Integer level) {
+        this.level = level;
     }
 
     public void setNumberMaxPlayers(Integer numberMaxPlayers) {
@@ -73,8 +82,8 @@ public class Clan {
         return clanTag;
     }
 
-    public Integer getClanLvl() {
-        return clanLvl;
+    public Integer getlevel() {
+        return level;
     }
 
     public Integer getNumberMaxPlayers() {

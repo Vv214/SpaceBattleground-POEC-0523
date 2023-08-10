@@ -7,5 +7,8 @@ import com.templateproject.api.entity.Ship;
 
 @Repository
 public interface ShipRepository extends JpaRepository<Ship, Integer> {
+    public Ship findByName(String name);
+    public Ship deleteByName(String name); 
+    
 
 }
