@@ -49,7 +49,6 @@
 //             // buildingService.add();
 
 //             // //init ship on Planets
-            
 
 //             // //init 5 players
 //             // authService.register("Max Steel", "max.steel@example.com", "1234", "1234");
@@ -57,7 +56,7 @@
 //             // authService.register("RexHunter", "rex.hunter@example.com", "5678", "5678");
 //             // authService.register("PixelNinja", "pixel.ninja@example.com", "azerty1", "azerty1");
 //             // authService.register("AstroGamer", "astro.gamer@example.com", "4321", "4321");
-            
+
 //         };
 //     }
 
@@ -71,7 +70,6 @@
 // 		};
 // 	}
 // }
-
 
 package com.templateproject.api;
 

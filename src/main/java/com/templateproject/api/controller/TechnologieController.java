@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-
 public class TechnologieController {
 
     private final TechnologieService technologieService;
@@ -36,8 +35,6 @@ public class TechnologieController {
                     technologie.getCoef_modifier(),
 
                     technologie.getTimeSearch(),
-                    technologie.getTimeToStart(),
-
                     technologie.isDone());
 
             payload.setMessage(technologie.getName() + "created");
@@ -96,7 +93,6 @@ public class TechnologieController {
             payload.setLevel(technologie.getLevel());
             payload.setCoef_modifier(technologie.getCoef_modifier());
             payload.setTimeSearch(technologie.getTimeSearch());
-            payload.setTimeToStart(technologie.getTimeToStart());
             payload.setDone(technologie.isDone());
 
             technologieService.updateTechnologie(name, payload);

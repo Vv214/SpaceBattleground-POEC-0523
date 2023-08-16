@@ -19,7 +19,6 @@ import com.templateproject.api.service.BuildingService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-// @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class BuildingController {
@@ -134,9 +133,6 @@ public class BuildingController {
             if (building.getEnergyPrice() != null) {
                 payload.setEnergyPrice(building.getEnergyPrice());
             }
-            // if(building.getIsBuild() != null) {
-            payload.setIsBuild(building.getIsBuild());
-            // }
             if (building.getTimeBuilding() != null) {
                 payload.setTimeBuilding(building.getTimeBuilding());
             }

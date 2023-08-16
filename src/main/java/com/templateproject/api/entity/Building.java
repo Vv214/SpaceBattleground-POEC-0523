@@ -42,7 +42,7 @@ public class Building {
     @OneToMany(mappedBy = "buildingsListByTechnologie") // Joint to Acces 0.N-0.N
     private List<Technologie> technologiesList;
 
-    @OneToMany(mappedBy = "buildingNecesseray") // Joints toCompose 0.N-0.N
+    @OneToMany(mappedBy = "buildingNecessary") // Joints toCompose 0.N-0.N
     private List<Ship> shipsList;
 
     // CONSTRUCTOR

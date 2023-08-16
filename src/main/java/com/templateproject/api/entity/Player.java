@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Entity
 public class Player {
 
-    //FIELS DATA BASE
+    // FIELS DATA BASE
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,27 +20,23 @@ public class Player {
     @Column(nullable = true)
     private Integer level;
 
-    //JOINTS DECLARATION 
-    @OneToMany (mappedBy ="player") // toColonise 1.N-1.1
-    private List<Planet> planetsList; 
+    // JOINTS DECLARATION
+    @OneToMany(mappedBy = "player") // toColonise 1.N-1.1
+    private List<Planet> planetsList;
 
-    //@OneToMany(mappedBy = "player")// toVisit 0.N-0.N 
+    // @OneToMany(mappedBy = "player")// toVisit 0.N-0.N
     @ManyToMany
-    @JoinTable(
-        name = "player_planet_visit",
-        joinColumns = @JoinColumn(name="player_id"),
-        inverseJoinColumns = @JoinColumn(name="planet_id")
-    )
-    private List<Planet> planetsVisited; 
+    @JoinTable(name = "player_planet_visit", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "planet_id"))
+    private List<Planet> planetsVisited;
 
     @OneToOne(mappedBy = "player") // joint toSetUp 0.1-1.N
     private Clan clan;
 
-    @OneToOne(mappedBy="player") //toOwn 1.1-0.1
+    @OneToOne(mappedBy = "player") // toOwn 1.1-0.1
     private Admin admin;
 
-    @OneToMany(mappedBy = "player") //toOrder O.N-1.1
-    private List<Fleet> fleetsList; 
+    @OneToMany(mappedBy = "player") // toOrder O.N-1.1
+    private List<Fleet> fleetsList;
 
     public Player() {
         this.level = 1;
@@ -59,8 +55,8 @@ public class Player {
         this.password = password;
         this.level = level;
     }
-    
-    //GETTERS & SETTERS
+
+    // GETTERS & SETTERS
 
     public Player(String playerName) {
         this.nickname = playerName;
@@ -97,7 +93,7 @@ public class Player {
     public int getLevel() {
         return level;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -105,8 +101,8 @@ public class Player {
     public void setLevel(Integer level) {
         this.level = level;
     }
-    
-    //GETTER & SETTER to JOINTS 
+
+    // GETTER & SETTER to JOINTS
     public List<Planet> getPlanetsList() {
         return planetsList;
     }

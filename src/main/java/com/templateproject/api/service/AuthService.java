@@ -17,17 +17,17 @@ public class AuthService {
 
     private List<Token> tokens;
 
-    private PlayerRepository playerRepository;
+    private final PlayerRepository playerRepository;
 
     public AuthService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
         tokens = new ArrayList<>();
     }
 
-    public void register(String nickname, String email, String password, String confirmPassword ) throws Exception {
+    public void register(String nickname, String email, String password, String confirmPassword) throws Exception {
         if (password.equals(confirmPassword) && !email.isEmpty() && !nickname.isEmpty()) {
             String passwordHashed = BCrypt.withDefaults().hashToString(BCrypt.MIN_COST, password.toCharArray());
-            Player player = new Player(nickname, email, passwordHashed );
+            Player player = new Player(nickname, email, passwordHashed);
             playerRepository.save(player);
         } else {
             throw new Exception("Invalid params ");

@@ -24,36 +24,36 @@ public class FleetController {
     public FleetController(FleetService fleetService) {
         this.fleetService = fleetService;
     };
-//CREATE ONE
-    @PostMapping 
+
+    // CREATE ONE
+    @PostMapping
     public ResponseEntity<Payload> createFleet(@RequestBody Fleet fleet) {
         var payload = new Payload();
         try {
             fleetService.createFleet(
-                fleet.getName(),
-                fleet.getMaxNumberShip(),
-                fleet.getPositionX(),
-                fleet.getPositionY(),
-                fleet.getPower(),
-                fleet.getTotalPv(),
-                fleet.getTotalCapacity(),
-                fleet.getSpeed()
-            );
-            payload.setMessage("The Fleet " + fleet.getName()+ " created.");
+                    fleet.getName(),
+                    fleet.getMaxNumberShip(),
+                    fleet.getPositionX(),
+                    fleet.getPositionY(),
+                    fleet.getPower(),
+                    fleet.getTotalPv(),
+                    fleet.getTotalCapacity(),
+                    fleet.getSpeed());
+            payload.setMessage("The Fleet " + fleet.getName() + " created.");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
             // TODO: handle exception
         }
-    }    
+    }
 
-//RESARCH ALL
-    @GetMapping ("/fleets")
+    // RESARCH ALL
+    @GetMapping("/fleets")
     public ResponseEntity<Payload> getAllFleet() {
-        var payload = new Payload(); 
+        var payload = new Payload();
         try {
-            payload.setData(fleetService.getAllFleets());  
+            payload.setData(fleetService.getAllFleets());
             payload.setMessage("Get all Fleet : ");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
@@ -64,39 +64,38 @@ public class FleetController {
         }
     }
 
-//RESEARCH ONE
+    // RESEARCH ONE
     @GetMapping("{name}")
     public ResponseEntity<Payload> getFleet(@PathVariable String name) {
-        var payload = new Payload(); 
+        var payload = new Payload();
         try {
             var fleet = fleetService.getFleet(name);
-            payload.setMessage("Get Fleet By Name : " + name +"'");
-            payload.setData(fleet); 
+            payload.setMessage("Get Fleet By Name : " + name + "'");
+            payload.setData(fleet);
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
-            payload.setData(null); 
+            payload.setData(null);
             return new ResponseEntity<>(payload, HttpStatus.OK);
             // TODO: handle exception
         }
     }
 
-//UPDATE ONE 
+    // UPDATE ONE
     @PutMapping("/user/{name}")
     public ResponseEntity<Payload> updateFleet(@PathVariable String name, @RequestBody Fleet fleet) {
-        var payload = new Payload(); 
+        var payload = new Payload();
         try {
             fleetService.updateFleet(
-                name, 
-                fleet.getName(),
-                fleet.getMaxNumberShip(),
-                fleet.getPositionX(),
-                fleet.getPositionY(),
-                fleet.getPower(),
-                fleet.getTotalPv(),
-                fleet.getTotalCapacity(),
-                fleet.getSpeed()
-            );
+                    name,
+                    fleet.getName(),
+                    fleet.getMaxNumberShip(),
+                    fleet.getPositionX(),
+                    fleet.getPositionY(),
+                    fleet.getPower(),
+                    fleet.getTotalPv(),
+                    fleet.getTotalCapacity(),
+                    fleet.getSpeed());
             payload.setMessage("Fleet Updated");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
@@ -106,15 +105,16 @@ public class FleetController {
             // TODO: handle exception
         }
     }
-//DELETE ONE
+
+    // DELETE ONE
     @DeleteMapping("{name}")
     public ResponseEntity<Payload> deleteFleet(@PathVariable String name) {
-      var payload = new Payload();
+        var payload = new Payload();
         try {
             fleetService.deleteFleetByName(name);
             payload.setMessage("'" + name + "' deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);
-        } catch (Exception e) { //TODO 4.x.x
+        } catch (Exception e) { // TODO 4.x.x
             payload.setMessage(e.getMessage());
             return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
         }
