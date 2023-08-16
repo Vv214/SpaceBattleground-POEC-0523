@@ -1,14 +1,9 @@
 package com.templateproject.api.entity;
 
 import java.util.Date;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 
 @Entity
 public class Building {
@@ -29,18 +24,34 @@ public class Building {
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
-    private boolean isBuild;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeBuilding;
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
-    // private Planet planet;
+    // JOINT DECLARATION
+    @ManyToOne // tiSetUp Joint 1.1
+    @JoinColumn(name = "planet_id", nullable = false, referencedColumnName = "id")
+    private Planet planet;
+
+    @OneToOne // toStore Joint 1.N-1.N
+    @JoinColumn(name = "Ressoucre_id")
+    private Ressource ressource;
+
+    @OneToMany(mappedBy = "buildingsListByTechnologie") // Joint to Acces 0.N-0.N
+    private List<Technologie> technologiesList;
+
+    @OneToMany(mappedBy = "buildingNecesseray") // Joints toCompose 0.N-0.N
+    private List<Ship> shipsList;
+
+    // CONSTRUCTOR
+    public Building() {
+    };
 
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
-            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, boolean isBuild, Date timeBuilding,
-            Date timeToStart) {
+            Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, Date timeBuilding,
+            Date timeToStart, Planet planet) {
         this.name = name;
         this.type = type;
         this.level = level;
@@ -50,25 +61,17 @@ public class Building {
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
         this.energyPrice = energyPrice;
-        this.isBuild = isBuild;
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
+        this.planet = planet;
     }
 
-    public boolean getIsBuild() {
-        return isBuild;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIsBuild(boolean isBuild) {
-        this.isBuild = isBuild;
-    }
-
-    public Building() {
-    }
-
-    public Building(boolean isBuild) {
-        this.isBuild = isBuild;
-        // Initialisez les propriétés de la classe avec les valeurs appropriées
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -157,6 +160,43 @@ public class Building {
 
     public void setTimeToStart(Date timeToStart) {
         this.timeToStart = timeToStart;
+    }
+
+    // GETTER & SETTER to JOINT
+    public Planet getPlanet() {
+        return planet;
+    }
+
+    public void setPlanetIdByBuildings(Planet planet) {
+        this.planet = planet;
+    }
+
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+    }
+
+    public Ressource getRessource() {
+        return ressource;
+    }
+
+    public void setRessource(Ressource ressource) {
+        this.ressource = ressource;
+    }
+
+    public List<Technologie> getTechnologiesList() {
+        return technologiesList;
+    }
+
+    public void setTechnologiesList(List<Technologie> technologiesList) {
+        this.technologiesList = technologiesList;
+    }
+
+    public List<Ship> getShipsList() {
+        return shipsList;
+    }
+
+    public void setShipsList(List<Ship> shipsList) {
+        this.shipsList = shipsList;
     }
 
 }

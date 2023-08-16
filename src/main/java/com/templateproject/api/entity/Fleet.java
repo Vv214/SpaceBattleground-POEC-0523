@@ -1,10 +1,9 @@
 package com.templateproject.api.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.List;
+
+import jakarta.persistence.*;
+
 
 @Entity
 public class Fleet {
@@ -24,7 +23,23 @@ public class Fleet {
     private Integer totalCapacity;
 
     private Integer speed;
-   
+
+    //JOINTS DECLARATION 
+    @ManyToOne // Joint ToOrder 0.N-1.1 
+    @JoinColumn (name = "player_id", nullable = false, referencedColumnName = "id") 
+    private Player player;
+
+    @ManyToMany //toPark O.N-O.N
+    @JoinTable(
+        name ="fleet_parked_planet",
+        joinColumns = @JoinColumn(name = "fleet_id"),
+        inverseJoinColumns = @JoinColumn(name="planet_id")        
+    )
+    private List<Planet> parkedPlanets;
+
+    @ManyToMany (mappedBy = "fleetCompose")
+    private List<Ship> shipToComposeFleet;
+
     public Fleet() {
     };
 
@@ -111,5 +126,32 @@ public class Fleet {
     public void setSpeed(Integer speed) {
         this.speed = speed;
     }
-       
+
+//GETTERS & SETTER to Joint 
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public List<Planet> getParkedPlanets() {
+        return parkedPlanets;
+    }
+
+    public void setParkedPlanets(List<Planet> parkedPlanets) {
+        this.parkedPlanets = parkedPlanets;
+    }
+
+    public List<Ship> getShipToComposeFleet() {
+        return shipToComposeFleet;
+    }
+
+    public void setShipToComposeFleet(List<Ship> shipToComposeFleet) {
+        this.shipToComposeFleet = shipToComposeFleet;
+    }
+
+
 }

@@ -2,6 +2,8 @@ package com.templateproject.api.controller.payload;
 
 import java.util.Date;
 
+import com.templateproject.api.entity.Planet;
+
 public class BuildingPayload {
 
     private String message;
@@ -14,9 +16,11 @@ public class BuildingPayload {
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
-    private Boolean isBuild;
     private Date timeBuilding;
     private Date timeToStart;
+
+    //JOINT TB Attribute : 
+    private Planet planet;
 
     public BuildingPayload() {
 
@@ -24,7 +28,7 @@ public class BuildingPayload {
 
     public BuildingPayload(String message, String name, String type, Integer level, String description,
             Integer coeff_prod, Integer ironPrice, Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice,
-            Boolean isBuild, Date timeBuilding, Date timeToStart) {
+            Date timeBuilding, Date timeToStart, Planet planet) {
         this.message = message;
         this.name = name;
         this.type = type;
@@ -35,10 +39,12 @@ public class BuildingPayload {
         this.diamondPrice = diamondPrice;
         this.hydrogenPrice = hydrogenPrice;
         this.energyPrice = energyPrice;
-        this.isBuild = isBuild;
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
+        
+        this.planet = planet;
     }
+    
 
     public String getMessage() {
         return message;
@@ -120,14 +126,6 @@ public class BuildingPayload {
         this.energyPrice = energyPrice;
     }
 
-    public Boolean getIsBuild() {
-        return isBuild;
-    }
-
-    public void setIsBuild(Boolean isBuild) {
-        this.isBuild = isBuild;
-    }
-
     public Date getTimeBuilding() {
         return timeBuilding;
     }
@@ -143,5 +141,15 @@ public class BuildingPayload {
     public void setTimeToStart(Date timeToStart) {
         this.timeToStart = timeToStart;
     }
+    
+    //GETTER & SETTER to JOINTS 
+    public Planet getPlanet() {
+        return planet;
+    }
 
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+    }
+
+    
 }

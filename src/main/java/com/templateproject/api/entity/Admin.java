@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
 
 @Entity
 public class Admin {
@@ -31,6 +34,11 @@ public class Admin {
     
     private boolean addToClan;
     private boolean deleteToClan;
+
+    //JOINT DECLARATION 
+    @OneToOne
+    @JoinColumn(name ="player_id")
+    private Player player;
     
     public Admin(){}
 
@@ -38,7 +46,7 @@ public class Admin {
             boolean giveRessources, boolean removeRessources, boolean createBuilding, boolean removeBuilding,
             boolean giveClan, boolean removeClan, boolean addToClan, boolean deleteToClan) {
        
-                this.name = name;
+        this.name = name;
         this.createPlayer = createPlayer;
         this.removPlayer = removPlayer;
         this.createPlanet = createPlanet;
@@ -52,6 +60,16 @@ public class Admin {
         this.addToClan = addToClan;
         this.deleteToClan = deleteToClan;
     }
+
+    //GETTE & SETTER Class 
+     public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -130,7 +148,21 @@ public class Admin {
     public void setDeleteToClan(boolean deleteToClan) {
         this.deleteToClan = deleteToClan;
     }
+    
 
+    //GETTER & SETTER JOINTS
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+   
+
+    
+    
 
    
 }

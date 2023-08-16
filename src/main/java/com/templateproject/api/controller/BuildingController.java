@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.entity.Building;
+import com.templateproject.api.entity.Planet;
 import com.templateproject.api.service.BuildingService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,15 +26,19 @@ public class BuildingController {
 
     private final BuildingService buildingService;
 
-    public BuildingController(BuildingService buildingService) {
+    public BuildingController(BuildingService buildingService, Planet planet) {
         this.buildingService = buildingService;
+
     }
 
     // CREATE
-    @PostMapping("/building")
-    public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building) {
+    @PostMapping("/building/planet/{planetID}")
+    public ResponseEntity<BuildingPayload> createBuilding(@RequestBody Building building,
+            @PathVariable Integer planetID) {
         var payload = new BuildingPayload();
         try {
+            // TODO CHECK planetID validity
+            // var planetId = planet.getId();
             buildingService.add(
                     building.getName(),
                     building.getType(),
@@ -44,9 +49,12 @@ public class BuildingController {
                     building.getDiamondPrice(),
                     building.getHydrogenPrice(),
                     building.getEnergyPrice(),
-                    building.getIsBuild(),
                     building.getTimeBuilding(),
-                    building.getTimeToStart());
+                    building.getTimeToStart(),
+                    planetID);
+
+            buildingService.add(building);
+
             payload.setMessage(building.getName() + "created");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -61,11 +69,10 @@ public class BuildingController {
         var payload = new Payload();
         System.out.println("dans le building back");
         try {
-            System.out.println("je suis avangt de charger le building ");
+
             payload.setMessage("Get All Buildings");
             System.out.println(this.buildingService);
-            // Object listBuilding = ;
-            payload.setData(buildingService.getAll());
+            payload.setData(buildingService.getBuildings());
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
             payload.setMessage(e.getMessage() + " ici ");

@@ -1,10 +1,13 @@
 package com.templateproject.api.entity;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Clan {
@@ -22,6 +25,11 @@ public class Clan {
 
     @Column(unique = true, nullable = false, length = 50)
     private String adminNickname;
+
+     //JOINT DECLARATION 
+    @ManyToOne
+    @JoinColumn(name = "player_id")
+    private Player player;
 
     public Clan() {
     };
@@ -97,4 +105,21 @@ public class Clan {
     public String getAdminNickname() {
         return adminNickname;
     }
+    public Integer getLevel() {
+        return level;
+    }
+    
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+//GETTER & SETTER
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
 }

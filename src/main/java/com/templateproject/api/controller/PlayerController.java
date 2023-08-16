@@ -100,7 +100,7 @@ public class PlayerController {
   public ResponseEntity<Payload> updatePlayer(@PathVariable String nickname, @RequestBody Player player) {
     var payload = new Payload();
     try {
-     playerService.updateUser(
+     playerService.updateUser( 
                               nickname, 
                               player.getNickname(),
                               player.getPassword(),

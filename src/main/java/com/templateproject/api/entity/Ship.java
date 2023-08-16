@@ -1,20 +1,16 @@
 package com.templateproject.api.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(unique = true, nullable = false, length = 50)
     private String name;
-
     private String type;
     private Integer ironPrice;
     private Integer diamondPrice;
@@ -26,6 +22,27 @@ public class Ship {
     private Integer speed;
     private Integer capacity;
     private Integer quantity;
+  
+    //JOINT DECLARATION
+    @ManyToMany
+    @JoinTable(
+        name = "ship_toCompose_fleet",
+        joinColumns = @JoinColumn(name="ship_id"),
+        inverseJoinColumns = @JoinColumn(name="fleet_id")
+    )
+    private List<Fleet> fleetCompose;
+
+    @OneToMany(mappedBy="ship")//toMake 1.N-0.N
+    private List<Building> buildingNecessary; 
+
+    // @OneToMany (mappedBy = "ship") //Joints toUnlock 0.N-0.N
+    @ManyToMany
+    @JoinTable(
+        name ="ship_technologie",
+        joinColumns = @JoinColumn(name="ship_id"),
+        inverseJoinColumns = @JoinColumn(name="technologie_id")
+    )
+    private List<Technologie> technologiesList; 
 
     public Ship() {
     };
@@ -162,5 +179,43 @@ public class Ship {
         this.capacity = capacity;
     }
 
-   
+    public void setEnergyPrice(Integer energyPrice) {
+        this.energyPrice = energyPrice;
+    }
+
+    public void setPv(Integer pv) {
+        this.pv = pv;
+    }
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+
+    
+//GETTER & SETTER to JOINTS
+
+    public List<Fleet> getFleetCompose() {
+        return fleetCompose;
+    }
+
+    public void setFleetCompose(List<Fleet> fleetCompose) {
+        this.fleetCompose = fleetCompose;
+    }
+
+    public List<Building> getBuildingNecessary() {
+        return buildingNecessary;
+    }
+
+    public void setBuildingNecessary(List<Building> buildingNecessary) {
+        this.buildingNecessary = buildingNecessary;
+    }
+
+    public List<Technologie> getTechnologiesList() {
+        return technologiesList;
+    }
+
+    public void setTechnologiesList(List<Technologie> technologiesList) {
+        this.technologiesList = technologiesList;
+    }
+
+
 }

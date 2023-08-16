@@ -11,16 +11,19 @@ import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.BuildingPayload;
 import com.templateproject.api.entity.Building;
+import com.templateproject.api.entity.Planet;
 import com.templateproject.api.repository.BuildingRepository;
+import com.templateproject.api.repository.PlanetRepository;
 
 @Service
 public class BuildingService {
   private final BuildingRepository buildingRepository;
+  private final PlanetRepository planetRepository;
 
-  public BuildingService(BuildingRepository buildingRepository) {
-    // System.out.println("je suis dans le cosntr");
+  public BuildingService(BuildingRepository buildingRepository, PlanetRepository planetRepository) {
+
     this.buildingRepository = buildingRepository;
-
+    this.planetRepository = planetRepository;
   }
 
   public Object getAll() {
@@ -56,24 +59,26 @@ public class BuildingService {
 
   // CREATE
 
-  public void add(String name,
-      String type,
-      Integer level,
-      String description,
-      Integer coeff_prod,
-      Integer ironPrice,
-      Integer diamondPrice,
-      Integer hydrogenPrice,
-      Integer energyPrice,
-      boolean isBuild,
-      Date timeBuilding,
-      Date timeToStart) {
+  public void add(
+      String name, String type, Integer level,
+      String description, Integer coeff_prod, Integer ironPrice,
+      Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice,
+      Date timeBuilding, Date timeToStart, Integer planetId) {
     // Todo check params
-    // var building = new Building(name, type, level, description, coeff_prod,
-    // ironPrice, diamondPrice, hydrogenPrice, energyPrice,
-    // timeBuilding, timeToStart);
+    Planet planet = null;
+    if (planetId != null) {
+      planet = planetRepository.findById(planetId).get();
+    }
 
-    // buildingRepository.save(building);
+    var building = new Building(name, type, level, description, coeff_prod,
+        ironPrice, diamondPrice, hydrogenPrice, energyPrice, timeBuilding,
+        timeToStart, planet);
+
+    buildingRepository.save(building);
+
+  }
+
+  public void add(Building building) {
 
   }
 
@@ -84,6 +89,32 @@ public class BuildingService {
     List<Building> buildingList = buildingRepository.findAll();
     for (var building : buildingList) {
       var newBuilding = new BuildingPayload();
+      newBuilding.setName(building.getName());
+      newBuilding.setType(building.getType());
+      newBuilding.setLevel(building.getLevel());
+      newBuilding.setDescription(building.getDescription());
+      newBuilding.setCoeff_prod(building.getCoeff_prod());
+      newBuilding.setIronPrice(building.getIronPrice());
+      newBuilding.setDiamondPrice(building.getDiamondPrice());
+      newBuilding.setHydrogenPrice(building.getHydrogenPrice());
+      newBuilding.setEnergyPrice(building.getEnergyPrice());
+      newBuilding.setTimeBuilding(building.getTimeBuilding());
+      newBuilding.setTimeToStart(building.getTimeToStart());
+      newBuilding.setPlanet(building.getPlanet());
+
+      payload.add(newBuilding);
+
+    }
+    return payload;
+  }
+
+  // RESARCH ALL BUILDING by planetID
+  public List<BuildingPayload> getAllBuildingsOnThisPlanet(Integer planetId) {
+    var buildingPayload = new ArrayList<BuildingPayload>();
+    List<Building> buildingsList = buildingRepository.findAllByPlanetId(planetId);
+    for (var building : buildingsList) {
+      var newBuilding = new BuildingPayload();
+
       newBuilding.setName(building.getName());
 
       newBuilding.setType(building.getType());
@@ -97,15 +128,14 @@ public class BuildingService {
       newBuilding.setHydrogenPrice(building.getHydrogenPrice());
       newBuilding.setEnergyPrice(building.getEnergyPrice());
 
-      newBuilding.setIsBuild(building.getIsBuild());
-
       newBuilding.setTimeBuilding(building.getTimeBuilding());
       newBuilding.setTimeToStart(building.getTimeToStart());
+      newBuilding.setPlanet(building.getPlanet());
 
-      payload.add(newBuilding);
+      buildingPayload.add(newBuilding);
 
     }
-    return payload;
+    return buildingPayload;
   }
 
   // RESEARCH ONE
@@ -126,7 +156,6 @@ public class BuildingService {
     building.put("diamondPrice", buildingEntity.getDiamondPrice());
     building.put("hydrogenPrice", buildingEntity.getHydrogenPrice());
     building.put("energyPrice", buildingEntity.getEnergyPrice());
-    building.put("isBuild", buildingEntity.getIsBuild());
     building.put("buildTime", buildingEntity.getTimeBuilding());
     building.put("dateStart", buildingEntity.getTimeToStart());
 
@@ -166,9 +195,6 @@ public class BuildingService {
     }
     if (building.getEnergyPrice() != null) {
       buildingToUpdate.setEnergyPrice(building.getEnergyPrice());
-    }
-    if (building.getIsBuild() != null) {
-      buildingToUpdate.setIsBuild(building.getIsBuild());
     }
     if (building.getTimeBuilding() != null) {
       buildingToUpdate.setTimeBuilding(building.getTimeBuilding());
