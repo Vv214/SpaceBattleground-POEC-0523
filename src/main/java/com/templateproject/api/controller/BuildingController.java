@@ -61,7 +61,7 @@ public class BuildingController {
         var payload = new Payload();
         System.out.println("dans le building back");
         try {
-            System.out.println("je suis avangt de charger le building ");
+            System.out.println("je suis avant de charger le building ");
             payload.setMessage("Get All Buildings");
             System.out.println(this.buildingService);
             // Object listBuilding = ;
