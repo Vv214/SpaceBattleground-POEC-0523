@@ -217,6 +217,7 @@ public class ShipService {
 
   public Integer modifyQuantity(String name, Integer number) {
     var shipUpdate = shipRepository.findByName(name);
+    number = 1; // To do : enlever le 1 si on veut ajouter plusieurs quaantité à la fois.
     shipUpdate.setQuantity(shipUpdate.getQuantity() + number);
     shipRepository.save(shipUpdate);
     return shipUpdate.getQuantity();

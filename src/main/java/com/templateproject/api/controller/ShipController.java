@@ -145,7 +145,7 @@ public class ShipController {
     try {
       newQuantity = shipService.modifyQuantity(name, quantityToAdd);
       payload.setData(newQuantity);
-      payload.setMessage("Ship Quantity Updated successfully");
+      payload.setMessage("Ship Quantity for " + name + " Updated successfully ! ");
       return new ResponseEntity<>(payload, HttpStatus.OK);
     } catch (Exception e) {
       payload.setMessage(e.getMessage());
