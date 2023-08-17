@@ -5,8 +5,12 @@ public class ClanPayload {
     private String clanName;
     private String clanTag;
     private Integer clanLvl;
+    private String adminNickname;
+    private Integer currentNumberPlayers;
+    private Integer numberMaxPlayers;
 
-    public ClanPayload() {}
+    public ClanPayload() {
+    }
 
     public String getName() {
         return clanName;
@@ -31,5 +35,29 @@ public class ClanPayload {
     public void setLvl(Integer clanLvl) {
         this.clanLvl = clanLvl;
     }
-}
 
+    public String getAdminNickname() {
+        return adminNickname;
+    }
+
+    public void setAdminNickname(String adminNickname) {
+        this.adminNickname = adminNickname;
+    }
+
+    public Integer getCurrentNumberPlayers() {
+        return currentNumberPlayers;
+    }
+
+    public void setCurrentNumberPlayers(Integer currentNumberPlayers) {
+        this.currentNumberPlayers = currentNumberPlayers;
+    }
+
+    public Integer getNumberMaxPlayers() {
+        return numberMaxPlayers;
+    }
+
+    public void setNumberMaxPlayers(Integer numberMaxPlayers) {
+        this.numberMaxPlayers = numberMaxPlayers;
+    }
+
+}

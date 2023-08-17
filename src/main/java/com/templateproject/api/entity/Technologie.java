@@ -12,23 +12,23 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 public class Technologie {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; 
+    private Integer id;
 
-    @Column( unique = true, nullable = false, length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
-    private String description; 
-   
+    private String description;
+
     private Integer ironPrice;
     private Integer diamondPrice;
     private Integer hydrogenPrice;
     private Integer energyPrice;
-    
-    private Integer level; 
+
+    private Integer level;
     private float coef_modifier;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeSearch;
     @Temporal(TemporalType.TIMESTAMP)
@@ -36,10 +36,12 @@ public class Technologie {
 
     private boolean isDone;
 
-    public Technologie() {}
+    public Technologie() {
+    }
 
     public Technologie(String name, String description, Integer ironPrice, Integer diamondPrice, Integer hydrogenPrice,
-            Integer energyPrice, Integer level, float coef_modifier, Date timeSearch, Date timeToStart, boolean isDone) {
+            Integer energyPrice, Integer level, float coef_modifier, Date timeSearch, Date timeToStart,
+            boolean isDone) {
         this.name = name;
         this.description = description;
 
@@ -51,9 +53,9 @@ public class Technologie {
         this.level = level;
         this.coef_modifier = coef_modifier;
         this.timeSearch = timeSearch;
-        
+
         this.timeToStart = timeToStart;
-        
+
         this.isDone = isDone;
     }
 
@@ -65,7 +67,7 @@ public class Technologie {
         this.id = id;
     }
 
-        public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -153,5 +155,4 @@ public class Technologie {
         this.isDone = isDone;
     };
 
-    
 }

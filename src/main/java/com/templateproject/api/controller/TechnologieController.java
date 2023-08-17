@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-
+@CrossOrigin(origins = "http://localhost:4200")
 public class TechnologieController {
 
     private final TechnologieService technologieService;
@@ -125,4 +125,16 @@ public class TechnologieController {
         }
     }
 
+    @PutMapping("/technologie/{name}/add")
+    public ResponseEntity<Payload> levelUp(@PathVariable String name) {
+        var payload = new Payload();
+        try {
+            var newLevel = technologieService.levelUp(name);
+            payload.setData(name);
+            payload.setMessage("Techno " + name + " is now on level : " + newLevel);
+            return new ResponseEntity<>(payload, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
