@@ -215,4 +215,11 @@ public class ShipService {
     return new ResponseEntity<>("Ship successfully deleted!", HttpStatus.OK);
   }
 
+  public Integer modifyQuantity(String name, Integer number) {
+    var shipUpdate = shipRepository.findByName(name);
+    shipUpdate.setQuantity(shipUpdate.getQuantity() + number);
+    shipRepository.save(shipUpdate);
+    return shipUpdate.getQuantity();
+  }
+
 }

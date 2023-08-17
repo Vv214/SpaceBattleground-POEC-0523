@@ -2,6 +2,7 @@ package com.templateproject.api.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.entity.Ship;
 import com.templateproject.api.service.ShipService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ShipController {
 
@@ -127,7 +129,23 @@ public class ShipController {
     var payload = new Payload();
     try {
       shipService.deleteShipByName(name);
-      payload.setMessage("The " + name + "class deleted");
+      payload.setMessage("The " + name + "ship deleted");
+      return new ResponseEntity<>(payload, HttpStatus.OK);
+    } catch (Exception e) {
+      payload.setMessage(e.getMessage());
+      return new ResponseEntity<>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @PutMapping("/ship/{name}/add")
+  public ResponseEntity<Payload> addShip(@PathVariable String name, @RequestBody Ship ship) {
+    var payload = new Payload();
+    var quantityToAdd = ship.getQuantity();
+    var newQuantity = 0;
+    try {
+      newQuantity = shipService.modifyQuantity(name, quantityToAdd);
+      payload.setData(newQuantity);
+      payload.setMessage("Ship Quantity Updated successfully");
       return new ResponseEntity<>(payload, HttpStatus.OK);
     } catch (Exception e) {
       payload.setMessage(e.getMessage());
