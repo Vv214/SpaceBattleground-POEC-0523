@@ -49,9 +49,15 @@ public class RessourceService {
 
   public Ressource update(String name, RessourcePayload ressource) {
     Ressource currentRessource = ressourceRepository.findByName(name);
-    currentRessource.setName(ressource.getName());
-    currentRessource.setQuantity(ressource.getQuantity());
-    currentRessource.setMaxStock(ressource.getMaxStock());
+    if (ressource.getName() != null) {
+      currentRessource.setName(ressource.getName());
+    }
+    if (ressource.getQuantity() != null) {
+      currentRessource.setQuantity(ressource.getQuantity());
+    }
+    if (ressource.getMaxStock() != null) {
+      currentRessource.setMaxStock(ressource.getMaxStock());
+    }
     return ressourceRepository.save(currentRessource);
   }
 
@@ -105,6 +111,11 @@ public class RessourceService {
 
   public Ressource add(Ressource ressource) {
     return ressourceRepository.save(ressource);
+  }
+
+  public Ressource findAllByPlanet(Integer planet) {
+    // ressourceRepository.findAllByPlanet(planet);
+    return null;
   }
 
 }

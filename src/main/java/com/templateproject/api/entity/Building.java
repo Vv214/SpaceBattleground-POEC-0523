@@ -36,6 +36,8 @@ public class Building {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
+    // private Planet planet;
+
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
             Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, boolean isBuild, Date timeBuilding,
             Date timeToStart) {
@@ -53,15 +55,20 @@ public class Building {
         this.timeToStart = timeToStart;
     }
 
-    public boolean isBuild() {
+    public boolean getIsBuild() {
         return isBuild;
     }
 
-    public void setBuild(boolean isBuild) {
+    public void setIsBuild(boolean isBuild) {
         this.isBuild = isBuild;
     }
 
     public Building() {
+    }
+
+    public Building(boolean isBuild) {
+        this.isBuild = isBuild;
+        // Initialisez les propriétés de la classe avec les valeurs appropriées
     }
 
     public String getName() {

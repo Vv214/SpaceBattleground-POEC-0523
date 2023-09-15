@@ -47,6 +47,7 @@ public class AuthService {
     }
 
     public Integer findUserIdByToken(String token) {
+        // tokens.stream().filter(t -> t.equals(token)).findFirst();
         for (Token item : tokens) {
             if (item.getToken().equals(token)) {
                 return item.getplayerID();
