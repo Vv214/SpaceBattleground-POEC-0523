@@ -13,16 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.controller.payload.RessourcePayload;
 import com.templateproject.api.entity.Ressource;
+import com.templateproject.api.service.AuthService;
 import com.templateproject.api.service.RessourceService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 
 public class RessourceController {
 
     private final RessourceService ressourceService;
+    private final AuthService authService;
 
-    RessourceController(RessourceService ressourceService) {
+    RessourceController(RessourceService ressourceService, AuthService authService) {
         this.ressourceService = ressourceService;
+        this.authService = authService;
     }
 
     // CREATE
@@ -42,11 +47,12 @@ public class RessourceController {
 
     // RESEARCH ALL
     @GetMapping("/ressource")
-    public ResponseEntity<Payload> getAllRessource() {
+    public ResponseEntity<Payload> getAllRessource(HttpServletRequest request) {
+        var playerID = (Integer) request.getAttribute("playerID");
         var payload = new Payload();
         try {
-            payload.setData(ressourceService.getAll());
-            payload.setMessage("Get all ressource");
+            payload.setData(ressourceService.getAll(playerID));
+            payload.setMessage("Get all ressource avec le player Id" + playerID);
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());

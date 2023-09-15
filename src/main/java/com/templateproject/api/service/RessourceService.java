@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 import com.templateproject.api.controller.payload.RessourcePayload;
+import com.templateproject.api.entity.Player;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.repository.RessourceRepository;
 
@@ -16,18 +17,35 @@ public class RessourceService {
     this.ressourceRepository = ressourceRepository;
   }
 
-  public Object getAll() {
-    var diamond = getByName("diamond");
-    var energy = getByName("energy");
-    var iron = getByName("iron");
-    var hydrogene = getByName("hydrogene");
-    var ressources = new HashMap<String, Object>();
-    ressources.put("diamond", diamond);
-    ressources.put("energy", energy);
-    ressources.put("iron", iron);
-    ressources.put("hydrogene", hydrogene);
-    return ressources;
+  public Object getAll(Integer playerId) {
+    var ressource = ressourceRepository.findAllByPlayerId(playerId);
+    return ressource;
   }
+  // public Object getAll() {
+  // var diamond = getByName("diamond");
+  // var energy = getByName("energy");
+  // var iron = getByName("iron");
+  // var hydrogene = getByName("hydrogene");
+  // var ressources = new HashMap<String, Object>();
+  // ressources.put("diamond", diamond);
+  // ressources.put("energy", energy);
+  // ressources.put("iron", iron);
+  // ressources.put("hydrogene", hydrogene);
+  // return ressources;
+  // }
+
+  // public Object getAll(Integer playerId) {
+  // var diamond = getByName("diamond", playerId);
+  // var energy = getByName("energy", playerId);
+  // var iron = getByName("iron", playerId);
+  // var hydrogene = getByName("hydrogene", playerId);
+  // var ressources = new HashMap<String, Object>();
+  // ressources.put("diamond", diamond);
+  // ressources.put("energy", energy);
+  // ressources.put("iron", iron);
+  // ressources.put("hydrogene", hydrogene);
+  // return ressources;
+  // }
 
   public Ressource update(String name, RessourcePayload ressource) {
     Ressource currentRessource = ressourceRepository.findByName(name);
@@ -35,6 +53,18 @@ public class RessourceService {
     currentRessource.setQuantity(ressource.getQuantity());
     currentRessource.setMaxStock(ressource.getMaxStock());
     return ressourceRepository.save(currentRessource);
+  }
+
+  // RESEARCH ONE for one player
+  public HashMap<String, Object> getByName(String name, Integer playerId) {
+    var ressource = new HashMap<String, Object>();
+    var ressourceEntity = ressourceRepository.findOneByPlayer(name, playerId);
+    if (ressourceEntity == null) {
+      return ressource;
+    }
+    ressource.put("quantity", ressourceEntity.getQuantity());
+    ressource.put("maxStock", ressourceEntity.getMaxStock());
+    return ressource;
   }
 
   // RESEARCH ONE
