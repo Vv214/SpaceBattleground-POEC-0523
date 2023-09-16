@@ -1,5 +1,7 @@
 package com.templateproject.api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,30 +9,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    @Column( unique = true, nullable = false, length = 50)
+
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
     private boolean isColonised;
     private Integer positionX;
     private Integer positionY;
     private Integer planetSize;
 
-    //JOINT DECLARATION
+    // JOINT DECLARATION
     @ManyToOne
     @JoinColumn(name = "player_id", nullable = true, referencedColumnName = "id")
     private Player player;
 
+    @OneToMany(mappedBy = "planet")
+    private List<Building> buildings;
 
     public Planet() {
     };
 
-    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize, Player player) {
+    public Planet(String name, boolean isColonised, Integer positionX, Integer positionY, Integer planetSize,
+            Player player) {
         this.name = name;
         this.isColonised = isColonised;
         this.positionX = positionX;
@@ -88,6 +94,12 @@ public class Planet {
         this.player = player;
     }
 
-   
+    public List<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setBuildings(List<Building> buildings) {
+        this.buildings = buildings;
+    }
 
 }

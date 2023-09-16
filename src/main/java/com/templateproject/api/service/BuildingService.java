@@ -192,6 +192,5 @@ public class BuildingService {
     var buildingToUpdate = buildingRepository.findById(buildingId).get();
     buildingToUpdate.setLevel(buildingToUpdate.getLevel() + 1);
     return buildingRepository.save(buildingToUpdate);
-
   }
 }

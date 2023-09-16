@@ -18,11 +18,11 @@ public class AuthService {
     private List<Token> tokens;
 
     private final PlayerRepository playerRepository;
-    private final RessourceService ressourceService;
+    private final MethodeService methodeService;
 
-    public AuthService(PlayerRepository playerRepository, RessourceService ressourceService) {
+    public AuthService(PlayerRepository playerRepository, MethodeService methodeService) {
         this.playerRepository = playerRepository;
-        this.ressourceService = ressourceService;
+        this.methodeService = methodeService;
         tokens = new ArrayList<>();
     }
 
@@ -32,7 +32,7 @@ public class AuthService {
             Player player = new Player(nickname, passwordHashed, email);
             playerRepository.save(player);
             System.out.println("Player saved back avant init ress");
-            ressourceService.initializeRessourcesForNewPlayer(player.getId());
+            methodeService.initializeRessourcesForNewPlayer(player.getId());
         } else {
             throw new Exception("Invalid params ");
             // checks error message

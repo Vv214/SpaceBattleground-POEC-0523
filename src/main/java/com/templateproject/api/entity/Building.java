@@ -38,13 +38,13 @@ public class Building {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
-    // @ManyToOne
-    // @JoinColumn(name = "planet_id", nullable = true, referencedColumnName = "id")
-    // private Planet planet;
+    @ManyToOne
+    @JoinColumn(name = "planet_id", nullable = true, referencedColumnName = "id")
+    private Planet planet;
 
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,
             Integer diamondPrice, Integer hydrogenPrice, Integer energyPrice, boolean isBuild, Date timeBuilding,
-            Date timeToStart) {
+            Date timeToStart, Planet planet) {
         this.name = name;
         this.type = type;
         this.level = level;
@@ -57,6 +57,7 @@ public class Building {
         this.isBuild = isBuild;
         this.timeBuilding = timeBuilding;
         this.timeToStart = timeToStart;
+        this.planet = planet;
     }
 
     public boolean getIsBuild() {
@@ -163,4 +164,11 @@ public class Building {
         this.timeToStart = timeToStart;
     }
 
+    public Planet getPlanet() {
+        return planet;
+    }
+
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
+    }
 }

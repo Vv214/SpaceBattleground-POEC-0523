@@ -32,13 +32,8 @@ public class RessourceService {
     return ressources;
   }
 
-<<<<<<< HEAD
   public Ressource update(String name, RessourcePayload ressource, Integer playerId) {
     Ressource currentRessource = ressourceRepository.findRessourceByNomAndPlayerId(name, playerId);
-=======
-  public Ressource update(String name, RessourcePayload ressource) {
-    Ressource currentRessource = ressourceRepository.findByName(name);
->>>>>>> 23745ae680475693279320431b3cbecacc455b6c
     if (ressource.getName() != null) {
       currentRessource.setName(ressource.getName());
     }
@@ -110,21 +105,4 @@ public class RessourceService {
     return null;
   }
 
-<<<<<<< HEAD
-  public void initializeRessourcesForNewPlayer(Integer playerId) {
-    System.out.println("j essaie de init");
-    var playerToUpdate = playerRepository.findByPlayerId(playerId);
-    var ironPlayer = new Ressource("iron", 5000, playerToUpdate);
-    var diamondPlayer = new Ressource("diamond", 5000, playerToUpdate);
-    var energyPlayer = new Ressource("energy", 5000, playerToUpdate);
-    var hydrogenePlayer = new Ressource("hydrogene", 5000, playerToUpdate);
-    ressourceRepository.save(ironPlayer);
-    ressourceRepository.save(diamondPlayer);
-    ressourceRepository.save(energyPlayer);
-    ressourceRepository.save(hydrogenePlayer);
-    System.out.println("j ai fini d init");
-
-  }
-=======
->>>>>>> 23745ae680475693279320431b3cbecacc455b6c
 }
