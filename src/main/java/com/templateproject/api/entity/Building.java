@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -36,6 +38,8 @@ public class Building {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeToStart;
 
+    // @ManyToOne
+    // @JoinColumn(name = "planet_id", nullable = true, referencedColumnName = "id")
     // private Planet planet;
 
     public Building(String name, String type, Integer level, String description, Integer coeff_prod, Integer ironPrice,

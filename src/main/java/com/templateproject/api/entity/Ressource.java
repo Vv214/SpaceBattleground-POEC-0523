@@ -13,7 +13,7 @@ public class Ressource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true, nullable = false, length = 50)
+    @Column(unique = false, nullable = false, length = 50)
     private String name;
 
     private Integer quantity;
@@ -30,6 +30,13 @@ public class Ressource {
         this.name = name;
         this.quantity = quantity;
         this.maxStock = maxStock;
+        this.player = player;
+    }
+
+    public Ressource(String name, Integer quantity, Player player) {
+        this.name = name;
+        this.quantity = quantity;
+        this.maxStock = 10000;
         this.player = player;
     }
 

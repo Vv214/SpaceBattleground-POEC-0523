@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.templateproject.api.controller.payload.Payload;
 import com.templateproject.api.controller.payload.RessourcePayload;
 import com.templateproject.api.entity.Ressource;
-import com.templateproject.api.service.AuthService;
 import com.templateproject.api.service.RessourceService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,19 +23,18 @@ import jakarta.servlet.http.HttpServletRequest;
 public class RessourceController {
 
     private final RessourceService ressourceService;
-    private final AuthService authService;
 
-    RessourceController(RessourceService ressourceService, AuthService authService) {
+    RessourceController(RessourceService ressourceService) {
         this.ressourceService = ressourceService;
-        this.authService = authService;
     }
 
     // CREATE
     @PostMapping("/ressource")
-    public ResponseEntity<Payload> addRessource(@RequestBody Ressource ressource) {
+    public ResponseEntity<Payload> addRessource(HttpServletRequest request, @RequestBody Ressource ressource) {
+        var playerID = (Integer) request.getAttribute("playerID");
         var payload = new Payload();
         try {
-            ressourceService.add(ressource);
+            ressourceService.add(ressource, playerID);
             payload.setData(ressource);
             payload.setMessage(ressource.getName() + " added");
             return new ResponseEntity<>(payload, HttpStatus.CREATED);
@@ -53,7 +51,7 @@ public class RessourceController {
         var payload = new Payload();
         try {
             payload.setData(ressourceService.getAll(playerID));
-            payload.setMessage("Get all ressource avec le player Id" + playerID);
+            payload.setMessage("Get all ressource");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
@@ -64,12 +62,13 @@ public class RessourceController {
 
     // RESEARCH ONE
     @GetMapping("/ressource/{name}")
-    public ResponseEntity<Payload> getRessourceByTag(@PathVariable("name") String name) {
+    public ResponseEntity<Payload> getRessourceByTag(HttpServletRequest request, @PathVariable("name") String name) {
         var payload = new Payload();
+        var playerID = (Integer) request.getAttribute("playerID");
         try {
             // var ressource = ressourceService.getByName(name);
             payload.setMessage("Get ressource by name '" + name + "'");
-            payload.setData(ressourceService.getByName(name));
+            payload.setData(ressourceService.getByName(name, playerID));
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
             payload.setMessage(e.getMessage());
@@ -80,16 +79,16 @@ public class RessourceController {
 
     // UPDATE ONE
     @PutMapping("/ressource/{name}")
-    public ResponseEntity<RessourcePayload> updateRessource(@PathVariable String name,
+    public ResponseEntity<RessourcePayload> updateRessource(HttpServletRequest request, @PathVariable String name,
             @RequestBody Ressource ressource) {
+        var playerID = (Integer) request.getAttribute("playerID");
         var payload = new RessourcePayload();
         try {
             payload.setName(ressource.getName());
             payload.setQuantity(ressource.getQuantity());
             payload.setMaxStock(ressource.getMaxStock());
 
-            ressourceService.update(name, payload);
-
+            ressourceService.update(name, payload, playerID);
             payload.setMessage("Ressource updated");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {
@@ -100,10 +99,11 @@ public class RessourceController {
 
     // DELETE ONE
     @DeleteMapping("/ressource/{name}")
-    public ResponseEntity<Payload> deleteRessource(@PathVariable("name") String name) {
+    public ResponseEntity<Payload> deleteRessource(HttpServletRequest request, @PathVariable("name") String name) {
         var payload = new Payload();
+        var playerID = (Integer) request.getAttribute("playerID");
         try {
-            ressourceService.delete(name);
+            ressourceService.delete(name, playerID);
             payload.setMessage("'" + name + "' deleted");
             return new ResponseEntity<>(payload, HttpStatus.OK);
         } catch (Exception e) {

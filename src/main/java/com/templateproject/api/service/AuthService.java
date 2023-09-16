@@ -18,9 +18,11 @@ public class AuthService {
     private List<Token> tokens;
 
     private final PlayerRepository playerRepository;
+    private final RessourceService ressourceService;
 
-    public AuthService(PlayerRepository playerRepository) {
+    public AuthService(PlayerRepository playerRepository, RessourceService ressourceService) {
         this.playerRepository = playerRepository;
+        this.ressourceService = ressourceService;
         tokens = new ArrayList<>();
     }
 
@@ -29,6 +31,8 @@ public class AuthService {
             String passwordHashed = BCrypt.withDefaults().hashToString(BCrypt.MIN_COST, password.toCharArray());
             Player player = new Player(nickname, passwordHashed, email);
             playerRepository.save(player);
+            System.out.println("Player saved back avant init ress");
+            ressourceService.initializeRessourcesForNewPlayer(player.getId());
         } else {
             throw new Exception("Invalid params ");
             // checks error message
