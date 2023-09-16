@@ -32,8 +32,13 @@ public class RessourceService {
     return ressources;
   }
 
+<<<<<<< HEAD
   public Ressource update(String name, RessourcePayload ressource, Integer playerId) {
     Ressource currentRessource = ressourceRepository.findRessourceByNomAndPlayerId(name, playerId);
+=======
+  public Ressource update(String name, RessourcePayload ressource) {
+    Ressource currentRessource = ressourceRepository.findByName(name);
+>>>>>>> 23745ae680475693279320431b3cbecacc455b6c
     if (ressource.getName() != null) {
       currentRessource.setName(ressource.getName());
     }
@@ -105,6 +110,7 @@ public class RessourceService {
     return null;
   }
 
+<<<<<<< HEAD
   public void initializeRessourcesForNewPlayer(Integer playerId) {
     System.out.println("j essaie de init");
     var playerToUpdate = playerRepository.findByPlayerId(playerId);
@@ -119,4 +125,6 @@ public class RessourceService {
     System.out.println("j ai fini d init");
 
   }
+=======
+>>>>>>> 23745ae680475693279320431b3cbecacc455b6c
 }

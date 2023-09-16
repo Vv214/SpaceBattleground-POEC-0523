@@ -16,8 +16,11 @@ import com.templateproject.api.controller.payload.RessourcePayload;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.service.RessourceService;
 
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpServletRequest;
 
+=======
+>>>>>>> 23745ae680475693279320431b3cbecacc455b6c
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class RessourceController {
