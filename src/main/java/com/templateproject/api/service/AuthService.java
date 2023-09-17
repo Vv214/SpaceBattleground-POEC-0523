@@ -31,8 +31,10 @@ public class AuthService {
             String passwordHashed = BCrypt.withDefaults().hashToString(BCrypt.MIN_COST, password.toCharArray());
             Player player = new Player(nickname, passwordHashed, email);
             playerRepository.save(player);
-            System.out.println("Player saved back avant init ress");
             methodeService.initializeRessourcesForNewPlayer(player.getId());
+            System.out.println("Player saved back apres init ress");
+            methodeService.definePlanetForPlayer(player.getId());
+            System.out.println("Player saved back apres init planet");
         } else {
             throw new Exception("Invalid params ");
             // checks error message

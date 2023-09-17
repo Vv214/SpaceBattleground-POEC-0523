@@ -2,11 +2,10 @@ package com.templateproject.api.service;
 
 import java.util.ArrayList;
 
-import org.hibernate.mapping.Array;
-import org.hibernate.mapping.List;
 import org.springframework.stereotype.Service;
 
 import com.templateproject.api.entity.Planet;
+import com.templateproject.api.entity.Player;
 import com.templateproject.api.entity.Ressource;
 import com.templateproject.api.repository.PlanetRepository;
 import com.templateproject.api.repository.PlayerRepository;
@@ -51,15 +50,23 @@ public class MethodeService {
     }
 
     public void definePlanetForPlayer(Integer idPlayer) {
+        // System.out.println("dans define planet");
         var planetList = planetRepository.findAll();
-        var planetListEmpty = new ArrayList<>();
+        var planetListWithNoPlayer = new ArrayList<>();
+        Player player = playerRepository.findByPlayerId(idPlayer);
         try {
             for (Planet planet : planetList) {
                 if (planet.getPlayer() == null) {
-                    planetListEmpty.add(planet);
+                    planetListWithNoPlayer.add(planet);
                 }
-                // To do random assignment
             }
+            if (planetListWithNoPlayer != null) {
+                int randomNumber = (int) (Math.random() * planetListWithNoPlayer.size()) + 1;
+                Planet planetToAttribute = (Planet) planetListWithNoPlayer.get(randomNumber);
+                planetToAttribute.setPlayer(player);
+                planetRepository.save(planetToAttribute);
+            }
+            // To do si toutes les planetes sont déjà attribués.
 
         } catch (Exception e) {
             // TODO: handle exception
